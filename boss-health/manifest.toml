@@ -5,7 +5,7 @@ version     = "1.1.0"
 author      = "Ovilli"
 summary     = "The boss bar shows the boss's current health next to its name."
 description = "Adds the boss's current health, updated live, next to its name on the boss life bar. Data only: nothing in the game is changed but the boss bar."
-enabled     = true
+enabled     = false
 load_order  = 61
 sdk_version = ">=3.0,<4"
 # UI only: each player sees the number on their own screen. HP is host-owned;

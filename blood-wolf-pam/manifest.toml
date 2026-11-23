@@ -8,9 +8,9 @@
 # ASSETS only: the wolf's mesh, skeleton, clips, effects and button pictures.
 # The clone manifest is kept at ~/.cache/rsmm/blood-wolf-kit/manifest.clone.toml.
 #
-# What the clone had that this file cannot say yet (see the notes at each
-# button): the blood seed riding on the bitten enemy, and Scarlet's
-# defense/ultimate behaviour and talents (Blood Wolf now has buttons and talents of its own).
+# What the clone had that this file says in its own way (see the notes at each
+# button): the blood seed riding on the bitten enemy, and buttons and talents
+# of Blood Wolf's own rather than Scarlet's.
 
 [mod]
 id                = "blood-wolf-pam"
@@ -20,17 +20,19 @@ author            = "Local"
 description       = "Blood Wolf: a wolf hero of its own, written from scratch on Scarlet's wolf assets."
 license           = "MIT"
 sdk_version       = ">=3.0,<4"
-enabled           = false
+enabled           = true
 multiplayer_scope = "deterministic-shared"
 experimental      = true
 tags              = ["hero", "red"]
+loader_flags      = ["RSMM_ENABLE_HERO_CAPTURE"]
 
 # The power is a `template` (Scarlet's own wolf bite) and the build fixes the
 # combo and the talent cards need: CLI channel v33 (RSMM 5.9.32) or newer. An
 # older RSMM skips the mod with a plain message instead of keeping the last
 # build it made (what "nothing changes between versions" looked like).
 [requires]
-cli = 33
+cli    = 33
+loader = 65
 
 [[content]]
 kind        = "hero"
@@ -41,6 +43,7 @@ description = "The wolf that never turned back. It hunts in a pack of its own ma
 [content.frame]
 rig      = "Hero_Red"
 mesh     = "Characters\\Heroes\\RED\\RED_wolf_GEO.fbx"
+model    = "art/bloodwolf_GEO.glb"
 material = "Characters\\Heroes\\RED\\Textures\\M_RED_Wolf.mat.ot"
 # The wolf's own HUD portrait (the rig's default is Scarlet, human).
 portrait = "Heroes\\Red\\Portrait_RED_WOLF_01.png"
@@ -50,7 +53,10 @@ portrait = "Heroes\\Red\\Portrait_RED_WOLF_01.png"
 # in the clone). Carmilla's seed debuff and its burst listener + spawner.
 edits = [
     { clone = ["Skill Power Special Bomb Modifier", "Skill Power Special Bomb Time Before Explosion Value"], from = "Carmilla", rename = { "Skill Power Special Bomb Modifier" = "Wolf Power Blood Seed Modifier", "Skill Power Special Bomb Time Before Explosion Value" = "Wolf Power Blood Seed Time Before Explosion Value" } },
-    { set = "Wolf Power Blood Seed Modifier.duration", value = 1.5 },
+    # The seed keeps Carmilla's own 1.5 s fuse (she links the modifier's
+    # duration to this value); Thickening Blood stretches it to 2.5 s again
+    # (the Duration factor at the end of this list).
+    { link = "Wolf Power Blood Seed Modifier.duration", to = "Wolf Power Blood Seed Time Before Explosion Value" },
     { clone = ["Blood Bomb Explode Listener", "Skill Power Special Bomb Spawner"], from = "Carmilla", rename = { "Blood Bomb Explode Listener" = "Wolf Blood Bomb Explode Listener", "Skill Power Special Bomb Spawner" = "Wolf Blood Bomb Spawner" } },
     { remove_link = "Wolf Blood Bomb Spawner.spawner_values[0]" },
     { set = "Wolf Blood Bomb Spawner.template[1]", value = "own:Bomb" },
@@ -70,11 +76,18 @@ edits = [
     { override = "Child Event Initialize", from = "Character_Common/Character_Common" },
     { add_link = "Child Event Initialize.activates", to = "Wolf Blood Bomb Explode Listener" },
     { add_subobject = "Wolf Primary Ability Damage.bytes_36", from = "Carmilla", donor = "Skill Defense Aoe Bleed Damage.bytes_36[0]", replace_ref = { "Skill Defense Aoe Bleed Modifier" = "Wolf Power Blood Seed Modifier" } },
+    { set = "Wolf Primary Ability Damage.value_27", value = 0.5 },
     # 3rd combo hit bleed: 50 at level 1, scaling with attack and level modifiers
     # (Level Damage Selector = 10 at lvl 1, * 5.0 * Basic Attack AP Multiplier Operation).
     { clone = ["Wolf Basic Attack Supposed Damage Operation", "Wolf Basic Attack Damage Multiplier"], from = "Red", rename = { "Wolf Basic Attack Supposed Damage Operation" = "Wolf Basic Attack Bleed Value Operation", "Wolf Basic Attack Damage Multiplier" = "Wolf Basic Attack Bleed Base Multiplier" } },
     { set = "Wolf Basic Attack Bleed Base Multiplier.value", value = 5.0 },
+    { set = "Skill Attack Ability Step 3 Bleed On Attack Ability Step 3 Hit 1 Damage.duration", value = 5.0 },
     { link = "Skill Attack Ability Step 3 Bleed On Attack Ability Step 3 Hit 1 Damage.amount", to = "Wolf Basic Attack Bleed Value Operation" },
+    # Match Scarlet's wolf basic attack forward cone AoE instead of a 360-degree circle.
+    { clone = ["Wolf Basic Attack Traverser"], from = "Red", rename = { "Wolf Basic Attack Traverser" = "BloodWolf Basic Attack Traverser" } },
+    { replace_subobject = "Attack Ability Step 1 Hit 1 Attack.attacks[0]", from = "Red", donor = "Wolf Basic Attack.attacks[0]", replace_ref = { "Wolf Basic Attack Damage" = "Attack Ability Step 1 Hit 1 Damage", "Wolf Basic Attack Traverser" = "BloodWolf Basic Attack Traverser" } },
+    { replace_subobject = "Attack Ability Step 2 Hit 1 Attack.attacks[0]", from = "Red", donor = "Wolf Basic Attack.attacks[0]", replace_ref = { "Wolf Basic Attack Damage" = "Attack Ability Step 2 Hit 1 Damage", "Wolf Basic Attack Traverser" = "BloodWolf Basic Attack Traverser" } },
+    { replace_subobject = "Attack Ability Step 3 Hit 1 Attack.attacks[0]", from = "Red", donor = "Wolf Basic Attack.attacks[0]", replace_ref = { "Wolf Basic Attack Damage" = "Attack Ability Step 3 Hit 1 Damage", "Wolf Basic Attack Traverser" = "BloodWolf Basic Attack Traverser" } },
     # Basic attack combo hit sound (Red's Wolf Basic Attack Impact FMod Event Default on steps 1-2,
     # Wolf Basic Attack Impact FMod Event Dash Attack on step 3 double strike).
     { event = "Wolf Basic Attack Hit Sound Event" },
@@ -86,9 +99,9 @@ edits = [
     { clone = ["Wolf Basic Attack Impact FMod Event Dash Attack"], from = "Red", rename = { "Wolf Basic Attack Impact FMod Event Dash Attack" = "Wolf Basic Attack Dash Impact FMod Event" } },
     { add_link = "Wolf Basic Attack Step 3 Hit Sound Event.activates", to = "Wolf Basic Attack Dash Impact FMod Event" },
     { link = "Attack Ability Step 3 Hit 1 Damage.ref_32", to = "Wolf Basic Attack Step 3 Hit Sound Event" },
-    # Power fallback direction outside combat: Character Mesh world-forward returns (0,0,1),
-    # redirecting aim to the bottom of the screen; use Entity Node world-forward instead.
-    { retarget = "Wolf Primary Ability Target Dir", node = "Character_Common/Character_Common|Entity Node", from_kind = "3d graphic object" },
+    # Power targeting outside combat: Character Mesh / Entity Node world-forward returns (0,0,1);
+    # use live Hero Controller aim (joystick/mouse) when no enemy target is detected.
+    { retarget = "Wolf Primary Ability Target Dir", node = "Heroes/Hero_Common/Hero_Common|Hero Controller", from_kind = "3d graphic object" },
     # Spawn animation: attach Hero_Red's wolf spawn audio + footsteps and speed up by 30% (1.3x).
     { clone = ["Alt Footstep Run FMod Event", "Alt Footstep Walk FMod Event"], from = "Red", rename = { "Alt Footstep Run FMod Event" = "Wolf Spawn Footstep Run FMod Event", "Alt Footstep Walk FMod Event" = "Wolf Spawn Footstep Walk FMod Event" } },
     { link = "Spawning Default Appearance Anim.cinebloc[0]", to = "Spawning Default Appearance FMod Event" },
@@ -104,6 +117,10 @@ edits = [
     { set = "Collision Radius.value", value = 0.7 },
     # Allow Dash (and other actions) to interrupt Defense; interrupting exits State Defense Ability and drops its State Intangible.
     { set = "Defensive Ability Controller.value_8", value = true },
+    # Innate Wolf Defense claw blood trails (from Hero_Red_FX, retargeted to Character Mesh).
+    { clone = ["Fx Howl Hands Trails"], from = "Heroes/Hero_Red/Hero_Red_FX", rename = { "Fx Howl Hands Trails" = "Wolf Innate Claw Trails" } },
+    { retarget = "Wolf Innate Claw Trails", node = "Character_Common/Character_Common|Character Mesh" },
+    { add_link = "State Trait Ability Passive.while_active", to = "Wolf Innate Claw Trails" },
     # Hyper Dash (ultimate): Onslaught-style persistent ZoneAttack + Traverser + VFX, 1.35x speed (10% slower than 1.5x).
     { animatic_speed = "Ultimate Ability Anim", value = 1.35 },
     { set = "Ultimate Ability Anim.value_7", value = 9.0 },
@@ -123,12 +140,17 @@ edits = [
     { clone = ["Fx Wolf Primary Ability Impact"], rename = { "Fx Wolf Primary Ability Impact" = "Hyper Dash Character Impact Fx" } },
     { replace_subobject = "Hyper Dash Character Impact Fx.bytes_1[0]", donor = "Fx Wolf Primary Ability Impact.bytes_1[0]", replace_ref = { "Wolf Primary Ability Damage" = "Ultimate Ability Hit 1 Damage" } },
     { link = "Ultimate Ability Hit 1 Damage.ref_32", to = "Hyper Dash Character Impact Fx" },
-    { clone = ["Skill Trait Active Heal Resource Gain"], from = "Red", rename = { "Skill Trait Active Heal Resource Gain" = "Hyper Dash Kill Heal Resource Gain" } },
-    { link = "Hyper Dash Kill Heal Resource Gain.value_2", to = "" },
-    { set = "Hyper Dash Kill Heal Resource Gain.value_2", value = 10.0 },
+    { clone = ["Skill Passive Combo Use Bonus Human Resource Gain"], from = "Red", rename = { "Skill Passive Combo Use Bonus Human Resource Gain" = "Hyper Dash Kill Heal Resource Gain" } },
+    { level_linear = "Hyper Dash Kill Heal Resource Gain", value = 5.0, base = -15.0 },
     { event = "Event Hyper Dash Kill" },
     { add_link = "Event Hyper Dash Kill.activates", to = "Hyper Dash Kill Heal Resource Gain" },
     { link = "Ultimate Ability Hit 1 Damage.ref_33", to = "Event Hyper Dash Kill" },
+    { clone = ["Skill Ultimate 2 Explosif Eat Fx Explosion", "Skill Ultimate 2 Explosif Eat FMod Event Active", "Skill Ultimate 2 Explosif Fx Scale Operation", "Skill Ultimate 2 Explosif Eat Attack Radius Operation", "Skill Ultimate 2 Explosif Explosion Radius Min", "Skill Ultimate 2 Explosif Explosion Radius Max"], from = "Red", rename = { "Skill Ultimate 2 Explosif Eat Fx Explosion" = "Hyper Dash Kill Explosion Fx", "Skill Ultimate 2 Explosif Eat FMod Event Active" = "Hyper Dash Kill Explosion FMod Event", "Skill Ultimate 2 Explosif Fx Scale Operation" = "Hyper Dash Kill Explosion Fx Scale Op", "Skill Ultimate 2 Explosif Eat Attack Radius Operation" = "Hyper Dash Kill Explosion Radius Op", "Skill Ultimate 2 Explosif Explosion Radius Min" = "Hyper Dash Kill Explosion Radius Min", "Skill Ultimate 2 Explosif Explosion Radius Max" = "Hyper Dash Kill Explosion Radius Max" } },
+    { set = "Hyper Dash Kill Explosion Radius Min.value", value = 2.0 },
+    { set = "Hyper Dash Kill Explosion Radius Max.value", value = 2.0 },
+    { replace_subobject = "Hyper Dash Kill Explosion Fx.bytes_1[0]", from = "Red", donor = "Skill Ultimate 2 Explosif Eat Fx Explosion.bytes_1[0]", replace_ref = { "Skill Ultimate 2 Explosif Fx Scale Operation" = "Hyper Dash Kill Explosion Fx Scale Op" } },
+    { add_link = "Event Hyper Dash Kill.activates", to = "Hyper Dash Kill Explosion Fx" },
+    { add_link = "Event Hyper Dash Kill.activates", to = "Hyper Dash Kill Explosion FMod Event" },
     # Bloody Howl (ultimate2): enemy Alpha Wolf howl audio, circle decal, 9m traverser/FX scaling, and dash-cancel.
     { clone = ["Attack Howl Active FMod Event", "Attack Howl Active Tic FMod Event", "Attack Howl Character Impact FMod Event", "Attack Howl Attack Radius", "Attack Howl Warning Scale Operation", "Attack Howl Active Fx Scale Operation", "Attack Howl Active Mesh"], from = "Enemies/Wolves/Wolves_Model", rename = { "Attack Howl Active FMod Event" = "Bloody Howl Active FMod Event", "Attack Howl Active Tic FMod Event" = "Bloody Howl Tic FMod Event", "Attack Howl Character Impact FMod Event" = "Bloody Howl Impact FMod Event", "Attack Howl Attack Radius" = "Bloody Howl Attack Radius", "Attack Howl Warning Scale Operation" = "Bloody Howl Warning Scale Operation", "Attack Howl Active Fx Scale Operation" = "Bloody Howl Fx Scale Operation", "Attack Howl Active Mesh" = "Bloody Howl Active Mesh" } },
     { add_link = "State Ultimate2 Ability.while_active", to = "Bloody Howl Active FMod Event" },
@@ -141,6 +163,9 @@ edits = [
     { remove_link = "State Ultimate2 Ability.activates", to = "Ultimate2 Ability Hit 4 Timer" },
     { remove_link = "State Ultimate2 Ability.activates", to = "Ultimate2 Ability Hit 5 Timer" },
     { remove_link = "State Ultimate2 Ability.activates", to = "Ultimate2 Ability Hit 6 Timer" },
+    { remove_link = "State Ultimate2 Ability.activates", to = "Ultimate2 Ability Hit 7 Timer" },
+    { remove_link = "State Ultimate2 Ability.activates", to = "Ultimate2 Ability Hit 8 Timer" },
+    { remove_link = "State Ultimate2 Ability.activates", to = "Ultimate2 Ability Hit 9 Timer" },
     { remove_link = "State Ultimate2 Ability.activates", to = "Ultimate2 Ability End Timer" },
     { add_link = "State Ultimate2 Ability.while_active", to = "Ultimate2 Ability Hit 1 Timer" },
     { add_link = "State Ultimate2 Ability.while_active", to = "Ultimate2 Ability Hit 2 Timer" },
@@ -148,6 +173,9 @@ edits = [
     { add_link = "State Ultimate2 Ability.while_active", to = "Ultimate2 Ability Hit 4 Timer" },
     { add_link = "State Ultimate2 Ability.while_active", to = "Ultimate2 Ability Hit 5 Timer" },
     { add_link = "State Ultimate2 Ability.while_active", to = "Ultimate2 Ability Hit 6 Timer" },
+    { add_link = "State Ultimate2 Ability.while_active", to = "Ultimate2 Ability Hit 7 Timer" },
+    { add_link = "State Ultimate2 Ability.while_active", to = "Ultimate2 Ability Hit 8 Timer" },
+    { add_link = "State Ultimate2 Ability.while_active", to = "Ultimate2 Ability Hit 9 Timer" },
     { add_link = "State Ultimate2 Ability.while_active", to = "Ultimate2 Ability End Timer" },
     { replace_subobject = "Ultimate2 Ability Hit 1 Traverser.bytes_3[0]", from = "Enemies/Wolves/Wolves_Model", donor = "Attack Howl Attack Traverser.bytes_3[0]", replace_ref = { "Attack Howl Attack Radius" = "Bloody Howl Attack Radius" } },
     { replace_subobject = "Ultimate2 Ability Hit 2 Traverser.bytes_3[0]", from = "Enemies/Wolves/Wolves_Model", donor = "Attack Howl Attack Traverser.bytes_3[0]", replace_ref = { "Attack Howl Attack Radius" = "Bloody Howl Attack Radius" } },
@@ -155,18 +183,28 @@ edits = [
     { replace_subobject = "Ultimate2 Ability Hit 4 Traverser.bytes_3[0]", from = "Enemies/Wolves/Wolves_Model", donor = "Attack Howl Attack Traverser.bytes_3[0]", replace_ref = { "Attack Howl Attack Radius" = "Bloody Howl Attack Radius" } },
     { replace_subobject = "Ultimate2 Ability Hit 5 Traverser.bytes_3[0]", from = "Enemies/Wolves/Wolves_Model", donor = "Attack Howl Attack Traverser.bytes_3[0]", replace_ref = { "Attack Howl Attack Radius" = "Bloody Howl Attack Radius" } },
     { replace_subobject = "Ultimate2 Ability Hit 6 Traverser.bytes_3[0]", from = "Enemies/Wolves/Wolves_Model", donor = "Attack Howl Attack Traverser.bytes_3[0]", replace_ref = { "Attack Howl Attack Radius" = "Bloody Howl Attack Radius" } },
+    { replace_subobject = "Ultimate2 Ability Hit 7 Traverser.bytes_3[0]", from = "Enemies/Wolves/Wolves_Model", donor = "Attack Howl Attack Traverser.bytes_3[0]", replace_ref = { "Attack Howl Attack Radius" = "Bloody Howl Attack Radius" } },
+    { replace_subobject = "Ultimate2 Ability Hit 8 Traverser.bytes_3[0]", from = "Enemies/Wolves/Wolves_Model", donor = "Attack Howl Attack Traverser.bytes_3[0]", replace_ref = { "Attack Howl Attack Radius" = "Bloody Howl Attack Radius" } },
+    { replace_subobject = "Ultimate2 Ability Hit 9 Traverser.bytes_3[0]", from = "Enemies/Wolves/Wolves_Model", donor = "Attack Howl Attack Traverser.bytes_3[0]", replace_ref = { "Attack Howl Attack Radius" = "Bloody Howl Attack Radius" } },
     { replace_subobject = "Ultimate2 Ability Hit 1 Fx.bytes_1[0]", from = "Enemies/Wolves/Wolves_Model", donor = "Attack Howl Active Fx.bytes_1[0]", replace_ref = { "Attack Howl Active Fx Scale Operation" = "Bloody Howl Fx Scale Operation" } },
     { replace_subobject = "Ultimate2 Ability Hit 2 Fx.bytes_1[0]", from = "Enemies/Wolves/Wolves_Model", donor = "Attack Howl Active Fx.bytes_1[0]", replace_ref = { "Attack Howl Active Fx Scale Operation" = "Bloody Howl Fx Scale Operation" } },
     { replace_subobject = "Ultimate2 Ability Hit 3 Fx.bytes_1[0]", from = "Enemies/Wolves/Wolves_Model", donor = "Attack Howl Active Fx.bytes_1[0]", replace_ref = { "Attack Howl Active Fx Scale Operation" = "Bloody Howl Fx Scale Operation" } },
     { replace_subobject = "Ultimate2 Ability Hit 4 Fx.bytes_1[0]", from = "Enemies/Wolves/Wolves_Model", donor = "Attack Howl Active Fx.bytes_1[0]", replace_ref = { "Attack Howl Active Fx Scale Operation" = "Bloody Howl Fx Scale Operation" } },
     { replace_subobject = "Ultimate2 Ability Hit 5 Fx.bytes_1[0]", from = "Enemies/Wolves/Wolves_Model", donor = "Attack Howl Active Fx.bytes_1[0]", replace_ref = { "Attack Howl Active Fx Scale Operation" = "Bloody Howl Fx Scale Operation" } },
     { replace_subobject = "Ultimate2 Ability Hit 6 Fx.bytes_1[0]", from = "Enemies/Wolves/Wolves_Model", donor = "Attack Howl Active Fx.bytes_1[0]", replace_ref = { "Attack Howl Active Fx Scale Operation" = "Bloody Howl Fx Scale Operation" } },
+    { replace_subobject = "Ultimate2 Ability Hit 7 Fx.bytes_1[0]", from = "Enemies/Wolves/Wolves_Model", donor = "Attack Howl Active Fx.bytes_1[0]", replace_ref = { "Attack Howl Active Fx Scale Operation" = "Bloody Howl Fx Scale Operation" } },
+    { replace_subobject = "Ultimate2 Ability Hit 8 Fx.bytes_1[0]", from = "Enemies/Wolves/Wolves_Model", donor = "Attack Howl Active Fx.bytes_1[0]", replace_ref = { "Attack Howl Active Fx Scale Operation" = "Bloody Howl Fx Scale Operation" } },
+    { replace_subobject = "Ultimate2 Ability Hit 9 Fx.bytes_1[0]", from = "Enemies/Wolves/Wolves_Model", donor = "Attack Howl Active Fx.bytes_1[0]", replace_ref = { "Attack Howl Active Fx Scale Operation" = "Bloody Howl Fx Scale Operation" } },
     { add_link = "Event Ultimate2 Ability Hit 1.activates", to = "Bloody Howl Tic FMod Event" },
     { add_link = "Event Ultimate2 Ability Hit 2.activates", to = "Bloody Howl Tic FMod Event" },
     { add_link = "Event Ultimate2 Ability Hit 3.activates", to = "Bloody Howl Tic FMod Event" },
     { add_link = "Event Ultimate2 Ability Hit 4.activates", to = "Bloody Howl Tic FMod Event" },
     { add_link = "Event Ultimate2 Ability Hit 5.activates", to = "Bloody Howl Tic FMod Event" },
     { add_link = "Event Ultimate2 Ability Hit 6.activates", to = "Bloody Howl Tic FMod Event" },
+    { add_link = "Event Ultimate2 Ability Hit 7.activates", to = "Bloody Howl Tic FMod Event" },
+    { add_link = "Event Ultimate2 Ability Hit 8.activates", to = "Bloody Howl Tic FMod Event" },
+    { add_link = "Event Ultimate2 Ability Hit 9.activates", to = "Bloody Howl Tic FMod Event" },
+    { add_link = "Event Ultimate2 Ability Hit 9.deactivates?", to = "Bloody Howl Active Mesh" },
     { event = "Bloody Howl Impact Sound Event" },
     { add_link = "Bloody Howl Impact Sound Event.activates", to = "Bloody Howl Impact FMod Event" },
     { link = "Ultimate2 Ability Hit 1 Damage.ref_32", to = "Bloody Howl Impact Sound Event" },
@@ -175,7 +213,10 @@ edits = [
     { link = "Ultimate2 Ability Hit 4 Damage.ref_32", to = "Bloody Howl Impact Sound Event" },
     { link = "Ultimate2 Ability Hit 5 Damage.ref_32", to = "Bloody Howl Impact Sound Event" },
     { link = "Ultimate2 Ability Hit 6 Damage.ref_32", to = "Bloody Howl Impact Sound Event" },
-    # Escalating per-tick bleed calibrated for level 5 (50, 70, 100, 150, 200, 250; Level Damage = 14.641 at lvl 5),
+    { link = "Ultimate2 Ability Hit 7 Damage.ref_32", to = "Bloody Howl Impact Sound Event" },
+    { link = "Ultimate2 Ability Hit 8 Damage.ref_32", to = "Bloody Howl Impact Sound Event" },
+    { link = "Ultimate2 Ability Hit 9 Damage.ref_32", to = "Bloody Howl Impact Sound Event" },
+    # Escalating per-tick bleed calibrated for level 5 (40, 50, 60, 70, 80, 90, 100, 110, 120; Level Damage = 14.641 at lvl 5),
     # scaling with Level Damage, Attack Power, Ultimate Damage (Ultimate AP Multiplier Operation), and More Bleeding.
     { clone = ["Ultimate 1 Supposed Damage Operation", "Ability Ultimate 1 Final Damage Multiplier Operation", "Ultimate Power 1 Damage Multiplier Default"], from = "Red", rename = { "Ultimate 1 Supposed Damage Operation" = "Bloody Howl Bleed 1 Operation", "Ability Ultimate 1 Final Damage Multiplier Operation" = "Bloody Howl Bleed 1 Mult Op", "Ultimate Power 1 Damage Multiplier Default" = "Bloody Howl Bleed 1 Multiplier" } },
     { clone = ["Ultimate 1 Supposed Damage Operation", "Ability Ultimate 1 Final Damage Multiplier Operation", "Ultimate Power 1 Damage Multiplier Default"], from = "Red", rename = { "Ultimate 1 Supposed Damage Operation" = "Bloody Howl Bleed 2 Operation", "Ability Ultimate 1 Final Damage Multiplier Operation" = "Bloody Howl Bleed 2 Mult Op", "Ultimate Power 1 Damage Multiplier Default" = "Bloody Howl Bleed 2 Multiplier" } },
@@ -183,18 +224,736 @@ edits = [
     { clone = ["Ultimate 1 Supposed Damage Operation", "Ability Ultimate 1 Final Damage Multiplier Operation", "Ultimate Power 1 Damage Multiplier Default"], from = "Red", rename = { "Ultimate 1 Supposed Damage Operation" = "Bloody Howl Bleed 4 Operation", "Ability Ultimate 1 Final Damage Multiplier Operation" = "Bloody Howl Bleed 4 Mult Op", "Ultimate Power 1 Damage Multiplier Default" = "Bloody Howl Bleed 4 Multiplier" } },
     { clone = ["Ultimate 1 Supposed Damage Operation", "Ability Ultimate 1 Final Damage Multiplier Operation", "Ultimate Power 1 Damage Multiplier Default"], from = "Red", rename = { "Ultimate 1 Supposed Damage Operation" = "Bloody Howl Bleed 5 Operation", "Ability Ultimate 1 Final Damage Multiplier Operation" = "Bloody Howl Bleed 5 Mult Op", "Ultimate Power 1 Damage Multiplier Default" = "Bloody Howl Bleed 5 Multiplier" } },
     { clone = ["Ultimate 1 Supposed Damage Operation", "Ability Ultimate 1 Final Damage Multiplier Operation", "Ultimate Power 1 Damage Multiplier Default"], from = "Red", rename = { "Ultimate 1 Supposed Damage Operation" = "Bloody Howl Bleed 6 Operation", "Ability Ultimate 1 Final Damage Multiplier Operation" = "Bloody Howl Bleed 6 Mult Op", "Ultimate Power 1 Damage Multiplier Default" = "Bloody Howl Bleed 6 Multiplier" } },
-    { set = "Bloody Howl Bleed 1 Multiplier.value", value = 3.415 },
-    { set = "Bloody Howl Bleed 2 Multiplier.value", value = 4.781 },
-    { set = "Bloody Howl Bleed 3 Multiplier.value", value = 6.830 },
-    { set = "Bloody Howl Bleed 4 Multiplier.value", value = 10.245 },
-    { set = "Bloody Howl Bleed 5 Multiplier.value", value = 13.660 },
-    { set = "Bloody Howl Bleed 6 Multiplier.value", value = 17.075 },
+    { clone = ["Ultimate 1 Supposed Damage Operation", "Ability Ultimate 1 Final Damage Multiplier Operation", "Ultimate Power 1 Damage Multiplier Default"], from = "Red", rename = { "Ultimate 1 Supposed Damage Operation" = "Bloody Howl Bleed 7 Operation", "Ability Ultimate 1 Final Damage Multiplier Operation" = "Bloody Howl Bleed 7 Mult Op", "Ultimate Power 1 Damage Multiplier Default" = "Bloody Howl Bleed 7 Multiplier" } },
+    { clone = ["Ultimate 1 Supposed Damage Operation", "Ability Ultimate 1 Final Damage Multiplier Operation", "Ultimate Power 1 Damage Multiplier Default"], from = "Red", rename = { "Ultimate 1 Supposed Damage Operation" = "Bloody Howl Bleed 8 Operation", "Ability Ultimate 1 Final Damage Multiplier Operation" = "Bloody Howl Bleed 8 Mult Op", "Ultimate Power 1 Damage Multiplier Default" = "Bloody Howl Bleed 8 Multiplier" } },
+    { clone = ["Ultimate 1 Supposed Damage Operation", "Ability Ultimate 1 Final Damage Multiplier Operation", "Ultimate Power 1 Damage Multiplier Default"], from = "Red", rename = { "Ultimate 1 Supposed Damage Operation" = "Bloody Howl Bleed 9 Operation", "Ability Ultimate 1 Final Damage Multiplier Operation" = "Bloody Howl Bleed 9 Mult Op", "Ultimate Power 1 Damage Multiplier Default" = "Bloody Howl Bleed 9 Multiplier" } },
+    { set = "Bloody Howl Bleed 1 Multiplier.value", value = 2.732 },
+    { set = "Bloody Howl Bleed 2 Multiplier.value", value = 3.415 },
+    { set = "Bloody Howl Bleed 3 Multiplier.value", value = 4.098 },
+    { set = "Bloody Howl Bleed 4 Multiplier.value", value = 4.781 },
+    { set = "Bloody Howl Bleed 5 Multiplier.value", value = 5.464 },
+    { set = "Bloody Howl Bleed 6 Multiplier.value", value = 6.147 },
+    { set = "Bloody Howl Bleed 7 Multiplier.value", value = 6.830 },
+    { set = "Bloody Howl Bleed 8 Multiplier.value", value = 7.513 },
+    { set = "Bloody Howl Bleed 9 Multiplier.value", value = 8.196 },
     { link = "Skill Ultimate2 Ability Bleed On Ultimate2 Ability Hit 1 Damage Shatter Bleed Value.value", to = "Bloody Howl Bleed 1 Operation" },
     { link = "Skill Ultimate2 Ability Bleed On Ultimate2 Ability Hit 2 Damage Shatter Bleed Value.value", to = "Bloody Howl Bleed 2 Operation" },
     { link = "Skill Ultimate2 Ability Bleed On Ultimate2 Ability Hit 3 Damage Shatter Bleed Value.value", to = "Bloody Howl Bleed 3 Operation" },
     { link = "Skill Ultimate2 Ability Bleed On Ultimate2 Ability Hit 4 Damage Shatter Bleed Value.value", to = "Bloody Howl Bleed 4 Operation" },
     { link = "Skill Ultimate2 Ability Bleed On Ultimate2 Ability Hit 5 Damage Shatter Bleed Value.value", to = "Bloody Howl Bleed 5 Operation" },
     { link = "Skill Ultimate2 Ability Bleed On Ultimate2 Ability Hit 6 Damage Shatter Bleed Value.value", to = "Bloody Howl Bleed 6 Operation" },
+    { link = "Skill Ultimate2 Ability Bleed On Ultimate2 Ability Hit 7 Damage Shatter Bleed Value.value", to = "Bloody Howl Bleed 7 Operation" },
+    { link = "Skill Ultimate2 Ability Bleed On Ultimate2 Ability Hit 8 Damage Shatter Bleed Value.value", to = "Bloody Howl Bleed 8 Operation" },
+    { link = "Skill Ultimate2 Ability Bleed On Ultimate2 Ability Hit 9 Damage Shatter Bleed Value.value", to = "Bloody Howl Bleed 9 Operation" },
+    { set = "Skill Ultimate2 Ability Bleed On Ultimate2 Ability Hit 1 Damage.duration", value = 5.0 },
+    { set = "Skill Ultimate2 Ability Bleed On Ultimate2 Ability Hit 2 Damage.duration", value = 5.0 },
+    { set = "Skill Ultimate2 Ability Bleed On Ultimate2 Ability Hit 3 Damage.duration", value = 5.0 },
+    { set = "Skill Ultimate2 Ability Bleed On Ultimate2 Ability Hit 4 Damage.duration", value = 5.0 },
+    { set = "Skill Ultimate2 Ability Bleed On Ultimate2 Ability Hit 5 Damage.duration", value = 5.0 },
+    { set = "Skill Ultimate2 Ability Bleed On Ultimate2 Ability Hit 6 Damage.duration", value = 5.0 },
+    { set = "Skill Ultimate2 Ability Bleed On Ultimate2 Ability Hit 7 Damage.duration", value = 5.0 },
+    { set = "Skill Ultimate2 Ability Bleed On Ultimate2 Ability Hit 8 Damage.duration", value = 5.0 },
+    { set = "Skill Ultimate2 Ability Bleed On Ultimate2 Ability Hit 9 Damage.duration", value = 5.0 },
+    # Rabid Wolf Quest (0..4): +1 stack every 12/11/10/9s (by rarity), capped at 4, resets on Special use.
+    # Spawns max(1, stacks) rabid wolves (0/1 -> 1, 2 -> 2, 3 -> 3, 4 -> 4) and resets timer on Special use.
+    { clone = ["Skill Primary Wolf Quest Proc Counter", "State Skill Primary Wolf Quest Complete", "PRIMARY_WOLF_QUEST_PROC_COUNTER_INC Event Sender", "Default Max Combo Points", "Max Combo Points Selector"], from = "Red", rename = { "Skill Primary Wolf Quest Proc Counter" = "Rabid Quest Counter", "State Skill Primary Wolf Quest Complete" = "State Rabid Quest Above Zero", "PRIMARY_WOLF_QUEST_PROC_COUNTER_INC Event Sender" = "Rabid Quest Counter Inc Sender", "Default Max Combo Points" = "Rabid Quest Max Value", "Max Combo Points Selector" = "Rabid Quest Wolf Count Selector" } },
+    { remove_link = "State Rabid Quest Above Zero.activates[0]" },
+    { remove_link = "State Rabid Quest Above Zero.on_exit?[0]" },
+    { clone = ["Rabid Quest Max Value"], rename = { "Rabid Quest Max Value" = "Rabid Quest Min Wolf Count" } },
+    { set = "Rabid Quest Max Value.value", value = 4 },
+    { set = "Rabid Quest Min Wolf Count.value", value = 1 },
+    { link = "Rabid Quest Counter.ref_3", to = "" },
+    { link = "Rabid Quest Counter.ref_4", to = "" },
+    { link = "Rabid Quest Counter.value_5", to = "Rabid Quest Max Value" },
+    { link = "Skill Controller Special Rabid.value_7", to = "Rabid Quest Counter" },
+    { link = "Skill Controller Special Rabid.value_8", to = "Rabid Quest Max Value" },
+    { clone = ["Lose HP When Not In Combat Timer"], from = "Hero_Common", rename = { "Lose HP When Not In Combat Timer" = "Rabid Quest Timer" } },
+    { talent_number = "Skill Special Rabid Duration", talent = "Special Rabid", values = [12, 11, 10, 9] },
+    { set = "Rabid Quest Timer.count", value = 0 },
+    { link = "Rabid Quest Timer.duration", to = "Skill Special Rabid Duration" },
+    { link = "Rabid Quest Timer.on_end", to = "" },
+    { event = "Event Rabid Quest Tick" },
+    { link = "Rabid Quest Timer.on_tick", to = "Event Rabid Quest Tick" },
+    { add_link = "Event Rabid Quest Tick.activates", to = "Rabid Quest Counter Inc Sender" },
+    { add_link = "Event Rabid Quest Tick.activates", to = "State Rabid Quest Above Zero" },
+    { add_link = "Skill Special Rabid.while_active", to = "Rabid Quest Counter" },
+    { add_link = "Skill Special Rabid.while_active", to = "Rabid Quest Timer" },
+    { link = "Rabid Quest Wolf Count Selector.entries[0][0]", to = "State Rabid Quest Above Zero" },
+    { link = "Rabid Quest Wolf Count Selector.entries[0][1]", to = "Rabid Quest Counter" },
+    { link = "Rabid Quest Wolf Count Selector.entries[1][0]", to = "Rabid Quest Min Wolf Count" },
+    { clone = ["Skill Passive Repeatable Quest Gain DS Counter Reset Method"], from = "Merlin", rename = { "Skill Passive Repeatable Quest Gain DS Counter Reset Method" = "Rabid Quest Counter Reset Method" } },
+    { link = "Rabid Quest Counter Reset Method.obj_2[0]", to = "Rabid Quest Counter" },
+    { event = "Event Rabid Quest Reset" },
+    { add_link = "Event Rabid Quest Reset.activates", to = "Rabid Quest Counter Reset Method" },
+    { add_link = "Event Rabid Quest Reset.deactivates?", to = "State Rabid Quest Above Zero" },
+    { clone = ["Teleport Out From Deathdoor Or Regular Tester"], from = "Hero_Common", rename = { "Teleport Out From Deathdoor Or Regular Tester" = "Rabid Quest Reset Tester" } },
+    { link = "Rabid Quest Reset Tester.test", to = "Skill Special Rabid" },
+    { link = "Rabid Quest Reset Tester.on_true", to = "Event Rabid Quest Reset" },
+    { link = "Rabid Quest Reset Tester.on_false", to = "" },
+    { add_link = "State Special Ability.on_exit?", to = "Rabid Quest Reset Tester" },
+    { add_link = "State Special Ability.disables_while_active?", to = "Rabid Quest Timer" },
+    # Overflowing Gluttony (0..100 Bleed-kill quest -> +18/22/26/30% Max Health on completion).
+    { clone = ["Skill Primary Wolf Quest Proc Counter", "State Skill Primary Wolf Quest Complete"], from = "Red", rename = { "Skill Primary Wolf Quest Proc Counter" = "Overflowing Gluttony Counter", "State Skill Primary Wolf Quest Complete" = "State Overflowing Gluttony Complete" } },
+    { remove_link = "State Overflowing Gluttony Complete.activates[0]" },
+    { clone = ["Rabid Quest Max Value"], rename = { "Rabid Quest Max Value" = "Overflowing Gluttony Max Value" } },
+    { set = "Overflowing Gluttony Max Value.value", value = 100 },
+    { set = "Overflowing Gluttony Counter.bytes_6", value = "23 00 00 00 4f 56 45 52 46 4c 4f 57 49 4e 47 5f 47 4c 55 54 54 4f 4e 59 5f 42 4c 45 45 44 5f 4b 49 4c 4c 5f 49 4e 43 23 00 00 00 4f 56 45 52 46 4c 4f 57 49 4e 47 5f 47 4c 55 54 54 4f 4e 59 5f 42 4c 45 45 44 5f 4b 49 4c 4c 5f 44 45 43" },
+    { link = "Overflowing Gluttony Counter.ref_3", to = "State Overflowing Gluttony Complete" },
+    { link = "Overflowing Gluttony Counter.ref_4", to = "" },
+    { link = "Overflowing Gluttony Counter.value_5", to = "Overflowing Gluttony Max Value" },
+    { link = "Skill Controller Attack Overflowing Gluttony.value_7", to = "Overflowing Gluttony Counter" },
+    { link = "Skill Controller Attack Overflowing Gluttony.value_8", to = "Overflowing Gluttony Max Value" },
+    { add_link = "Skill Attack Overflowing Gluttony.while_active", to = "Overflowing Gluttony Counter" },
+    { clone = ["Overflowing Gluttony Counter"], rename = { "Overflowing Gluttony Counter" = "Overflowing Gluttony Sub Counter" } },
+    { clone = ["Rabid Quest Max Value"], rename = { "Rabid Quest Max Value" = "Overflowing Gluttony Tier Max Value" } },
+    { set = "Overflowing Gluttony Tier Max Value.value", value = 10 },
+    { link = "Overflowing Gluttony Sub Counter.value_5", to = "Overflowing Gluttony Tier Max Value" },
+    { clone = ["Skill Primary Wolf Quest Proc Counter", "Skill Primary Wolf Quest DMG Per Proc", "Skill Primary Wolf Quest DMG Operation", "PRIMARY_WOLF_QUEST_PROC_COUNTER_INC Event Sender"], from = "Red", rename = { "Skill Primary Wolf Quest Proc Counter" = "Overflowing Gluttony Tier Counter", "Skill Primary Wolf Quest DMG Per Proc" = "Overflowing Gluttony Bleed Bonus Value", "Skill Primary Wolf Quest DMG Operation" = "Overflowing Gluttony Bleed Bonus Operation", "PRIMARY_WOLF_QUEST_PROC_COUNTER_INC Event Sender" = "Overflowing Gluttony Tier Inc Sender" } },
+    { set = "Overflowing Gluttony Tier Counter.bytes_6", value = "23 00 00 00 4f 56 45 52 46 4c 4f 57 49 4e 47 5f 47 4c 55 54 54 4f 4e 59 5f 54 49 45 52 5f 43 4f 55 4e 54 5f 49 4e 43 23 00 00 00 4f 56 45 52 46 4c 4f 57 49 4e 47 5f 47 4c 55 54 54 4f 4e 59 5f 54 49 45 52 5f 43 4f 55 4e 54 5f 44 45 43" },
+    { link = "Overflowing Gluttony Tier Counter.ref_3", to = "" },
+    { link = "Overflowing Gluttony Tier Counter.ref_4", to = "" },
+    { link = "Overflowing Gluttony Tier Counter.value_5", to = "Overflowing Gluttony Tier Max Value" },
+    { set = "Overflowing Gluttony Tier Inc Sender.event", value = "OVERFLOWING_GLUTTONY_TIER_COUNT_INC" },
+    { set = "Overflowing Gluttony Bleed Bonus Value.value", value = 1.0 },
+    { append_operand = "Bleed Damage Multiplier Operation", to = "Overflowing Gluttony Bleed Bonus Operation" },
+    { clone = ["Rabid Quest Counter Reset Method"], rename = { "Rabid Quest Counter Reset Method" = "Overflowing Gluttony Sub Reset Method" } },
+    { link = "Overflowing Gluttony Sub Reset Method.obj_2[0]", to = "Overflowing Gluttony Sub Counter" },
+    { event = "Event On Overflowing Gluttony Tier" },
+    { link = "Overflowing Gluttony Sub Counter.ref_3", to = "Event On Overflowing Gluttony Tier" },
+    { add_link = "Event On Overflowing Gluttony Tier.activates", to = "Overflowing Gluttony Sub Reset Method" },
+    { add_link = "Event On Overflowing Gluttony Tier.activates", to = "Overflowing Gluttony Tier Inc Sender" },
+    { add_link = "Event On Overflowing Gluttony Tier.activates", from = "Hero_Common", to = "Event On Quest Proc" },
+    { add_link = "Skill Attack Overflowing Gluttony.while_active", to = "Overflowing Gluttony Sub Counter" },
+    { add_link = "Skill Attack Overflowing Gluttony.while_active", to = "Overflowing Gluttony Tier Counter" },
+    { add_link = "Skill Attack Overflowing Gluttony.while_active", to = "Overflowing Gluttony Bleed Bonus Operation" },
+    { remove_link = "Skill Attack Overflowing Gluttony.while_active", to = "Skill Attack Overflowing Gluttony Added 15c9296d Modifier" },
+    { add_link = "State Overflowing Gluttony Complete.while_active", to = "Skill Attack Overflowing Gluttony Added 15c9296d Modifier" },
+    { clone = ["Overflowing Gluttony Tier Inc Sender"], rename = { "Overflowing Gluttony Tier Inc Sender" = "Overflowing Gluttony Picked Sender" } },
+    { set = "Overflowing Gluttony Picked Sender.event", value = "OVERFLOWING_GLUTTONY_PICKED" },
+    { add_link = "Skill Attack Overflowing Gluttony.activates", to = "Overflowing Gluttony Picked Sender" },
+    { override = "Bleed Damage", from = "Character_Common/Character_Common" },
+    { event = "Event On Bleed Kill" },
+    { link = "Bleed Damage.ref_33", to = "Event On Bleed Kill" },
+    { clone = ["Overflowing Gluttony Tier Inc Sender"], rename = { "Overflowing Gluttony Tier Inc Sender" = "Overflowing Gluttony Bleed Kill Inc Sender" } },
+    { set = "Overflowing Gluttony Bleed Kill Inc Sender.event", value = "OVERFLOWING_GLUTTONY_BLEED_KILL_INC" },
+    { clone = ["Rabid Quest Reset Tester"], rename = { "Rabid Quest Reset Tester" = "Overflowing Gluttony Incomplete Tester" } },
+    { link = "Overflowing Gluttony Incomplete Tester.test", to = "State Overflowing Gluttony Complete" },
+    { link = "Overflowing Gluttony Incomplete Tester.on_true", to = "" },
+    { link = "Overflowing Gluttony Incomplete Tester.on_false", to = "Overflowing Gluttony Bleed Kill Inc Sender" },
+    { clone = ["Rabid Quest Reset Tester"], rename = { "Rabid Quest Reset Tester" = "Overflowing Gluttony Owned Tester" } },
+    { link = "Overflowing Gluttony Owned Tester.test", to = "Skill Attack Overflowing Gluttony" },
+    { link = "Overflowing Gluttony Owned Tester.on_true", to = "Overflowing Gluttony Incomplete Tester" },
+    { link = "Overflowing Gluttony Owned Tester.on_false", to = "" },
+    { add_link = "Event On Bleed Kill.activates", to = "Overflowing Gluttony Owned Tester" },
+    { clone = ["DUMMY_DESTROYED Event Listener"], from = "Geppetto", rename = { "DUMMY_DESTROYED Event Listener" = "Overflowing Gluttony Bomb Bleed Kill Listener" } },
+    { set = "Overflowing Gluttony Bomb Bleed Kill Listener.event", value = "BLOOD_WOLF_BOMB_BLEED_KILL" },
+    { link = "Overflowing Gluttony Bomb Bleed Kill Listener.on_event", to = "Overflowing Gluttony Owned Tester" },
+    # Power Spread Quest (0..10 Blood Seed bursts hitting >=2 enemies -> +1 Damage each, unlocks Spread at 10).
+    { clone = ["Skill Primary Wolf Quest Proc Counter", "State Skill Primary Wolf Quest Complete", "Skill Primary Wolf Quest DMG Operation", "Skill Primary Wolf Quest DMG Per Proc", "Skill Primary Wolf Quest Gain AP On Kill Modifier"], from = "Red", rename = { "Skill Primary Wolf Quest Proc Counter" = "Power Spread Counter", "State Skill Primary Wolf Quest Complete" = "State Power Spread Complete", "Skill Primary Wolf Quest DMG Operation" = "Power Spread DMG Operation", "Skill Primary Wolf Quest DMG Per Proc" = "Power Spread DMG Per Proc", "Skill Primary Wolf Quest Gain AP On Kill Modifier" = "Power Spread Gain AP Modifier" } },
+    { remove_link = "State Power Spread Complete.activates[0]" },
+    { clone = ["Rabid Quest Max Value"], rename = { "Rabid Quest Max Value" = "Power Spread Max Value" } },
+    { set = "Power Spread Max Value.value", value = 10 },
+    { set = "Power Spread DMG Per Proc.value", value = 1.0 },
+    { set = "Power Spread Counter.bytes_6", value = "23 00 00 00 50 4f 57 45 52 5f 53 50 52 45 41 44 5f 51 55 45 53 54 5f 50 52 4f 43 5f 43 4f 55 4e 54 45 52 5f 49 4e 43 23 00 00 00 50 4f 57 45 52 5f 53 50 52 45 41 44 5f 51 55 45 53 54 5f 50 52 4f 43 5f 43 4f 55 4e 54 45 52 5f 44 45 43" },
+    { link = "Power Spread Counter.ref_4", to = "" },
+    { link = "Power Spread Counter.value_5", to = "Power Spread Max Value" },
+    { link = "Skill Controller Power Spread.value_7", to = "Power Spread Counter" },
+    { link = "Skill Controller Power Spread.value_8", to = "Power Spread Max Value" },
+    { clone = ["MAX_HEALTH_UP Event Listener"], from = "Hero_Common", rename = { "MAX_HEALTH_UP Event Listener" = "Power Spread Proc Listener" } },
+    { set = "Power Spread Proc Listener.event", value = "POWER_SPREAD_QUEST_PROC_COUNTER_INC" },
+    { event = "Event On Power Spread Proc" },
+    { clone = ["Rabid Quest Reset Tester"], rename = { "Rabid Quest Reset Tester" = "Power Spread Incomplete Tester" } },
+    { link = "Power Spread Incomplete Tester.test", to = "State Power Spread Complete" },
+    { link = "Power Spread Incomplete Tester.on_true", to = "" },
+    { link = "Power Spread Incomplete Tester.on_false", to = "Event On Power Spread Proc" },
+    { clone = ["Rabid Quest Reset Tester"], rename = { "Rabid Quest Reset Tester" = "Power Spread Owned Tester" } },
+    { link = "Power Spread Owned Tester.test", to = "Skill Power Spread" },
+    { link = "Power Spread Owned Tester.on_true", to = "Power Spread Incomplete Tester" },
+    { link = "Power Spread Proc Listener.on_event", to = "Power Spread Owned Tester" },
+    { add_link = "Event On Power Spread Proc.activates", from = "Hero_Common", to = "Event On Quest Proc" },
+    { add_link = "Skill Power Spread.while_active", to = "Power Spread Counter" },
+    { add_link = "Skill Power Spread.while_active", to = "Power Spread DMG Operation" },
+    { add_link = "Skill Power Spread.while_active", to = "Power Spread Proc Listener" },
+    { add_link = "Skill Power Spread.while_active", to = "Power Spread Gain AP Modifier" },
+    { add_link = "Skill Power Spread.while_active", from = "Hero_Common", to = "Quest Feedback Resource is AP" },
+    { clone = ["Overflowing Gluttony Tier Inc Sender"], rename = { "Overflowing Gluttony Tier Inc Sender" = "Power Spread Picked Sender" } },
+    { set = "Power Spread Picked Sender.event", value = "POWER_SPREAD_PICKED" },
+    { add_link = "Skill Power Spread.activates", to = "Power Spread Picked Sender" },
+    { link = "Wolf Power Spread Tester.test", to = "State Power Spread Complete" },
+    # Spin To Bleed: replaces the 3rd combo hit with Scarlet's Wolf Cleave spin (RED_Wolf_BasicAttack_Cleave_2.fbx),
+    # 360-degree area hit, +8 stagger (12 -> 20), stronger Bleed (50 -> 70 at lvl 1), and +18/22/26/30% range growth.
+    { clone = ["Attack Ability Clip Step 3", "Attack Ability Anim Step 3"], rename = { "Attack Ability Clip Step 3" = "Spin To Bleed Clip", "Attack Ability Anim Step 3" = "Spin To Bleed Anim" } },
+    { animatic_clip = "Spin To Bleed Anim", value = "Characters\\Heroes\\RED\\Animations\\Skills\\RED_Wolf_BasicAttack_Cleave_2.fbx" },
+    { clone = ["Wolf Skill Basic Cleave Active FMod Event"], from = "Red", rename = { "Wolf Skill Basic Cleave Active FMod Event" = "Spin To Bleed Sound" } },
+    { unlink_reads = "Spin To Bleed Sound" },
+    { clone = ["Attack Ability Step 3 Hit 1 Radius"], rename = { "Attack Ability Step 3 Hit 1 Radius" = "Spin To Bleed Radius" } },
+    { set = "Spin To Bleed Radius.value", value = 3.5 },
+    { clone = ["Skill Basic Cleave Traverser"], from = "Red", rename = { "Skill Basic Cleave Traverser" = "Spin To Bleed Traverser" } },
+    { swap_ref = "Spin To Bleed Traverser", from = "Red", node = "Skill Basic Cleave Final Radius Selector", to = "Spin To Bleed Radius" },
+    { clone = ["Fx Wolf Basic Cleave Active 2"], from = "Heroes/Hero_Red/Hero_Red_FX", rename = { "Fx Wolf Basic Cleave Active 2" = "Spin To Bleed Fx" } },
+    { swap_ref = "Spin To Bleed Fx", from = "Heroes/Hero_Red/Hero_Red_FX", node = "Skill Basic Cleave Fx Scale Selector", to = "Spin To Bleed Radius" },
+    { add_subobject = "Spin To Bleed Fx.bytes_1", donor = "Attack Ability Step 3 Hit 1 Fx.bytes_1[1]" },
+    { clone = ["Attack Ability Step 3 Hit 1 Attack", "Attack Ability Step 3 Hit 1 Damage", "Skill Attack Ability Step 3 Bleed On Attack Ability Step 3 Hit 1 Damage", "Wolf Basic Attack Bleed Value Operation", "Wolf Basic Attack Bleed Base Multiplier"], rename = { "Attack Ability Step 3 Hit 1 Attack" = "Spin To Bleed Attack", "Attack Ability Step 3 Hit 1 Damage" = "Spin To Bleed Damage", "Skill Attack Ability Step 3 Bleed On Attack Ability Step 3 Hit 1 Damage" = "Spin To Bleed Bleed Modifier", "Wolf Basic Attack Bleed Value Operation" = "Spin To Bleed Bleed Value Operation", "Wolf Basic Attack Bleed Base Multiplier" = "Spin To Bleed Bleed Base Multiplier" } },
+    { swap_ref = "Spin To Bleed Attack", node = "BloodWolf Basic Attack Traverser", to = "Spin To Bleed Traverser" },
+    { swap_ref = "Spin To Bleed Fx", from = "Red", node = "Human Basic Attack", to = "Spin To Bleed Attack" },
+    { clone = ["Fx Wolf Cleave Impact"], from = "Red", rename = { "Fx Wolf Cleave Impact" = "Spin To Bleed Impact Fx" } },
+    { swap_ref = "Spin To Bleed Impact Fx", from = "Red", node = "Wolf Basic Cleave Damage", to = "Spin To Bleed Damage" },
+    { swap_ref = "Spin To Bleed Impact Fx", from = "Red", node = "Wolf Basic Attack", to = "Spin To Bleed Attack" },
+    { clone = ["Wolf Basic Attack Step 3 Hit Sound Event"], rename = { "Wolf Basic Attack Step 3 Hit Sound Event" = "Event Spin To Bleed Impact" } },
+    { add_link = "Event Spin To Bleed Impact.activates", to = "Spin To Bleed Impact Fx" },
+    { link = "Spin To Bleed Damage.ref_32", to = "Event Spin To Bleed Impact" },
+    { set = "Spin To Bleed Damage.value_31", value = 18.0 },
+    { set = "Spin To Bleed Bleed Base Multiplier.value", value = 6.0 },
+    { scale_by_talent = "Spin To Bleed Radius", talent = "Attack Spin To Bleed", values = [0.18, 0.22, 0.26, 0.30] },
+    { event = "Event Spin To Bleed Hit" },
+    { add_link = "Event Spin To Bleed Hit.activates", to = "Spin To Bleed Attack" },
+    { add_link = "Event Spin To Bleed Hit.activates", to = "Spin To Bleed Fx" },
+    { link = "Spin To Bleed Anim.cinebloc[2]", to = "Event Spin To Bleed Hit" },
+    { set = "Spin To Bleed Anim.cinebloc[2].start", value = 0.33 },
+    { set = "Spin To Bleed Anim.cinebloc[3].start", value = 0.62 },
+    { set = "Spin To Bleed Anim.cinebloc[4].start", value = 0.42 },
+    { link = "Spin To Bleed Anim.cinebloc[5]", to = "Spin To Bleed Sound" },
+    { set = "Spin To Bleed Anim.cinebloc[5].start", value = 0.33 },
+    { add_selector = "Attack Ability Clip Selector Step 3", to = "Spin To Bleed Clip", condition = "Skill Attack Spin To Bleed" },
+    # Extend Spin To Bleed's +18/22/26/30% range scaling to Steps 1 & 2 hitboxes and claw slash VFX (Step 3 already scales).
+    { swap_ref = "BloodWolf Basic Attack Traverser", from = "Red", node = "Wolf Basic Attack Radius Selector", to = "Spin To Bleed Radius" },
+    { clone = ["Fx Wolf Basic Attack Active 01", "Fx Wolf Basic Attack Active 02"], from = "Heroes/Hero_Red/Hero_Red_FX", rename = { "Fx Wolf Basic Attack Active 01" = "Attack Step 2 Scaled Fx", "Fx Wolf Basic Attack Active 02" = "Attack Step 1 Scaled Fx" } },
+    { swap_ref = "Attack Step 1 Scaled Fx", from = "Heroes/Hero_Red/Hero_Red_FX", node = "Basic Attack Fx Scale Selector", to = "Skill Attack Spin To Bleed Range Attack Factor" },
+    { swap_ref = "Attack Step 2 Scaled Fx", from = "Heroes/Hero_Red/Hero_Red_FX", node = "Basic Attack Fx Scale Selector", to = "Skill Attack Spin To Bleed Range Attack Factor" },
+    { add_subobject = "Attack Step 1 Scaled Fx.bytes_1", donor = "Attack Ability Step 1 Hit 1 Fx.bytes_1[2]" },
+    { add_subobject = "Attack Step 2 Scaled Fx.bytes_1", donor = "Attack Ability Step 2 Hit 1 Fx.bytes_1[2]" },
+    { swap_ref = "Event Attack Ability Step 1 Hit 1", node = "Attack Ability Step 1 Hit 1 Fx", to = "Attack Step 1 Scaled Fx" },
+    { swap_ref = "Event Attack Ability Step 2 Hit 1", node = "Attack Ability Step 2 Hit 1 Fx", to = "Attack Step 2 Scaled Fx" },
+    # From Blood: repeatable 0/4 quest (0 notifications), +1 per 3rd-combo swing hitting >=1 enemy, resets Special CD.
+    { clone = ["Overflowing Gluttony Counter", "Rabid Quest Max Value", "Rabid Quest Counter Reset Method", "Overflowing Gluttony Tier Inc Sender", "State Rabid Quest Above Zero"], rename = { "Overflowing Gluttony Counter" = "From Blood Counter", "Rabid Quest Max Value" = "From Blood Max Value", "Rabid Quest Counter Reset Method" = "From Blood Counter Reset Method", "Overflowing Gluttony Tier Inc Sender" = "From Blood Counter Inc Sender", "State Rabid Quest Above Zero" = "State From Blood Can Count" } },
+    { set = "From Blood Max Value.value", value = 4 },
+    { set = "From Blood Counter.bytes_6", value = "23 00 00 00 42 4c 4f 4f 44 5f 57 4f 4c 46 5f 46 52 4f 4d 5f 42 4c 4f 4f 44 5f 53 57 49 4e 47 5f 48 49 54 5f 49 4e 43 23 00 00 00 42 4c 4f 4f 44 5f 57 4f 4c 46 5f 46 52 4f 4d 5f 42 4c 4f 4f 44 5f 53 57 49 4e 47 5f 48 49 54 5f 44 45 43" },
+    { set = "From Blood Counter Inc Sender.event", value = "BLOOD_WOLF_FROM_BLOOD_SWING_HIT_INC" },
+    { link = "From Blood Counter.value_5", to = "From Blood Max Value" },
+    { link = "From Blood Counter Reset Method.obj_2[0]", to = "From Blood Counter" },
+    { link = "Skill Controller Special From Blood.value_7", to = "From Blood Counter" },
+    { link = "Skill Controller Special From Blood.value_8", to = "From Blood Max Value" },
+    { add_link = "Skill Special From Blood.while_active", to = "From Blood Counter" },
+    { event = "Event From Blood Proc" },
+    { link = "From Blood Counter.ref_3", to = "Event From Blood Proc" },
+    { add_link = "Event From Blood Proc.activates", from = "Hero_Common", to = "Clear Secondary CD Event Sender" },
+    { add_link = "Event From Blood Proc.activates", to = "From Blood Counter Reset Method" },
+    { event = "Event From Blood Swing Hit" },
+    { add_link = "Event From Blood Swing Hit.deactivates?", to = "State From Blood Can Count" },
+    { add_link = "Event From Blood Swing Hit.activates", to = "From Blood Counter Inc Sender" },
+    { clone = ["Rabid Quest Reset Tester"], rename = { "Rabid Quest Reset Tester" = "From Blood Owned Tester" } },
+    { clone = ["Rabid Quest Reset Tester"], rename = { "Rabid Quest Reset Tester" = "From Blood Swing Tester" } },
+    { link = "From Blood Owned Tester.test", to = "Skill Special From Blood" },
+    { link = "From Blood Owned Tester.on_true", to = "From Blood Swing Tester" },
+    { link = "From Blood Swing Tester.test", to = "State From Blood Can Count" },
+    { link = "From Blood Swing Tester.on_true", to = "Event From Blood Swing Hit" },
+    { add_link = "State Attack Ability Step 3.activates", to = "State From Blood Can Count" },
+    { add_link = "Wolf Basic Attack Step 3 Hit Sound Event.activates", to = "From Blood Owned Tester" },
+    { add_link = "Event Spin To Bleed Impact.activates", to = "From Blood Owned Tester" },
+    # Wolf's Mark: when owned, Special's claw (Double Slash) and bite wolves apply Marked for 4/5/6/7s.
+    { talent_number = "Skill Special Wolfs Mark Duration", talent = "Special Wolfs Mark", values = [4, 5, 6, 7], flag = true },
+    { entity = "Summon1_Model", owner_read = "Wolf Mark Owned Reader", node = "Skill Special Wolfs Mark Owned" },
+    { entity = "Summon1_Model", owner_read = "Wolf Mark Duration Reader", node = "Skill Special Wolfs Mark Duration" },
+    { entity = "Summon1_Model", add_status = ["Attack Bite Damage", "Attack Double Slash L Damage", "Attack Double Slash R Damage"], status = "Marked", switch = "Wolf Mark Owned Reader", duration = "Wolf Mark Duration Reader", talent = "Special Wolfs Mark" },
+    { entity = "Summon2_Model", owner_read = "Wolf Mark Owned Reader", node = "Skill Special Wolfs Mark Owned" },
+    { entity = "Summon2_Model", owner_read = "Wolf Mark Duration Reader", node = "Skill Special Wolfs Mark Duration" },
+    { entity = "Summon2_Model", add_status = ["Attack Bite Damage", "Attack Double Slash L Damage", "Attack Double Slash R Damage"], status = "Marked", switch = "Wolf Mark Owned Reader", duration = "Wolf Mark Duration Reader", talent = "Special Wolfs Mark" },
+    # Wolfy Harvest: when a summoned wolf dies, spawn a Healing Orb at the dying wolf's location on a 24/22/20/18s hard cooldown.
+    { talent_number = "Skill Wolfy Harvest Cooldown", talent = "Special Wolfy Harvest", values = [24, 22, 20, 18] },
+    { clone = ["Skill Attack Block Cooldown Timer"], from = "Romeo", rename = { "Skill Attack Block Cooldown Timer" = "Wolfy Harvest Cooldown Timer" } },
+    { link = "Wolfy Harvest Cooldown Timer.duration", to = "Skill Wolfy Harvest Cooldown" },
+    { link = "Skill Controller Special Wolfy Harvest.value_12", to = "Skill Wolfy Harvest Cooldown" },
+    { link = "Skill Controller Special Wolfy Harvest.value_13", to = "Wolfy Harvest Cooldown Timer" },
+    { clone = ["State Rabid Quest Above Zero"], rename = { "State Rabid Quest Above Zero" = "State Wolfy Harvest Ready" } },
+    { add_link = "Skill Special Wolfy Harvest.activates", to = "State Wolfy Harvest Ready" },
+    { event = "Event Wolfy Harvest Cooldown End" },
+    { add_link = "Event Wolfy Harvest Cooldown End.activates", to = "State Wolfy Harvest Ready" },
+    { link = "Wolfy Harvest Cooldown Timer.on_end", to = "Event Wolfy Harvest Cooldown End" },
+    { clone = ["Skill Special Wolfs Mark Owned"], rename = { "Skill Special Wolfs Mark Owned" = "Wolfy Harvest Ready Flag" } },
+    { swap_ref = "Wolfy Harvest Ready Flag", node = "Skill Special Wolfs Mark", to = "State Wolfy Harvest Ready" },
+    { event = "Event Wolfy Harvest Start Cooldown" },
+    { add_link = "Event Wolfy Harvest Start Cooldown.deactivates?", to = "State Wolfy Harvest Ready" },
+    { add_link = "Event Wolfy Harvest Start Cooldown.activates", to = "Wolfy Harvest Cooldown Timer" },
+    { clone = ["Rabid Quest Reset Tester"], rename = { "Rabid Quest Reset Tester" = "Wolfy Harvest Ready Tester" } },
+    { link = "Wolfy Harvest Ready Tester.test", to = "State Wolfy Harvest Ready" },
+    { link = "Wolfy Harvest Ready Tester.on_true", to = "Event Wolfy Harvest Start Cooldown" },
+    { link = "Wolfy Harvest Ready Tester.on_false", to = "" },
+    { clone = ["Rabid Quest Reset Tester"], rename = { "Rabid Quest Reset Tester" = "Wolfy Harvest Owned Tester" } },
+    { link = "Wolfy Harvest Owned Tester.test", to = "Skill Special Wolfy Harvest" },
+    { link = "Wolfy Harvest Owned Tester.on_true", to = "Wolfy Harvest Ready Tester" },
+    { clone = ["DUMMY_DESTROYED Event Listener"], from = "Geppetto", rename = { "DUMMY_DESTROYED Event Listener" = "Wolfy Harvest Pet Died Listener" } },
+    { set = "Wolfy Harvest Pet Died Listener.event", value = "BLOOD_WOLF_PET_DIED" },
+    { link = "Wolfy Harvest Pet Died Listener.on_event", to = "Wolfy Harvest Owned Tester" },
+    { entity = "Summon1_Model", owner_read = "Wolfy Harvest Ready Reader", node = "Wolfy Harvest Ready Flag" },
+    { entity = "Summon1_Model", clone = ["Health Globe Spawner"], from = "Enemies/NPC_Common/NPC_Common", rename = { "Health Globe Spawner" = "Wolfy Harvest Orb Spawner" } },
+    { entity = "Summon1_Model", clone = ["Owner DUMMY_DESTROYED Event Sender"], from = "Heroes/Hero_Geppetto/Hero_Geppetto_Dummy", rename = { "Owner DUMMY_DESTROYED Event Sender" = "Owner Wolf Died Event Sender" } },
+    { entity = "Summon1_Model", set = "Owner Wolf Died Event Sender.event", value = "BLOOD_WOLF_PET_DIED" },
+    { entity = "Summon1_Model", event = "Event Wolfy Harvest Trigger" },
+    { entity = "Summon1_Model", add_link = "Event Wolfy Harvest Trigger.activates", to = "Wolfy Harvest Orb Spawner" },
+    { entity = "Summon1_Model", add_link = "Event Wolfy Harvest Trigger.activates", to = "Owner Wolf Died Event Sender" },
+    { entity = "Summon1_Model", clone = ["Skill Reduce Armour Extra Fx Tester"], from = "Heroes/Hero_Red/Hero_Red_Bomb", rename = { "Skill Reduce Armour Extra Fx Tester" = "Wolfy Harvest Ready Tester" } },
+    { entity = "Summon1_Model", swap_ref = "Wolfy Harvest Ready Tester", from = "Heroes/Hero_Red/Hero_Red_Bomb", node = "Skill Reduce Armour Entity Get Value", to = "Wolfy Harvest Ready Reader" },
+    { entity = "Summon1_Model", link = "Wolfy Harvest Ready Tester.on_true", to = "Event Wolfy Harvest Trigger" },
+    { entity = "Summon1_Model", add_link = "Child Behaviour Dying.activates", to = "Wolfy Harvest Ready Tester" },
+    { entity = "Summon2_Model", owner_read = "Wolfy Harvest Ready Reader", node = "Wolfy Harvest Ready Flag" },
+    { entity = "Summon2_Model", clone = ["Health Globe Spawner"], from = "Enemies/NPC_Common/NPC_Common", rename = { "Health Globe Spawner" = "Wolfy Harvest Orb Spawner" } },
+    { entity = "Summon2_Model", clone = ["Owner DUMMY_DESTROYED Event Sender"], from = "Heroes/Hero_Geppetto/Hero_Geppetto_Dummy", rename = { "Owner DUMMY_DESTROYED Event Sender" = "Owner Wolf Died Event Sender" } },
+    { entity = "Summon2_Model", set = "Owner Wolf Died Event Sender.event", value = "BLOOD_WOLF_PET_DIED" },
+    { entity = "Summon2_Model", event = "Event Wolfy Harvest Trigger" },
+    { entity = "Summon2_Model", add_link = "Event Wolfy Harvest Trigger.activates", to = "Wolfy Harvest Orb Spawner" },
+    { entity = "Summon2_Model", add_link = "Event Wolfy Harvest Trigger.activates", to = "Owner Wolf Died Event Sender" },
+    { entity = "Summon2_Model", clone = ["Skill Reduce Armour Extra Fx Tester"], from = "Heroes/Hero_Red/Hero_Red_Bomb", rename = { "Skill Reduce Armour Extra Fx Tester" = "Wolfy Harvest Ready Tester" } },
+    { entity = "Summon2_Model", swap_ref = "Wolfy Harvest Ready Tester", from = "Heroes/Hero_Red/Hero_Red_Bomb", node = "Skill Reduce Armour Entity Get Value", to = "Wolfy Harvest Ready Reader" },
+    { entity = "Summon2_Model", link = "Wolfy Harvest Ready Tester.on_true", to = "Event Wolfy Harvest Trigger" },
+    { entity = "Summon2_Model", add_link = "Child Behaviour Dying.activates", to = "Wolfy Harvest Ready Tester" },
+    # Blood Frenzy: killing an enemy with Bleed grants +8/12/16/20% Attack Speed & Move Speed for 8s (non-stacking, refreshes duration).
+    { clone = ["Overflowing Gluttony Picked Sender"], rename = { "Overflowing Gluttony Picked Sender" = "Blood Frenzy Picked Sender" } },
+    { set = "Blood Frenzy Picked Sender.event", value = "BLOOD_FRENZY_PICKED" },
+    { add_link = "Skill Passive Blood Frenzy.activates", to = "Blood Frenzy Picked Sender" },
+    { clone = ["State Rabid Quest Above Zero"], rename = { "State Rabid Quest Above Zero" = "State Blood Frenzy Active" } },
+    { clone = ["Skill Attack Block Cooldown Timer"], from = "Romeo", rename = { "Skill Attack Block Cooldown Timer" = "Blood Frenzy Timer" } },
+    { set = "Blood Frenzy Timer.duration", value = 8.0 },
+    { event = "Event Blood Frenzy End" },
+    { add_link = "Event Blood Frenzy End.deactivates?", to = "State Blood Frenzy Active" },
+    { link = "Blood Frenzy Timer.on_end", to = "Event Blood Frenzy End" },
+    { add_link = "State Blood Frenzy Active.while_active", to = "Blood Frenzy Timer" },
+    { event = "Event Blood Frenzy Restart" },
+    { add_link = "Event Blood Frenzy Restart.deactivates?", to = "State Blood Frenzy Active" },
+    { add_link = "Event Blood Frenzy Restart.activates", to = "State Blood Frenzy Active" },
+    { clone = ["DUMMY_DESTROYED Event Listener"], from = "Geppetto", rename = { "DUMMY_DESTROYED Event Listener" = "Blood Frenzy Kill Listener" } },
+    { set = "Blood Frenzy Kill Listener.event", value = "BLOOD_FRENZY_BLEED_KILL" },
+    { link = "Blood Frenzy Kill Listener.on_event", to = "Event Blood Frenzy Restart" },
+    { remove_link = "Skill Passive Blood Frenzy.while_active", to = "Skill Passive Blood Frenzy Added 058e0a5c Modifier" },
+    { remove_link = "Skill Passive Blood Frenzy.while_active", to = "Skill Passive Blood Frenzy Added 044dadde Modifier" },
+    { add_link = "State Blood Frenzy Active.while_active", to = "Skill Passive Blood Frenzy Added 058e0a5c Modifier" },
+    { add_link = "State Blood Frenzy Active.while_active", to = "Skill Passive Blood Frenzy Added 044dadde Modifier" },
+    # Blood Pounce (replaces Echoing Howl): after Defense, next Attack within 2s leaps forward (1.0 root motion, cursor aim),
+    # dealing AoE damage with 20 Stagger and 68/72/76/80 Bleed (lvl 1), prioritised over Spin To Bleed.
+    { talent_number = "Blood Pounce Bleed Display", talent = "Defense Blood Pounce", values = [68, 72, 76, 80] },
+    { clone = ["State Rabid Quest Above Zero"], rename = { "State Rabid Quest Above Zero" = "State Blood Pounce Ready" } },
+    { clone = ["State Rabid Quest Above Zero"], rename = { "State Rabid Quest Above Zero" = "State Blood Pounce Active" } },
+    { add_link = "State Blood Pounce Active.deactivates?", to = "State Blood Pounce Ready" },
+    { add_link = "State Blood Pounce Active.while_active", from = "Character_Common/Character_Common", to = "State Intangible" },
+    { clone = ["Skill Attack Block Cooldown Timer"], from = "Romeo", rename = { "Skill Attack Block Cooldown Timer" = "Blood Pounce Ready Timer" } },
+    { set = "Blood Pounce Ready Timer.duration", value = 2.0 },
+    { event = "Event Blood Pounce Expire" },
+    { add_link = "Event Blood Pounce Expire.deactivates?", to = "State Blood Pounce Ready" },
+    { link = "Blood Pounce Ready Timer.on_end", to = "Event Blood Pounce Expire" },
+    { add_link = "State Blood Pounce Ready.while_active", to = "Blood Pounce Ready Timer" },
+    { event = "Event Blood Pounce Arm" },
+    { add_link = "Event Blood Pounce Arm.deactivates?", to = "State Blood Pounce Ready" },
+    { add_link = "Event Blood Pounce Arm.activates", to = "State Blood Pounce Ready" },
+    { clone = ["Rabid Quest Reset Tester"], rename = { "Rabid Quest Reset Tester" = "Blood Pounce Talent Tester" } },
+    { link = "Blood Pounce Talent Tester.test", to = "Skill Defense Blood Pounce" },
+    { link = "Blood Pounce Talent Tester.on_true", to = "Event Blood Pounce Arm" },
+    { add_link = "State Defense Ability.activates", to = "Blood Pounce Talent Tester" },
+    { clone = ["Attack Ability Clip Step 3", "Attack Ability Anim Step 3"], rename = { "Attack Ability Clip Step 3" = "Blood Pounce Clip", "Attack Ability Anim Step 3" = "Blood Pounce Anim" } },
+    { animatic_clip = "Blood Pounce Anim", value = "Characters\\Heroes\\RED\\Animations\\Skills\\RED_Wolf_Secondary_Leap_Out.fbx" },
+    { animatic_speed = "Blood Pounce Anim", value = 1.15 },
+    { set = "Blood Pounce Anim.value_7", value = 1.0 },
+    { link = "Blood Pounce Clip.ref_11", to = "State Blood Pounce Active" },
+    { clone = ["Wolf Secondary Ability Can Hold FMod Event Anim Out", "Wolf Secondary Ability Active Default FMod Event", "Wolf Secondary Ability Impact FMod Event"], from = "Red", rename = { "Wolf Secondary Ability Can Hold FMod Event Anim Out" = "Blood Pounce Jump Sound", "Wolf Secondary Ability Active Default FMod Event" = "Blood Pounce Land Sound", "Wolf Secondary Ability Impact FMod Event" = "Blood Pounce Hit Sound" } },
+    { unlink_reads = "Blood Pounce Jump Sound" },
+    { unlink_reads = "Blood Pounce Land Sound" },
+    { clone = ["Wolf Secondary Attack Radius"], from = "Red", rename = { "Wolf Secondary Attack Radius" = "Blood Pounce Radius" } },
+    { clone = ["Explosion Fx Active", "Explosion Fx Shake Cam", "Explosion FMod Event Active"], from = "Heroes/Hero_Carmilla/Hero_Carmilla_Power_Orb", rename = { "Explosion Fx Active" = "Blood Pounce Fx", "Explosion Fx Shake Cam" = "Blood Pounce Shake Cam", "Explosion FMod Event Active" = "Blood Pounce Detonation Sound" } },
+    { unlink_reads = "Blood Pounce Detonation Sound" },
+    { retarget = "Blood Pounce Fx", node = "Character_Common/Character_Common|Entity Node", from_kind = "3d graphic object" },
+    { swap_ref = "Blood Pounce Fx", from = "Heroes/Hero_Carmilla/Hero_Carmilla_Power_Orb", node = "Owner Explosion Radius Get Value", to = "Blood Pounce Radius" },
+    { swap_ref = "Blood Pounce Fx", from = "Heroes/Hero_Carmilla/Hero_Carmilla_Power_Orb", node = "Owner Current Radius Get Value", to = "Blood Pounce Radius" },
+    { clone = ["Wolf Secondary Attack Traverser"], from = "Red", rename = { "Wolf Secondary Attack Traverser" = "Blood Pounce Traverser" } },
+    { swap_ref = "Blood Pounce Traverser", from = "Red", node = "Wolf Secondary Ability Radius Selector", to = "Blood Pounce Radius" },
+    { clone = ["Attack Ability Step 3 Hit 1 Attack", "Attack Ability Step 3 Hit 1 Damage", "Skill Attack Ability Step 3 Bleed On Attack Ability Step 3 Hit 1 Damage", "Wolf Basic Attack Bleed Value Operation", "Wolf Basic Attack Bleed Base Multiplier"], rename = { "Attack Ability Step 3 Hit 1 Attack" = "Blood Pounce Attack", "Attack Ability Step 3 Hit 1 Damage" = "Blood Pounce Damage", "Skill Attack Ability Step 3 Bleed On Attack Ability Step 3 Hit 1 Damage" = "Blood Pounce Bleed Modifier", "Wolf Basic Attack Bleed Value Operation" = "Blood Pounce Bleed Value Operation", "Wolf Basic Attack Bleed Base Multiplier" = "Blood Pounce Bleed Base Multiplier" } },
+    { swap_ref = "Blood Pounce Attack", node = "BloodWolf Basic Attack Traverser", to = "Blood Pounce Traverser" },
+    { swap_ref = "Blood Pounce Damage", node = "State Attack Ability", to = "State Blood Pounce Active" },
+    { set = "Blood Pounce Damage.value_31", value = 20.0 },
+    { set = "Blood Pounce Bleed Base Multiplier.value", value = 0.1 },
+    { append_operand = "Blood Pounce Bleed Value Operation", to = "Blood Pounce Bleed Display Selector" },
+    { event = "Event Blood Pounce Impact" },
+    { add_link = "Event Blood Pounce Impact.activates", to = "Blood Pounce Hit Sound" },
+    { link = "Blood Pounce Damage.ref_32", to = "Event Blood Pounce Impact" },
+    { event = "Event Blood Pounce Hit" },
+    { add_link = "Event Blood Pounce Hit.activates", to = "Blood Pounce Attack" },
+    { add_link = "Event Blood Pounce Hit.activates", to = "Blood Pounce Fx" },
+    { add_link = "Event Blood Pounce Hit.activates", to = "Blood Pounce Shake Cam" },
+    { add_link = "Event Blood Pounce Hit.activates", to = "Blood Pounce Detonation Sound" },
+    { link = "Blood Pounce Anim.cinebloc[0]", to = "Blood Pounce Jump Sound" },
+    { link = "Blood Pounce Anim.cinebloc[2]", to = "Event Blood Pounce Hit" },
+    { set = "Blood Pounce Anim.cinebloc[2].start", value = 0.52 },
+    { set = "Blood Pounce Anim.cinebloc[3].start", value = 0.87 },
+    { set = "Blood Pounce Anim.cinebloc[4].start", value = 0.74 },
+    { link = "Blood Pounce Anim.cinebloc[5]", to = "Blood Pounce Land Sound" },
+    { set = "Blood Pounce Anim.cinebloc[5].start", value = 0.52 },
+    # Dash Bleed: after Dash, next Attack within 3s uses combo finisher (Step 3 or Spin To Bleed) with +18/22/26/30 extra Bleed.
+    # Registered on Attack Ability Combo Selector BEFORE Blood Pounce so Blood Pounce (prepended last) keeps priority.
+    { override = "Child State Dash Ability", from = "Hero_Common" },
+    { clone = ["State Rabid Quest Above Zero"], rename = { "State Rabid Quest Above Zero" = "State Dash Bleed Basic Ready" } },
+    { clone = ["State Rabid Quest Above Zero"], rename = { "State Rabid Quest Above Zero" = "State Dash Bleed Spin Ready" } },
+    { clone = ["State Rabid Quest Above Zero"], rename = { "State Rabid Quest Above Zero" = "State Dash Bleed Active" } },
+    { add_link = "State Dash Bleed Active.deactivates?", to = "State Dash Bleed Basic Ready" },
+    { add_link = "State Dash Bleed Active.deactivates?", to = "State Dash Bleed Spin Ready" },
+    { add_link = "State Dash Bleed Active.activates", to = "State From Blood Can Count" },
+    { clone = ["Blood Pounce Ready Timer"], rename = { "Blood Pounce Ready Timer" = "Dash Bleed Ready Timer" } },
+    { set = "Dash Bleed Ready Timer.duration", value = 3.0 },
+    { event = "Event Dash Bleed Expire" },
+    { add_link = "Event Dash Bleed Expire.deactivates?", to = "State Dash Bleed Basic Ready" },
+    { add_link = "Event Dash Bleed Expire.deactivates?", to = "State Dash Bleed Spin Ready" },
+    { link = "Dash Bleed Ready Timer.on_end", to = "Event Dash Bleed Expire" },
+    { add_link = "State Dash Bleed Basic Ready.while_active", to = "Dash Bleed Ready Timer" },
+    { add_link = "State Dash Bleed Spin Ready.while_active", to = "Dash Bleed Ready Timer" },
+    { event = "Event Dash Bleed Basic Arm" },
+    { add_link = "Event Dash Bleed Basic Arm.deactivates?", to = "State Dash Bleed Basic Ready" },
+    { add_link = "Event Dash Bleed Basic Arm.deactivates?", to = "State Dash Bleed Spin Ready" },
+    { add_link = "Event Dash Bleed Basic Arm.activates", to = "State Dash Bleed Basic Ready" },
+    { event = "Event Dash Bleed Spin Arm" },
+    { add_link = "Event Dash Bleed Spin Arm.deactivates?", to = "State Dash Bleed Basic Ready" },
+    { add_link = "Event Dash Bleed Spin Arm.deactivates?", to = "State Dash Bleed Spin Ready" },
+    { add_link = "Event Dash Bleed Spin Arm.activates", to = "State Dash Bleed Spin Ready" },
+    { clone = ["Rabid Quest Reset Tester"], rename = { "Rabid Quest Reset Tester" = "Dash Bleed Spin Check Tester" } },
+    { link = "Dash Bleed Spin Check Tester.test", to = "Skill Attack Spin To Bleed" },
+    { link = "Dash Bleed Spin Check Tester.on_true", to = "Event Dash Bleed Spin Arm" },
+    { link = "Dash Bleed Spin Check Tester.on_false", to = "Event Dash Bleed Basic Arm" },
+    { clone = ["Rabid Quest Reset Tester"], rename = { "Rabid Quest Reset Tester" = "Dash Bleed Talent Tester" } },
+    { link = "Dash Bleed Talent Tester.test", to = "Skill Dash Bleed" },
+    { link = "Dash Bleed Talent Tester.on_true", to = "Dash Bleed Spin Check Tester" },
+    { link = "Dash Bleed Talent Tester.on_false", to = "" },
+    { add_link = "Child State Dash Ability.activates", to = "Dash Bleed Talent Tester" },
+    { clone = ["Attack Ability Clip Step 3"], rename = { "Attack Ability Clip Step 3" = "Dash Bleed Basic Clip" } },
+    { link = "Dash Bleed Basic Clip.ref_11", to = "State Dash Bleed Active" },
+    { clone = ["Spin To Bleed Clip"], rename = { "Spin To Bleed Clip" = "Dash Bleed Spin Clip" } },
+    { link = "Dash Bleed Spin Clip.ref_11", to = "State Dash Bleed Active" },
+    { add_selector = "Attack Ability Combo Selector", to = "Dash Bleed Basic Clip", condition = "State Dash Bleed Basic Ready" },
+    { add_selector = "Attack Ability Combo Selector", to = "Dash Bleed Spin Clip", condition = "State Dash Bleed Spin Ready" },
+    { talent_number = "Dash Bleed Extra Bleed", talent = "Dash Bleed", values = [18, 22, 26, 30] },
+    { clone = ["Wolf Basic Attack Bleed Base Multiplier"], rename = { "Wolf Basic Attack Bleed Base Multiplier" = "Dash Bleed Tenth" } },
+    { set = "Dash Bleed Tenth.value", value = 0.1 },
+    { clone = ["Primary Ability Damage Multiplier Operation"], from = "Red", rename = { "Primary Ability Damage Multiplier Operation" = "Dash Bleed Extra Multiplier" } },
+    { link = "Dash Bleed Extra Multiplier.a", to = "Dash Bleed Extra Bleed" },
+    { link = "Dash Bleed Extra Multiplier.b", to = "Dash Bleed Tenth" },
+    { clone = ["Skill Ultimate 1 Fire Range operand"], from = "Red", rename = { "Skill Ultimate 1 Fire Range operand" = "Dash Bleed Active Bleed Selector" } },
+    { swap_ref = "Dash Bleed Active Bleed Selector", from = "Red", node = "Skill Ultimate 1 Fire", to = "State Dash Bleed Active" },
+    { swap_ref = "Dash Bleed Active Bleed Selector", from = "Red", node = "Skill Ultimate 1 Fire Range Value", to = "Dash Bleed Extra Multiplier" },
+    { clone = ["Primary Ability Combo Multiplier Operation"], from = "Red", rename = { "Primary Ability Combo Multiplier Operation" = "Dash Bleed Step 3 Bleed Mult Op" } },
+    { link = "Dash Bleed Step 3 Bleed Mult Op.a", to = "Wolf Basic Attack Bleed Base Multiplier" },
+    { link = "Dash Bleed Step 3 Bleed Mult Op.b", to = "Dash Bleed Active Bleed Selector" },
+    { swap_ref = "Wolf Basic Attack Bleed Value Operation", node = "Wolf Basic Attack Bleed Base Multiplier", to = "Dash Bleed Step 3 Bleed Mult Op" },
+    { clone = ["Primary Ability Combo Multiplier Operation"], from = "Red", rename = { "Primary Ability Combo Multiplier Operation" = "Dash Bleed Spin Bleed Mult Op" } },
+    { link = "Dash Bleed Spin Bleed Mult Op.a", to = "Spin To Bleed Bleed Base Multiplier" },
+    { link = "Dash Bleed Spin Bleed Mult Op.b", to = "Dash Bleed Active Bleed Selector" },
+    { swap_ref = "Spin To Bleed Bleed Value Operation", node = "Spin To Bleed Bleed Base Multiplier", to = "Dash Bleed Spin Bleed Mult Op" },
+    { replace_subobject = "Attack Ability Step 3 Hit 1 Damage.bytes_36[0]", from = "Carmilla", donor = "Skill Defense Aoe Bleed Damage.bytes_36[0]", replace_ref = { "Skill Defense Aoe Bleed Modifier" = "Skill Attack Ability Step 3 Bleed On Attack Ability Step 3 Hit 1 Damage" } },
+    { replace_subobject = "Spin To Bleed Damage.bytes_36[0]", from = "Carmilla", donor = "Skill Defense Aoe Bleed Damage.bytes_36[0]", replace_ref = { "Skill Defense Aoe Bleed Modifier" = "Spin To Bleed Bleed Modifier" } },
+    { add_selector = "Attack Ability Combo Selector", to = "Blood Pounce Clip", condition = "State Blood Pounce Ready" },
+    # Dash Spike (replaces Dash Pounce): on Dash, fires Carmilla's Heartbreak blood spike in the dash direction,
+    # dealing 10 damage at lvl 1 (scaling with level), 10 Stagger, and 40/50/60/70 Bleed per rarity.
+    { clone = ["Skill Ultimate 1 Combo Pike Range", "Skill Ultimate 1 Combo Pike Traverser", "Skill Ultimate 1 Combo Pike Attack", "Skill Ultimate 1 Combo Pike Fx Active", "Skill Ultimate 1 Combo Pike FMod Event Active", "Skill Ultimate 1 Combo Pike FMod Event Character Impact"], from = "Carmilla", rename = { "Skill Ultimate 1 Combo Pike Range" = "Dash Spike Range", "Skill Ultimate 1 Combo Pike Traverser" = "Dash Spike Traverser", "Skill Ultimate 1 Combo Pike Attack" = "Dash Spike Attack", "Skill Ultimate 1 Combo Pike Fx Active" = "Dash Spike Fx", "Skill Ultimate 1 Combo Pike FMod Event Active" = "Dash Spike Launch Sound", "Skill Ultimate 1 Combo Pike FMod Event Character Impact" = "Dash Spike Hit Sound" } },
+    { set = "Dash Spike Range.value", value = 14.0 },
+    { unlink_reads = "Dash Spike Launch Sound" },
+    { unlink_reads = "Dash Spike Hit Sound" },
+    { add_link = "Skill Dash Spike.while_active", to = "Dash Spike Traverser" },
+    { add_link = "Skill Dash Spike.while_active", to = "Dash Spike Range" },
+    { talent_number = "Dash Spike Bleed Display", talent = "Dash Spike", values = [40, 50, 60, 70] },
+    { clone = ["Blood Pounce Damage", "Blood Pounce Bleed Modifier", "Blood Pounce Bleed Value Operation", "Blood Pounce Bleed Base Multiplier"], rename = { "Blood Pounce Damage" = "Dash Spike Damage", "Blood Pounce Bleed Modifier" = "Dash Spike Bleed Modifier", "Blood Pounce Bleed Value Operation" = "Dash Spike Bleed Value Operation", "Blood Pounce Bleed Base Multiplier" = "Dash Spike Bleed Base Multiplier" } },
+    { swap_ref = "Dash Spike Bleed Value Operation", node = "Blood Pounce Bleed Display Selector", to = "Dash Spike Bleed Display Selector" },
+    { set = "Dash Spike Damage.value_28", value = 1.0 },
+    { set = "Dash Spike Damage.value_31", value = 10.0 },
+    { replace_subobject = "Dash Spike Damage.bytes_36[0]", from = "Carmilla", donor = "Skill Defense Aoe Bleed Damage.bytes_36[0]", replace_ref = { "Skill Defense Aoe Bleed Modifier" = "Dash Spike Bleed Modifier" } },
+    { swap_ref = "Dash Spike Attack", from = "Carmilla", node = "Basic Attack Damage", to = "Dash Spike Damage" },
+    { event = "Event Dash Spike Impact" },
+    { add_link = "Event Dash Spike Impact.activates", to = "Dash Spike Hit Sound" },
+    { link = "Dash Spike Damage.ref_32", to = "Event Dash Spike Impact" },
+    { event = "Event Dash Spike Fire" },
+    { add_link = "Event Dash Spike Fire.activates", to = "Dash Spike Attack" },
+    { add_link = "Event Dash Spike Fire.activates", to = "Dash Spike Fx" },
+    { add_link = "Event Dash Spike Fire.activates", to = "Dash Spike Launch Sound" },
+    { clone = ["Rabid Quest Reset Tester"], rename = { "Rabid Quest Reset Tester" = "Dash Spike Talent Tester" } },
+    { link = "Dash Spike Talent Tester.test", to = "Skill Dash Spike" },
+    { link = "Dash Spike Talent Tester.on_true", to = "Event Dash Spike Fire" },
+    { link = "Dash Spike Talent Tester.on_false", to = "" },
+    { add_link = "Child State Dash Ability.activates", to = "Dash Spike Talent Tester" },
+    # Passive Blood Scent: repeatable 0/7s active-bleed tracker; at 7/7s grants +18/22/26/30% Bleed damage while bleeding continues, resets to 0/7 when bleeding stops.
+    { talent_number = "Blood Scent Bleed Bonus", talent = "Passive Blood Scent", values = [0.18, 0.22, 0.26, 0.30], percent = true },
+    { clone = ["Overflowing Gluttony Counter", "Rabid Quest Max Value", "Rabid Quest Counter Reset Method", "Overflowing Gluttony Tier Inc Sender"], rename = { "Overflowing Gluttony Counter" = "Blood Scent Counter", "Rabid Quest Max Value" = "Blood Scent Max Value", "Rabid Quest Counter Reset Method" = "Blood Scent Counter Reset Method", "Overflowing Gluttony Tier Inc Sender" = "Blood Scent Counter Inc Sender" } },
+    { set = "Blood Scent Max Value.value", value = 7 },
+    { set = "Blood Scent Counter.bytes_6", value = "23 00 00 00 42 4c 4f 4f 44 5f 57 4f 4c 46 5f 42 4c 4f 4f 44 5f 53 43 45 4e 54 5f 42 55 46 46 5f 53 45 43 5f 49 4e 43 23 00 00 00 42 4c 4f 4f 44 5f 57 4f 4c 46 5f 42 4c 4f 4f 44 5f 53 43 45 4e 54 5f 42 55 46 46 5f 53 45 43 5f 44 45 43" },
+    { set = "Blood Scent Counter Inc Sender.event", value = "BLOOD_WOLF_BLOOD_SCENT_BUFF_SEC_INC" },
+    { link = "Blood Scent Counter.value_5", to = "Blood Scent Max Value" },
+    { link = "Blood Scent Counter.ref_4", to = "" },
+    { link = "Blood Scent Counter Reset Method.obj_2[0]", to = "Blood Scent Counter" },
+    { link = "Skill Controller Passive Blood Scent.value_7", to = "Blood Scent Counter" },
+    { link = "Skill Controller Passive Blood Scent.value_8", to = "Blood Scent Max Value" },
+    { add_link = "Skill Passive Blood Scent.while_active", to = "Blood Scent Counter" },
+    { clone = ["State Rabid Quest Above Zero"], rename = { "State Rabid Quest Above Zero" = "State Blood Scent Watchdog" } },
+    { clone = ["State Rabid Quest Above Zero"], rename = { "State Rabid Quest Above Zero" = "State Blood Scent Bleeding" } },
+    { clone = ["State Rabid Quest Above Zero"], rename = { "State Rabid Quest Above Zero" = "State Blood Scent Buff Active" } },
+    { event = "Event Blood Scent Buff Activate" },
+    { add_link = "Event Blood Scent Buff Activate.activates", to = "State Blood Scent Buff Active" },
+    { link = "Blood Scent Counter.ref_3", to = "Event Blood Scent Buff Activate" },
+    { clone = ["Blood Pounce Ready Timer"], rename = { "Blood Pounce Ready Timer" = "Blood Scent Watchdog Timer" } },
+    { set = "Blood Scent Watchdog Timer.duration", value = 0.75 },
+    { clone = ["Blood Pounce Ready Timer"], rename = { "Blood Pounce Ready Timer" = "Blood Scent Second Timer" } },
+    { set = "Blood Scent Second Timer.count", value = 0 },
+    { set = "Blood Scent Second Timer.duration", value = 1.0 },
+    { link = "Blood Scent Second Timer.on_end", to = "" },
+    { event = "Event Blood Scent Second Tick" },
+    { add_link = "Event Blood Scent Second Tick.activates", to = "Blood Scent Counter Inc Sender" },
+    { link = "Blood Scent Second Timer.on_tick", to = "Event Blood Scent Second Tick" },
+    { add_link = "State Blood Scent Bleeding.while_active", to = "Blood Scent Second Timer" },
+    { event = "Event Blood Scent Expire" },
+    { add_link = "Event Blood Scent Expire.deactivates?", to = "State Blood Scent Watchdog" },
+    { add_link = "Event Blood Scent Expire.deactivates?", to = "State Blood Scent Bleeding" },
+    { add_link = "Event Blood Scent Expire.deactivates?", to = "State Blood Scent Buff Active" },
+    { add_link = "Event Blood Scent Expire.activates", to = "Blood Scent Counter Reset Method" },
+    { link = "Blood Scent Watchdog Timer.on_end", to = "Event Blood Scent Expire" },
+    { add_link = "State Blood Scent Watchdog.while_active", to = "Blood Scent Watchdog Timer" },
+    { event = "Event Blood Scent Tick" },
+    { add_link = "Event Blood Scent Tick.deactivates?", to = "State Blood Scent Watchdog" },
+    { add_link = "Event Blood Scent Tick.activates", to = "State Blood Scent Watchdog" },
+    { add_link = "Event Blood Scent Tick.activates", to = "State Blood Scent Bleeding" },
+    { clone = ["Rabid Quest Reset Tester"], rename = { "Rabid Quest Reset Tester" = "Blood Scent Talent Tester" } },
+    { link = "Blood Scent Talent Tester.test", to = "Skill Passive Blood Scent" },
+    { link = "Blood Scent Talent Tester.on_true", to = "Event Blood Scent Tick" },
+    { link = "Blood Scent Talent Tester.on_false", to = "" },
+    { event = "Event On Bleed Tick" },
+    { link = "Bleed Damage.ref_32", to = "Event On Bleed Tick" },
+    { add_link = "Event On Bleed Tick.activates", to = "Blood Scent Talent Tester" },
+    { clone = ["MAX_HEALTH_UP Event Listener"], from = "Hero_Common", rename = { "MAX_HEALTH_UP Event Listener" = "Blood Scent Bomb Bleed Tick Listener" } },
+    { set = "Blood Scent Bomb Bleed Tick Listener.event", value = "BLOOD_WOLF_BOMB_BLEED_TICK" },
+    { link = "Blood Scent Bomb Bleed Tick Listener.on_event", to = "Blood Scent Talent Tester" },
+    { add_link = "Skill Passive Blood Scent.while_active", to = "Blood Scent Bomb Bleed Tick Listener" },
+    { clone = ["Skill Ultimate 1 Fire Range operand"], from = "Red", rename = { "Skill Ultimate 1 Fire Range operand" = "Blood Scent Active Bonus Selector" } },
+    { swap_ref = "Blood Scent Active Bonus Selector", from = "Red", node = "Skill Ultimate 1 Fire", to = "State Blood Scent Buff Active" },
+    { swap_ref = "Blood Scent Active Bonus Selector", from = "Red", node = "Skill Ultimate 1 Fire Range Value", to = "Blood Scent Bleed Bonus" },
+    { append_operand = "Bleed Damage Multiplier Operation", to = "Blood Scent Active Bonus Selector" },
+    # Defense 40% -> 10% Move Speed over the Defense animation (Adder Stone style, dropped immediately if interrupted).
+    { clone = ["Skill Passive Blood Frenzy Added 044dadde Modifier"], rename = { "Skill Passive Blood Frenzy Added 044dadde Modifier" = "Defense Move Speed Base Modifier" } },
+    { clone = ["Skill Passive Blood Frenzy Added 044dadde Modifier"], rename = { "Skill Passive Blood Frenzy Added 044dadde Modifier" = "Defense Move Speed Decay Modifier" } },
+    { set = "Defense Move Speed Base Modifier.amount", value = 0.10 },
+    { clone = ["Blood Pounce Radius"], rename = { "Blood Pounce Radius" = "Defense Move Speed Decay Max" } },
+    { set = "Defense Move Speed Decay Max.value", value = 0.70 },
+    { clone = ["Super Effect Value Operation"], from = "Objects/Magical_Objects/Epic/Defensive_Gain_Charge", rename = { "Super Effect Value Operation" = "Defense Move Speed Decay Operation" } },
+    { swap_ref = "Defense Move Speed Decay Operation", from = "Objects/Magical_Objects/Epic/Defensive_Gain_Charge", node = "Super Effect Max Value", to = "Defense Move Speed Decay Max" },
+    { swap_ref = "Defense Move Speed Decay Operation", from = "Objects/Magical_Objects/Epic/Defensive_Gain_Charge", node = "Super Effect Timer", to = "Defense Ability End Timer" },
+    { link = "Defense Move Speed Decay Modifier.amount", to = "Defense Move Speed Decay Operation" },
+    { add_link = "State Defense Ability.while_active", to = "Defense Move Speed Base Modifier" },
+    { add_link = "State Defense Ability.while_active", to = "Defense Move Speed Decay Operation" },
+    { add_link = "State Defense Ability.while_active", to = "Defense Move Speed Decay Modifier" },
+    { add_link = "State Defense Ability.while_active", from = "Hero_Common", to = "Dash Ability Attack Radius Operation" },
+    { add_link = "State Defense Ability.while_active", from = "Hero_Common", to = "Dash Ability Props Attack" },
+    { sound_volume = "Defense Ability Sound", value = 1.2 },
+    { clone = ["Wolf Power Blood Seed Time Before Explosion Value"], rename = { "Wolf Power Blood Seed Time Before Explosion Value" = "Thickening Blood Power Factor Anchor" } },
+    { scale_by_talent = "Thickening Blood Power Factor Anchor", talent = "Power Thickening Blood", values = [0.08, 0.12, 0.16, 0.20], tag = "Power" },
+    # Thickening Blood also thickens the fuse: the seed waits 1.5 s, but
+    # 2.5 s while the card is held (x1.6667, the same at every rarity).
+    { scale_by_talent = "Wolf Power Blood Seed Time Before Explosion Value", talent = "Power Thickening Blood", values = [0.6666667, 0.6666667, 0.6666667, 0.6666667], tag = "Duration" },
+    # Thickening Blood: +8/12/16/20% explosion range and bleed damage on Bomb & SpreadBomb.
+    { entity = "Hero_BloodWolf_Bomb", owner_read = "Thickening Blood Factor Reader", node = "Skill Power Thickening Blood Range Power Factor" },
+    { entity = "Hero_BloodWolf_Bomb", scale_by_talent = "Explosion Radius", factor = "Thickening Blood Factor Reader" },
+    { entity = "Hero_BloodWolf_Bomb", append_operand = "Wolf Blood Seed Explosion Bleed Modifier Level Scaled", to = "Thickening Blood Factor Reader" },
+    # The rabid wolf's own detonation (RabidBomb): same talent scaling as the hero's bomb,
+    # with its 20% bleed cut applied underneath it.
+    { entity = "Hero_BloodWolf_RabidBomb", owner_read = "Thickening Blood Factor Reader", node = "Skill Power Thickening Blood Range Power Factor" },
+    { entity = "Hero_BloodWolf_RabidBomb", scale_by_talent = "Explosion Radius", factor = "Thickening Blood Factor Reader" },
+    { entity = "Hero_BloodWolf_RabidBomb", append_operand = "Wolf Blood Seed Explosion Bleed Modifier Level Scaled", to = "Thickening Blood Factor Reader" },
+    { entity = "Hero_BloodWolf_SpreadBomb", owner_read = "Thickening Blood Factor Reader", node = "Skill Power Thickening Blood Range Power Factor" },
+    { entity = "Hero_BloodWolf_SpreadBomb", scale_by_talent = ["Explosion Radius", "Spread Seed Radius"], factor = "Thickening Blood Factor Reader" },
+    { entity = "Hero_BloodWolf_SpreadBomb", append_operand = "Wolf Blood Seed Explosion Bleed Modifier Level Scaled", to = "Thickening Blood Factor Reader" },
+    # The spread seed's fuse follows the same 1.5 s -> 2.5 s rule, so its
+    # children burst as fast as the power's bomb does without the card.
+    { entity = "Hero_BloodWolf_SpreadBomb", owner_read = "Thickening Blood Duration Factor Reader", node = "Skill Power Thickening Blood Range Duration Factor" },
+    { entity = "Hero_BloodWolf_SpreadBomb", scale_by_talent = "Spread Blood Seed Time Value", factor = "Thickening Blood Duration Factor Reader" },
+    # Spread child explosions: 34/36/38/40% bleed of base power + Thickening Blood scaling.
+    { talent_number = "Power Spread Child Bleed Factor", talent = "Power Spread", values = [0.34, 0.36, 0.38, 0.40], percent = true },
+    { entity = "Hero_BloodWolf_SpreadChildBomb", owner_read = "Thickening Blood Factor Reader", node = "Skill Power Thickening Blood Range Power Factor" },
+    { entity = "Hero_BloodWolf_SpreadChildBomb", scale_by_talent = "Explosion Radius", factor = "Thickening Blood Factor Reader" },
+    { entity = "Hero_BloodWolf_SpreadChildBomb", append_operand = "Wolf Blood Seed Explosion Bleed Modifier Level Scaled", to = "Thickening Blood Factor Reader" },
+    { entity = "Hero_BloodWolf_SpreadChildBomb", owner_read = "Spread Child Bleed Factor Reader", node = "Power Spread Child Bleed Factor" },
+    { entity = "Hero_BloodWolf_SpreadChildBomb", append_operand = "Wolf Blood Seed Explosion Bleed Modifier Level Scaled", to = "Spread Child Bleed Factor Reader" },
+    # Blood Orb (Power Deep Bite): +8/12/16/20% Blood Seed bleed damage and replaces Power rush+bite with 0.75x basic swipe launching BloodOrb.
+    { clone = ["Wolf Power Blood Seed Time Before Explosion Value"], rename = { "Wolf Power Blood Seed Time Before Explosion Value" = "Blood Orb Bleed Factor Anchor" } },
+    { scale_by_talent = "Blood Orb Bleed Factor Anchor", talent = "Power Deep Bite", values = [0.08, 0.12, 0.16, 0.20], tag = "Bleed" },
+    { entity = "Hero_BloodWolf_Bomb", owner_read = "Blood Orb Bleed Factor Reader", node = "Skill Power Deep Bite Range Bleed Factor" },
+    { entity = "Hero_BloodWolf_Bomb", append_operand = "Wolf Blood Seed Explosion Bleed Modifier Level Scaled", to = "Blood Orb Bleed Factor Reader" },
+    { entity = "Hero_BloodWolf_RabidBomb", owner_read = "Blood Orb Bleed Factor Reader", node = "Skill Power Deep Bite Range Bleed Factor" },
+    { entity = "Hero_BloodWolf_RabidBomb", append_operand = "Wolf Blood Seed Explosion Bleed Modifier Level Scaled", to = "Blood Orb Bleed Factor Reader" },
+    { entity = "Hero_BloodWolf_SpreadBomb", owner_read = "Blood Orb Bleed Factor Reader", node = "Skill Power Deep Bite Range Bleed Factor" },
+    { entity = "Hero_BloodWolf_SpreadBomb", append_operand = "Wolf Blood Seed Explosion Bleed Modifier Level Scaled", to = "Blood Orb Bleed Factor Reader" },
+    { entity = "Hero_BloodWolf_SpreadChildBomb", owner_read = "Blood Orb Bleed Factor Reader", node = "Skill Power Deep Bite Range Bleed Factor" },
+    { entity = "Hero_BloodWolf_SpreadChildBomb", append_operand = "Wolf Blood Seed Explosion Bleed Modifier Level Scaled", to = "Blood Orb Bleed Factor Reader" },
+    { entity = "Hero_BloodWolf_BloodOrb", owner_read = "Thickening Blood Duration Factor Reader", node = "Skill Power Thickening Blood Range Duration Factor" },
+    { entity = "Hero_BloodWolf_BloodOrb", scale_by_talent = "Orb Blood Seed Time Value", factor = "Thickening Blood Duration Factor Reader" },
+    { clone = ["Blood Pounce Radius"], rename = { "Blood Pounce Radius" = "Blood Orb Visual Radius" } },
+    { set = "Blood Orb Visual Radius.value", value = 1.95 },
+    { entity = "Hero_BloodWolf_BloodOrb", owner_read = "Orb Explosion Radius Reader", node = "Blood Orb Visual Radius" },
+    { entity = "Hero_BloodWolf_BloodOrb", replace_subobject = "Explosion Fx Active.bytes_1[0]", donor = "Explosion Fx Active.bytes_1[0]", replace_ref = { "Owner Explosion Radius Get Value" = "Orb Explosion Radius Reader", "Owner Current Radius Get Value" = "Orb Explosion Radius Reader" } },
+    { entity = "Hero_BloodWolf_BloodOrb", replace_subobject = "Explosion Fx Active.bytes_1[2]", donor = "Explosion Fx Active.bytes_1[2]", replace_ref = { "Owner Explosion Radius Get Value" = "Orb Explosion Radius Reader" } },
+    { clone = ["Skill Power Projectile Is Active"], from = "Carmilla", rename = { "Skill Power Projectile Is Active" = "Power Spread Complete Flag" } },
+    { swap_ref = "Power Spread Complete Flag", from = "Carmilla", node = "Skill Power Projectile", to = "State Power Spread Complete" },
+    { entity = "Hero_BloodWolf_BloodOrb", owner_read = "Owner Power Spread Complete Reader", node = "Power Spread Complete Flag" },
+    { entity = "Hero_BloodWolf_BloodOrb", link = "Orb Power Spread Tester.test", to = "Owner Power Spread Complete Reader" },
+    { entity = "Hero_BloodWolf_BloodOrb", add_link = "State Alive.activates", to = "Thickening Blood Duration Factor Reader" },
+    { entity = "Hero_BloodWolf_BloodOrb", add_link = "State Alive.activates", to = "Owner Power Spread Complete Reader" },
+    { entity = "Hero_BloodWolf_BloodOrb", add_link = "State Alive.activates", to = "Orb Explosion Radius Reader" },
+    { entity = "Hero_BloodWolf_BloodOrb", add_link = "State Alive.activates", to = "Orb Blood Seed Time Value Base" },
+    { entity = "Hero_BloodWolf_BloodOrb", add_link = "State Alive.activates", to = "Orb Blood Seed Time Value Scaled" },
+    { clone = ["State Wolf Primary Ability"], rename = { "State Wolf Primary Ability" = "State Wolf Primary Rush Mode" } },
+    { remove_link = "State Wolf Primary Rush Mode.activates[2]" },
+    { remove_link = "State Wolf Primary Rush Mode.deactivates?[0]" },
+    { remove_link = "State Wolf Primary Rush Mode.deactivates?[0]" },
+    { remove_link = "State Wolf Primary Rush Mode.disables_while_active?[0]" },
+    { remove_link = "State Wolf Primary Rush Mode.disables_while_active?[0]" },
+    { remove_link = "State Wolf Primary Rush Mode.on_enter?[0]" },
+    { remove_link = "State Wolf Primary Rush Mode.on_enter?[0]" },
+    { remove_link = "State Wolf Primary Rush Mode.while_active[0]" },
+    { clone = ["State Skill Primary Wolf Quest Complete"], from = "Red", rename = { "State Skill Primary Wolf Quest Complete" = "State Wolf Primary Orb Mode" } },
+    { remove_link = "State Wolf Primary Orb Mode.activates[0]" },
+    { remove_link = "State Wolf Primary Orb Mode.on_exit?[0]" },
+    { clone = ["Teleport Out From Deathdoor Or Regular Tester"], from = "Hero_Common", rename = { "Teleport Out From Deathdoor Or Regular Tester" = "Power Blood Orb Mode Tester" } },
+    { link = "Power Blood Orb Mode Tester.test", to = "Skill Power Deep Bite" },
+    { link = "Power Blood Orb Mode Tester.on_true", to = "State Wolf Primary Orb Mode" },
+    { link = "Power Blood Orb Mode Tester.on_false", to = "State Wolf Primary Rush Mode" },
+    { remove_link = "State Wolf Primary Ability.activates", to = "Wolf Primary Ability Can Bite Detector" },
+    { remove_link = "State Wolf Primary Ability.activates", to = "Wolf Primary Ability Clip Rush" },
+    { remove_link = "State Wolf Primary Ability.while_active[1]" },
+    { add_link = "State Wolf Primary Ability.activates", to = "Power Blood Orb Mode Tester" },
+    { add_link = "State Wolf Primary Ability.on_enter?", to = "State Wolf Primary Rush Mode" },
+    { add_link = "State Wolf Primary Ability.on_enter?", to = "State Wolf Primary Orb Mode" },
+    { clone = ["Attack Ability Clip Step 1", "Attack Ability Anim Step 1"], rename = { "Attack Ability Clip Step 1" = "Wolf Primary Orb Swipe Clip", "Attack Ability Anim Step 1" = "Wolf Primary Orb Swipe Anim" } },
+    { link = "Wolf Primary Orb Swipe Clip.ref_10", to = "State Wolf Primary Ability" },
+    { link = "Wolf Primary Orb Swipe Clip.ref_11", to = "State Wolf Primary Orb Mode" },
+    { set = "Wolf Primary Orb Swipe Anim.value_7", value = 0.0 },
+    { set = "Wolf Primary Orb Swipe Anim.value_9", value = 1.0 },
+    { event = "Event Wolf Primary Orb Launch" },
+    { clone = ["Primary Ability FMod Event Active"], from = "Carmilla", rename = { "Primary Ability FMod Event Active" = "Power Blood Orb Cast FMod Event" } },
+    { clone = ["Primary Ability Spawner"], from = "Carmilla", rename = { "Primary Ability Spawner" = "Power Blood Orb Spawner" } },
+    { set = "Power Blood Orb Spawner.template[1]", value = "own:BloodOrb" },
+    { add_link = "Event Wolf Primary Orb Launch.activates", to = "Power Blood Orb Cast FMod Event" },
+    { add_link = "Event Wolf Primary Orb Launch.activates", to = "Power Blood Orb Spawner" },
+    { link = "Wolf Primary Orb Swipe Anim.cinebloc[2]", to = "Event Wolf Primary Orb Launch" },
+    { animatic_speed = "Wolf Primary Orb Swipe Anim", value = 0.75 },
+    { clone = ["Special Ability End Timer"], rename = { "Special Ability End Timer" = "Wolf Primary Orb End Timer" } },
+    { set = "Wolf Primary Orb End Timer.duration", value = 0.85 },
+    { link = "Wolf Primary Orb End Timer.state", to = "State Wolf Primary Ability" },
+    { add_link = "State Wolf Primary Orb Mode.activates", to = "Wolf Primary Orb Swipe Clip" },
+    { add_link = "State Wolf Primary Orb Mode.while_active", to = "Wolf Primary Orb End Timer" },
+    { add_link = "State Wolf Primary Ability.on_enter?", to = "Wolf Primary Orb Swipe Clip" },
+    # Claw wolf (Summon1_Model only): Grimoire emergence (0.75s warning + 1.5s rise), 6s lifetime after spawn,
+    # no leashing, 60 max health, and no floating healthbar (remains targetable/damageable).
+    { entity = "Summon1_Model", set = "Spawning Use Warning.value", value = true },
+    { entity = "Summon1_Model", override = "Spawning Warning Time", from = "Enemies/NPC_Common/NPC_Common" },
+    { entity = "Summon1_Model", set = "Spawning Warning Time.value", value = 0.75 },
+    { entity = "Summon1_Model", override = "Spawning Warning Timer", from = "Enemies/NPC_Common/NPC_Common" },
+    { entity = "Summon1_Model", set = "Spawning Warning Timer.duration", value = 0.75 },
+    { entity = "Summon1_Model", set = "Spawning Appearance Duration.value", value = 1.5 },
+    { entity = "Summon1_Model", remove_link = "Child Event Initialize.activates", to = "Kit Life Timer" },
+    { entity = "Summon1_Model", override = "NPC Child Behaviour Spawning", from = "Enemies/NPC_Common/NPC_Common" },
+    { entity = "Summon1_Model", add_link = "NPC Child Behaviour Spawning.on_exit?", to = "Kit Life Timer" },
+    { entity = "Summon1_Model", override = "Fighting Max Leash Distance", from = "Enemies/NPC_Common/NPC_Common" },
+    { entity = "Summon1_Model", set = "Fighting Max Leash Distance.value", value = 9999.0 },
+    { entity = "Summon1_Model", override = "Starting Behaviour Value", from = "Enemies/NPC_Common/NPC_Common" },
+    { entity = "Summon1_Model", set = "Starting Behaviour Value.value", value = 0 },
+    { entity = "Summon1_Model", set = "Raw Max Health.value", value = 60.0 },
+    { entity = "Summon1_Model", add_link = "Child Event Initialize.activates", from = "Character_Common/Character_Common", to = "HIDE_LIFE_BAR Event Sender" },
+    { entity = "Summon1_Model", add_link = "NPC Child Behaviour Spawning.on_exit?", from = "Character_Common/Character_Common", to = "HIDE_LIFE_BAR Event Sender" },
+    # Spawn offset (both Claw and Rabid): 3m away, alternating +72 deg (right) / -72 deg (left) in radians,
+    # and +144 / -144 deg behind Blood Wolf for 3rd and 4th Rabid wolves. Each Spread Pos pairs with its own Spawner.
+    { set = "Kit Pet Spread Pos.value_2", value = 1 },
+    { set = "Kit Pet Spread Pos.value_5", value = 3.0 },
+    { set = "Kit Pet Spread Pos.value_6", value = 0.0 },
+    { set = "Kit Pet Spread Pos.value_7", value = 0.0 },
+    { link = "Kit Pet Spread Pos.obj_4[3]", to = "" },
+    { set = "Kit Pet Spread Pos.obj_4[8]", value = 1.256637 },
+    { clone = ["Kit Pet Spawner", "Kit Pet Spread Pos"], rename = { "Kit Pet Spawner" = "Kit Pet Spawner Left", "Kit Pet Spread Pos" = "Kit Pet Spread Pos Left" } },
+    { set = "Kit Pet Spread Pos Left.obj_4[8]", value = -1.256637 },
+    { set = "Kit Pet Spread Pos Upgrade.value_2", value = 1 },
+    { set = "Kit Pet Spread Pos Upgrade.value_5", value = 3.0 },
+    { set = "Kit Pet Spread Pos Upgrade.value_6", value = 0.0 },
+    { set = "Kit Pet Spread Pos Upgrade.value_7", value = 0.0 },
+    { link = "Kit Pet Spread Pos Upgrade.obj_4[3]", to = "" },
+    { set = "Kit Pet Spread Pos Upgrade.obj_4[8]", value = 1.256637 },
+    { clone = ["Kit Pet Spawner Upgrade", "Kit Pet Spread Pos Upgrade"], rename = { "Kit Pet Spawner Upgrade" = "Kit Pet Spawner Upgrade L1", "Kit Pet Spread Pos Upgrade" = "Kit Pet Spread Pos Upgrade L1" } },
+    { set = "Kit Pet Spread Pos Upgrade L1.obj_4[8]", value = -1.256637 },
+    { clone = ["Kit Pet Spawner Upgrade", "Kit Pet Spread Pos Upgrade"], rename = { "Kit Pet Spawner Upgrade" = "Kit Pet Spawner Upgrade R2", "Kit Pet Spread Pos Upgrade" = "Kit Pet Spread Pos Upgrade R2" } },
+    { set = "Kit Pet Spread Pos Upgrade R2.obj_4[8]", value = 2.513274 },
+    { clone = ["Kit Pet Spawner Upgrade", "Kit Pet Spread Pos Upgrade"], rename = { "Kit Pet Spawner Upgrade" = "Kit Pet Spawner Upgrade L2", "Kit Pet Spread Pos Upgrade" = "Kit Pet Spread Pos Upgrade L2" } },
+    { set = "Kit Pet Spread Pos Upgrade L2.obj_4[8]", value = -2.513274 },
+    { retarget_targets = "Kit Pet Attack Order.targets", to = ["Kit Pet Spawner Upgrade", "Kit Pet Spawner Upgrade L1"] },
+    { retarget_targets = "Kit Pet Recall Order.targets", to = ["Kit Pet Spawner Upgrade", "Kit Pet Spawner Upgrade L1"] },
+    { clone = ["Kit Pet Attack Order", "Kit Pet Recall Order"], rename = { "Kit Pet Attack Order" = "Kit Pet Attack Order 2", "Kit Pet Recall Order" = "Kit Pet Recall Order 2" } },
+    { retarget_targets = "Kit Pet Attack Order 2.targets", to = ["Kit Pet Spawner Upgrade R2", "Kit Pet Spawner Upgrade L2"] },
+    { retarget_targets = "Kit Pet Recall Order 2.targets", to = ["Kit Pet Spawner Upgrade R2", "Kit Pet Spawner Upgrade L2"] },
+    { add_link = "State Special Ability.activates", to = "Kit Pet Attack Order 2" },
+    { add_link = "Child State Can Fight.activates", to = "Kit Pet Attack Order 2" },
+    { add_link = "Kit Pet Aggro.activates", to = "Kit Pet Attack Order 2" },
+    { add_link = "Child State Can Fight.disables_while_active?", to = "Kit Pet Recall Order 2" },
+    { clone = ["State Rabid Quest Above Zero"], rename = { "State Rabid Quest Above Zero" = "State Wolf Spawn Left" } },
+    { event = "Event Claw Spawn Right" },
+    { add_link = "Event Claw Spawn Right.activates", to = "Kit Pet Spread Pos" },
+    { add_link = "Event Claw Spawn Right.activates", to = "State Wolf Spawn Left" },
+    { event = "Event Claw Spawn Left" },
+    { add_link = "Event Claw Spawn Left.activates", to = "Kit Pet Spread Pos Left" },
+    { add_link = "Event Claw Spawn Left.deactivates?", to = "State Wolf Spawn Left" },
+    { clone = ["Rabid Quest Reset Tester"], rename = { "Rabid Quest Reset Tester" = "Claw Spawn Side Tester" } },
+    { link = "Claw Spawn Side Tester.test", to = "State Wolf Spawn Left" },
+    { link = "Claw Spawn Side Tester.on_true", to = "Event Claw Spawn Left" },
+    { link = "Claw Spawn Side Tester.on_false", to = "Event Claw Spawn Right" },
+    { link = "Kit Pet Upgrade Tester.on_false", to = "Claw Spawn Side Tester" },
+    { clone = ["State Rabid Quest Above Zero"], rename = { "State Rabid Quest Above Zero" = "State Rabid Stack 2" } },
+    { clone = ["State Rabid Quest Above Zero"], rename = { "State Rabid Quest Above Zero" = "State Rabid Stack 3" } },
+    { clone = ["State Rabid Quest Above Zero"], rename = { "State Rabid Quest Above Zero" = "State Rabid Stack 4" } },
+    { clone = ["Rabid Quest Reset Tester"], rename = { "Rabid Quest Reset Tester" = "Rabid Stack 3 Inc Tester" } },
+    { link = "Rabid Stack 3 Inc Tester.test", to = "State Rabid Stack 3" },
+    { link = "Rabid Stack 3 Inc Tester.on_true", to = "State Rabid Stack 4" },
+    { link = "Rabid Stack 3 Inc Tester.on_false", to = "" },
+    { clone = ["Rabid Quest Reset Tester"], rename = { "Rabid Quest Reset Tester" = "Rabid Stack 2 Inc Tester" } },
+    { link = "Rabid Stack 2 Inc Tester.test", to = "State Rabid Stack 2" },
+    { link = "Rabid Stack 2 Inc Tester.on_true", to = "State Rabid Stack 3" },
+    { link = "Rabid Stack 2 Inc Tester.on_false", to = "" },
+    { clone = ["Rabid Quest Reset Tester"], rename = { "Rabid Quest Reset Tester" = "Rabid Stack 1 Inc Tester" } },
+    { link = "Rabid Stack 1 Inc Tester.test", to = "State Rabid Quest Above Zero" },
+    { link = "Rabid Stack 1 Inc Tester.on_true", to = "State Rabid Stack 2" },
+    { link = "Rabid Stack 1 Inc Tester.on_false", to = "" },
+    { remove_link = "Event Rabid Quest Tick.activates", to = "State Rabid Quest Above Zero" },
+    { add_link = "Event Rabid Quest Tick.activates", to = "Rabid Stack 3 Inc Tester" },
+    { add_link = "Event Rabid Quest Tick.activates", to = "Rabid Stack 2 Inc Tester" },
+    { add_link = "Event Rabid Quest Tick.activates", to = "Rabid Stack 1 Inc Tester" },
+    { add_link = "Event Rabid Quest Tick.activates", to = "State Rabid Quest Above Zero" },
+    { add_link = "Event Rabid Quest Reset.deactivates?", to = "State Rabid Stack 2" },
+    { add_link = "Event Rabid Quest Reset.deactivates?", to = "State Rabid Stack 3" },
+    { add_link = "Event Rabid Quest Reset.deactivates?", to = "State Rabid Stack 4" },
+    { event = "Event Rabid Spawn Right" },
+    { add_link = "Event Rabid Spawn Right.activates", to = "Kit Pet Spread Pos Upgrade" },
+    { add_link = "Event Rabid Spawn Right.activates", to = "State Wolf Spawn Left" },
+    { event = "Event Rabid Spawn Left" },
+    { add_link = "Event Rabid Spawn Left.activates", to = "Kit Pet Spread Pos Upgrade L1" },
+    { add_link = "Event Rabid Spawn Left.deactivates?", to = "State Wolf Spawn Left" },
+    { clone = ["Rabid Quest Reset Tester"], rename = { "Rabid Quest Reset Tester" = "Rabid Spawn Side Tester" } },
+    { link = "Rabid Spawn Side Tester.test", to = "State Wolf Spawn Left" },
+    { link = "Rabid Spawn Side Tester.on_true", to = "Event Rabid Spawn Left" },
+    { link = "Rabid Spawn Side Tester.on_false", to = "Event Rabid Spawn Right" },
+    { event = "Event Rabid Spawn 3" },
+    { add_link = "Event Rabid Spawn 3.activates", to = "Kit Pet Spread Pos Upgrade R2" },
+    { event = "Event Rabid Spawn 4" },
+    { add_link = "Event Rabid Spawn 4.activates", to = "Kit Pet Spread Pos Upgrade L2" },
+    { clone = ["Rabid Quest Reset Tester"], rename = { "Rabid Quest Reset Tester" = "Rabid Stack 3 Tester" } },
+    { link = "Rabid Stack 3 Tester.test", to = "State Rabid Stack 3" },
+    { link = "Rabid Stack 3 Tester.on_true", to = "Event Rabid Spawn 3" },
+    { link = "Rabid Stack 3 Tester.on_false", to = "" },
+    { clone = ["Rabid Quest Reset Tester"], rename = { "Rabid Quest Reset Tester" = "Rabid Stack 4 Tester" } },
+    { link = "Rabid Stack 4 Tester.test", to = "State Rabid Stack 4" },
+    { link = "Rabid Stack 4 Tester.on_true", to = "Event Rabid Spawn 4" },
+    { link = "Rabid Stack 4 Tester.on_false", to = "" },
+    { event = "Event Rabid Spawn Multi" },
+    { add_link = "Event Rabid Spawn Multi.activates", to = "Kit Pet Spread Pos Upgrade" },
+    { add_link = "Event Rabid Spawn Multi.activates", to = "Kit Pet Spread Pos Upgrade L1" },
+    { add_link = "Event Rabid Spawn Multi.activates", to = "Rabid Stack 3 Tester" },
+    { add_link = "Event Rabid Spawn Multi.activates", to = "Rabid Stack 4 Tester" },
+    { add_link = "Event Rabid Spawn Multi.deactivates?", to = "State Wolf Spawn Left" },
+    { clone = ["Rabid Quest Reset Tester"], rename = { "Rabid Quest Reset Tester" = "Rabid Multi Tester" } },
+    { link = "Rabid Multi Tester.test", to = "State Rabid Stack 2" },
+    { link = "Rabid Multi Tester.on_true", to = "Event Rabid Spawn Multi" },
+    { link = "Rabid Multi Tester.on_false", to = "Rabid Spawn Side Tester" },
+    { link = "Kit Pet Upgrade Tester.on_true", to = "Rabid Multi Tester" },
 ]
 
 # The rig lends the wolf's clip for every slot Scarlet has in two forms. The
@@ -327,17 +1086,60 @@ edits = [
     { switch_off = "Explosion Damage.bytes_36[1]" },
     { set = "Explosion Damage.value_4", value = 8.0 },
     { set = "Explosion Damage Heroes.value_4", value = 8.0 },
+    # Spread quest: count >= 2 targets hit by one Blood Seed burst and notify the hero.
+    { event = "Event Spread Hit" },
+    { event = "Event Spread Multi Hit" },
+    { clone = ["State Skill Primary Wolf Quest Complete"], from = "Red", rename = { "State Skill Primary Wolf Quest Complete" = "State Spread Hit 1" } },
+    { remove_link = "State Spread Hit 1.activates[0]" },
+    { clone = ["State Spread Hit 1"], rename = { "State Spread Hit 1" = "State Spread Hit 2" } },
+    { clone = ["Teleport Out From Deathdoor Or Regular Tester"], from = "Hero_Common", rename = { "Teleport Out From Deathdoor Or Regular Tester" = "Spread Hit 1 Tester" } },
+    { clone = ["Spread Hit 1 Tester"], rename = { "Spread Hit 1 Tester" = "Spread Hit 2 Tester" } },
+    { clone = ["Owner DUMMY_DESTROYED Event Sender"], from = "Heroes/Hero_Geppetto/Hero_Geppetto_Dummy", rename = { "Owner DUMMY_DESTROYED Event Sender" = "Owner Spread Quest Inc Sender" } },
+    { set = "Owner Spread Quest Inc Sender.event", value = "POWER_SPREAD_QUEST_PROC_COUNTER_INC" },
+    { link = "Spread Hit 1 Tester.test", to = "State Spread Hit 1" },
+    { link = "Spread Hit 1 Tester.on_false", to = "State Spread Hit 1" },
+    { link = "Spread Hit 1 Tester.on_true", to = "Spread Hit 2 Tester" },
+    { link = "Spread Hit 2 Tester.test", to = "State Spread Hit 2" },
+    { link = "Spread Hit 2 Tester.on_false", to = "Event Spread Multi Hit" },
+    { link = "Spread Hit 2 Tester.on_true", to = "" },
+    { add_link = "Event Spread Multi Hit.activates", to = "State Spread Hit 2" },
+    { add_link = "Event Spread Multi Hit.activates", to = "Owner Spread Quest Inc Sender" },
+    { link = "Explosion Damage.ref_32", to = "Event Spread Hit" },
+    { add_link = "Event Spread Hit.activates", to = "Spread Hit 1 Tester" },
+    # Overflowing Gluttony: notify owner hero when the bomb's Bleed kills an enemy.
+    { event = "Event On Bomb Bleed Kill" },
+    { link = "Bleed Damage.ref_33", to = "Event On Bomb Bleed Kill" },
+    { clone = ["Owner DUMMY_DESTROYED Event Sender"], from = "Heroes/Hero_Geppetto/Hero_Geppetto_Dummy", rename = { "Owner DUMMY_DESTROYED Event Sender" = "Owner Bomb Bleed Kill Sender" } },
+    { set = "Owner Bomb Bleed Kill Sender.event", value = "BLOOD_WOLF_BOMB_BLEED_KILL" },
+    { add_link = "Event On Bomb Bleed Kill.activates", to = "Owner Bomb Bleed Kill Sender" },
+    # Blood Scent: notify owner hero on every 0.5 s Bleed tick from the bomb.
+    { event = "Event On Bomb Bleed Tick" },
+    { link = "Bleed Damage.ref_32", to = "Event On Bomb Bleed Tick" },
+    { clone = ["Owner Bomb Bleed Kill Sender"], rename = { "Owner Bomb Bleed Kill Sender" = "Owner Bomb Bleed Tick Sender" } },
+    { set = "Owner Bomb Bleed Tick Sender.event", value = "BLOOD_WOLF_BOMB_BLEED_TICK" },
+    { add_link = "Event On Bomb Bleed Tick.activates", to = "Owner Bomb Bleed Tick Sender" },
+]
+
+[content.frame.entities.RabidBomb]
+# The rabid wolf's detonation: Blood Wolf's bleed bomb with the bleed IT applies
+# reduced by 20% (100 -> 80 at level 1), still scaled by level and by Thickening
+# Blood. An entity of its own, so the hero's seed burst, the spread children and
+# every other bleed keep their full value.
+from  = "own:Bomb"
+edits = [
+    { set = "Wolf Blood Seed Explosion Bleed Modifier Level Ratio.value", value = 8.0 },
 ]
 
 [content.frame.entities.SpreadBomb]
 from = "own:Bomb"
 edits = [
+    { remove_link = "Event Spread Multi Hit.activates", to = "Owner Spread Quest Inc Sender" },
     { clone = ["Skill Defense Ricochet Last Target Computer", "Initial Target Traverser", "Skill Defense Ricochet Target Computer", "Ricochet Gpn Traverser"], from = "Heroes/Hero_Juliet/Hero_Juliet_Ricochet_Projectile_Spawner", rename = { "Skill Defense Ricochet Last Target Computer" = "Spread Center Target Computer", "Initial Target Traverser" = "Spread Center Traverser", "Skill Defense Ricochet Target Computer" = "Spread Seed Target Computer", "Ricochet Gpn Traverser" = "Spread Seed Traverser" } },
     { clone = ["Skill Attack Quest Lightning Target Attack", "Skill Attack Quest Lightning Radius"], from = "Kintaro", rename = { "Skill Attack Quest Lightning Target Attack" = "Spread Seed Target Attack", "Skill Attack Quest Lightning Radius" = "Spread Seed Radius" } },
     { clone = ["Spread Seed Radius"], rename = { "Spread Seed Radius" = "Spread Center Radius" } },
     { set = "Spread Seed Target Computer.value_5", value = 3 },
     { set = "Spread Seed Radius.value", value = 4.5 },
-    { set = "Spread Center Radius.value", value = 1.5 },
+    { set = "Spread Center Radius.value", value = 0.5 },
     { replace_subobject = "Spread Center Traverser.bytes_3[0]", from = "Kintaro", donor = "Skill Attack Quest Lightning Traverser.bytes_3[0]", replace_ref = { "Skill Attack Quest Lightning Radius" = "Spread Center Radius" } },
     { replace_subobject = "Spread Seed Traverser.bytes_3[0]", from = "Kintaro", donor = "Skill Attack Quest Lightning Traverser.bytes_3[0]", replace_ref = { "Skill Attack Quest Lightning Radius" = "Spread Seed Radius" } },
     { link = "Spread Seed Target Attack.ref_2", to = "Spread Seed Target Computer" },
@@ -355,10 +1157,14 @@ edits = [
     { set = "Spread Seed Damage.value_40", value = false },
     { link = "Spread Seed Target Attack.ref_4", to = "Spread Seed Damage" },
     { clone = ["Skill Power Special Bomb Modifier", "Skill Power Special Bomb Time Before Explosion Value", "Blood Bomb Explode Listener", "Skill Power Special Bomb Spawner"], from = "Carmilla", rename = { "Skill Power Special Bomb Modifier" = "Spread Blood Seed Modifier", "Skill Power Special Bomb Time Before Explosion Value" = "Spread Blood Seed Time Value", "Blood Bomb Explode Listener" = "Spread Blood Bomb Explode Listener", "Skill Power Special Bomb Spawner" = "Spread Child Bomb Spawner" } },
-    { set = "Spread Blood Seed Modifier.duration", value = 1.5 },
+    # The spread seed keeps Carmilla's own 1.5 s fuse as well; Thickening Blood
+    # stretches it to 2.5 s like the power's seed (the hero adds the reader and
+    # the factor that scale it, in frame.edits).
+    { link = "Spread Blood Seed Modifier.duration", to = "Spread Blood Seed Time Value" },
+    { add_link = "Event Initialize.activates", to = "Spread Blood Seed Time Value" },
     { add_subobject = "Spread Seed Damage.bytes_36", from = "Carmilla", donor = "Skill Defense Aoe Bleed Damage.bytes_36[0]", replace_ref = { "Skill Defense Aoe Bleed Modifier" = "Spread Blood Seed Modifier" } },
     { remove_link = "Spread Child Bomb Spawner.spawner_values[0]" },
-    { set = "Spread Child Bomb Spawner.template[1]", value = "Heroes\\Hero_Common\\Hero_BloodWolf_Bomb.entity.ot" },
+    { set = "Spread Child Bomb Spawner.template[1]", value = "Heroes\\Hero_Common\\Hero_BloodWolf_SpreadChildBomb.entity.ot" },
     { add_link = "Event Initialize.activates", to = "Spread Center Radius" },
     { add_link = "Event Initialize.activates", to = "Spread Seed Radius" },
     { add_link = "Event Initialize.activates", to = "Spread Center Traverser" },
@@ -377,9 +1183,9 @@ edits = [
     { set = "Spread Seed Target Attack 3.value_3", value = 2 },
     { set = "Spread Seed Target 3 Tester.test[1]", value = 2 },
     { clone = ["Despawn Timer"], rename = { "Despawn Timer" = "Spread Delay Timer 1" } },
-    { set = "Spread Delay Timer 1.duration", value = 0.2 },
+    { set = "Spread Delay Timer 1.duration", value = 0.05 },
     { clone = ["Despawn Timer"], rename = { "Despawn Timer" = "Spread Delay Timer 2" } },
-    { set = "Spread Delay Timer 2.duration", value = 0.2 },
+    { set = "Spread Delay Timer 2.duration", value = 0.05 },
     { event = "Event Spread Seed 2" },
     { event = "Event Spread Seed 3" },
     { link = "Spread Delay Timer 1.on_end", to = "Event Spread Seed 2" },
@@ -391,6 +1197,149 @@ edits = [
     { add_link = "State Exploding.activates", to = "Spread Seed Target Computer" },
     { add_link = "State Exploding.activates", to = "Spread Seed Target 1 Tester" },
     { add_link = "State Exploding.activates", to = "Spread Delay Timer 1" },
+]
+
+[content.frame.entities.SpreadChildBomb]
+from = "own:Bomb"
+edits = [
+    { remove_link = "Event Spread Multi Hit.activates", to = "Owner Spread Quest Inc Sender" },
+    # Stagger reduced by 66% compared to base Bomb (30.0 * 0.34 = 10.2).
+    { set = "Explosion Damage.value_31", value = 10.2 },
+]
+
+[content.frame.entities.BloodOrb]
+from  = "Heroes/Hero_Carmilla/Hero_Carmilla_Power_Orb"
+edits = [
+    # Stay in the unchanneled State Alive orb visual for the entire flight.
+    { remove_link = "State Alive.while_active", to = "Attacking Tester" },
+    { remove_link = "State Alive.while_active", to = "State Movable" },
+    { set = "Initial Move.value_2", value = 16.0 },
+    { set = "Collision.value_2", value = 0.35 },
+    { clone = ["Default Scale"], rename = { "Default Scale" = "Orb Contact Radius" } },
+    { set = "Orb Contact Radius.value", value = 0.7 },
+    { clone = ["Default Scale"], rename = { "Default Scale" = "Orb Explosion Radius" } },
+    { set = "Orb Explosion Radius.value", value = 2.4 },
+    { add_link = "Event Initialize.activates", to = "Orb Contact Radius" },
+    { add_link = "Event Initialize.activates", to = "Orb Explosion Radius" },
+    { replace_subobject = "Attacking Attack Traverser.bytes_3[0]", from = "Heroes/Hero_Red/Hero_Red_Bomb", donor = "Explosion Traverser.bytes_3[0]", replace_ref = { "Explosion Radius" = "Orb Contact Radius" } },
+    { clone = ["Attacking Attack Traverser"], rename = { "Attacking Attack Traverser" = "Orb Explosion Traverser" } },
+    { replace_subobject = "Orb Explosion Traverser.bytes_3[0]", from = "Heroes/Hero_Red/Hero_Red_Bomb", donor = "Explosion Traverser.bytes_3[0]", replace_ref = { "Explosion Radius" = "Orb Explosion Radius" } },
+    # Zero-damage contact detector in State Alive: triggers State Destroy on touching an enemy.
+    { set = "Attacking Attack.value_100", value = 0.0 },
+    { set = "Attacking Damage.value_2", value = 0.0 },
+    { set = "Attacking Damage.value_26", value = false },
+    { set = "Attacking Damage.value_28", value = 0.0 },
+    { set = "Attacking Damage.value_31", value = 0.0 },
+    { set = "Attacking Damage.value_35", value = -1 },
+    { set = "Attacking Damage.value_38", value = false },
+    { set = "Attacking Damage.value_39", value = false },
+    { set = "Attacking Damage.value_40", value = false },
+    { switch_off = "Attacking Damage.bytes_36[0]" },
+    { switch_off = "Attacking Damage.bytes_36[1]" },
+    { link = "Attacking Damage.ref_32", to = "State Destroy" },
+    { add_link = "State Alive.while_active", to = "Attacking Attack Traverser" },
+    { add_link = "State Alive.while_active", to = "Attacking Attack" },
+    { add_link = "State Alive.while_active", to = "Attacking FMod Event Active" },
+    # Detonate after 0.85 s if no enemy/prop/wall was contacted first.
+    { clone = ["Despawn Timer"], rename = { "Despawn Timer" = "Orb Lifetime Timer" } },
+    { set = "Orb Lifetime Timer.duration", value = 0.85 },
+    { link = "Props Damage.ref_32", to = "State Destroy" },
+    { clone = ["Projectile Attack"], from = "Projectile_Model/Projectile_Model", rename = { "Projectile Attack" = "Orb Wall Collision Detector" } },
+    { set = "Orb Wall Collision Detector.value_3", value = 0.35 },
+    { link = "Orb Wall Collision Detector.ref_6", to = "" },
+    { link = "Orb Wall Collision Detector.ref_7", to = "" },
+    { link = "Orb Wall Collision Detector.ref_10", to = "" },
+    { link = "Orb Wall Collision Detector.ref_11", to = "State Destroy" },
+    { link = "Orb Wall Collision Detector.ref_12", to = "" },
+    { add_link = "State Alive.while_active", to = "Orb Wall Collision Detector" },
+    { link = "Orb Lifetime Timer.on_end", to = "State Destroy" },
+    { add_link = "State Alive.while_active", to = "Orb Lifetime Timer" },
+    # Stay alive while hidden after detonation so the planted Blood Seed (<= 2.5 s) and its Bomb bleed (5 s) complete.
+    { set = "Despawn Timer.duration", value = 9.0 },
+    # Single-target detonation hit (max 1 enemy within 2.4 m): deals Power's 1.0x direct damage (25 stagger) and plants Blood Seed.
+    { clone = ["Skill Defense Ricochet Last Target Computer"], from = "Heroes/Hero_Juliet/Hero_Juliet_Ricochet_Projectile_Spawner", rename = { "Skill Defense Ricochet Last Target Computer" = "Orb Single Target Computer" } },
+    { clone = ["Wolf Primary Ability Attack"], from = "Red", rename = { "Wolf Primary Ability Attack" = "Orb Single Target Attack" } },
+    { link = "Orb Single Target Computer.ref_3", to = "Orb Explosion Traverser" },
+    { set = "Orb Single Target Computer.mode", value = 1 },
+    { set = "Orb Single Target Computer.value_5", value = 1 },
+    { link = "Orb Single Target Attack.ref_2", to = "Orb Single Target Computer" },
+    { link = "Orb Single Target Attack.ref_4", to = "Explosion Damage" },
+    { remove_link = "Event Explosion Active.activates", to = "Explosion Attack" },
+    { remove_link = "Event Explosion Active.activates", to = "Explosion Attack Traverser" },
+    { remove_link = "Event Explosion Active.activates", to = "Skill Power Projectile Tester" },
+    { remove_link = "Event Explosion Active.activates", to = "Explosion Damage Operation Default" },
+    { remove_link = "Event Explosion Active.activates", to = "Skill Power Special Bomb Explosion Damage Operation" },
+    { remove_link = "Event Explosion Active.activates", to = "Explosion Damage Operation Selector" },
+    { remove_link = "Event Explosion Active.activates", to = "Explosion Fx Scale Operation" },
+    { remove_link = "Event Explosion Active.activates", to = "Explosion Fx Selector" },
+    { add_link = "State Alive.activates", to = "Orb Explosion Traverser" },
+    { add_link = "Event Explosion Active.activates", to = "Orb Explosion Traverser" },
+    { add_link = "Event Explosion Active.activates", to = "Explosion Fx Active" },
+    { add_link = "Event Explosion Active.activates", to = "Orb Single Target Computer" },
+    { add_link = "Event Explosion Active.activates", to = "Orb Single Target Attack" },
+    { set = "Explosion Damage.value_4", value = 0.0 },
+    { set = "Explosion Damage.value_27", value = 0.5 },
+    { set = "Explosion Damage.value_28", value = 1.0 },
+    { set = "Explosion Damage.value_31", value = 25.0 },
+    { switch_off = "Explosion Damage.bytes_36[0]" },
+    { switch_off = "Explosion Damage.bytes_36[1]" },
+    # Plant Blood Seed modifier (1.5 s fuse, or 2.5 s with Thickening Blood) and burst into Bomb or SpreadBomb.
+    { clone = ["Remote Damage Owner"], from = "Character_Common/Character_Common", rename = { "Remote Damage Owner" = "Remote Damage Owner" } },
+    { link = "Remote Damage Owner.ref_2", to = "" },
+    { link = "Remote Damage Owner.ref_3", to = "" },
+    { link = "Remote Damage Owner.ref_4", to = "" },
+    { link = "Remote Damage Owner.ref_5", to = "" },
+    { link = "Remote Damage Owner.ref_6", to = "" },
+    { link = "Remote Damage Owner.ref_7", to = "" },
+    { link = "Remote Damage Owner.ref_8", to = "" },
+    { link = "Remote Damage Owner.ref_9", to = "" },
+    { link = "Remote Damage Owner.ref_10", to = "" },
+    { clone = ["Skill Power Special Bomb Modifier", "Skill Power Special Bomb Time Before Explosion Value", "Blood Bomb Explode Listener", "Skill Power Special Bomb Spawner"], from = "Carmilla", rename = { "Skill Power Special Bomb Modifier" = "Orb Blood Seed Modifier", "Skill Power Special Bomb Time Before Explosion Value" = "Orb Blood Seed Time Value", "Blood Bomb Explode Listener" = "Orb Blood Bomb Explode Listener", "Skill Power Special Bomb Spawner" = "Orb Normal Bomb Spawner" } },
+    { link = "Orb Blood Seed Modifier.duration", to = "Orb Blood Seed Time Value" },
+    { add_link = "Event Initialize.activates", to = "Orb Blood Seed Time Value" },
+    { add_subobject = "Explosion Damage.bytes_36", from = "Carmilla", donor = "Skill Defense Aoe Bleed Damage.bytes_36[0]", replace_ref = { "Skill Defense Aoe Bleed Modifier" = "Orb Blood Seed Modifier" } },
+    { link = "Orb Normal Bomb Spawner.position[3]", to = "" },
+    { remove_link = "Orb Normal Bomb Spawner.spawner_values[0]" },
+    { set = "Orb Normal Bomb Spawner.template[1]", value = "Heroes\\Hero_Common\\Hero_BloodWolf_Bomb.entity.ot" },
+    { clone = ["Orb Normal Bomb Spawner"], rename = { "Orb Normal Bomb Spawner" = "Orb Spread Bomb Spawner" } },
+    { set = "Orb Spread Bomb Spawner.template[1]", value = "Heroes\\Hero_Common\\Hero_BloodWolf_SpreadBomb.entity.ot" },
+    { event = "Event On Orb Blood Bomb Explode" },
+    { event = "Event Orb Spread Bomb Spawn" },
+    { event = "Event Orb Normal Bomb Spawn" },
+    { clone = ["Teleport Out From Deathdoor Or Regular Tester"], from = "Hero_Common", rename = { "Teleport Out From Deathdoor Or Regular Tester" = "Orb Power Spread Tester" } },
+    { link = "Orb Power Spread Tester.on_true", to = "Event Orb Spread Bomb Spawn" },
+    { link = "Orb Power Spread Tester.on_false", to = "Event Orb Normal Bomb Spawn" },
+    { add_link = "Event On Orb Blood Bomb Explode.activates", to = "Orb Power Spread Tester" },
+    { add_link = "Event Orb Spread Bomb Spawn.activates", to = "Orb Spread Bomb Spawner" },
+    { add_link = "Event Orb Normal Bomb Spawn.activates", to = "Orb Normal Bomb Spawner" },
+    { link = "Orb Blood Bomb Explode Listener.on_event", to = "Event On Orb Blood Bomb Explode" },
+    { add_link = "Event Initialize.activates", to = "Orb Blood Bomb Explode Listener" },
+    # Forward Bomb / SpreadBomb quest and bleed events from BloodOrb to Hero_BloodWolf.
+    { clone = ["Owner DUMMY_DESTROYED Event Sender"], from = "Heroes/Hero_Geppetto/Hero_Geppetto_Dummy", rename = { "Owner DUMMY_DESTROYED Event Sender" = "Orb Owner Spread Quest Inc Sender" } },
+    { set = "Orb Owner Spread Quest Inc Sender.event", value = "POWER_SPREAD_QUEST_PROC_COUNTER_INC" },
+    { clone = ["Orb Owner Spread Quest Inc Sender"], rename = { "Orb Owner Spread Quest Inc Sender" = "Orb Owner Bomb Bleed Kill Sender" } },
+    { set = "Orb Owner Bomb Bleed Kill Sender.event", value = "BLOOD_WOLF_BOMB_BLEED_KILL" },
+    { clone = ["Orb Owner Spread Quest Inc Sender"], rename = { "Orb Owner Spread Quest Inc Sender" = "Orb Owner Bomb Bleed Tick Sender" } },
+    { set = "Orb Owner Bomb Bleed Tick Sender.event", value = "BLOOD_WOLF_BOMB_BLEED_TICK" },
+    { clone = ["MAX_HEALTH_UP Event Listener"], from = "Hero_Common", rename = { "MAX_HEALTH_UP Event Listener" = "Orb Spread Quest Inc Listener" } },
+    { set = "Orb Spread Quest Inc Listener.event", value = "POWER_SPREAD_QUEST_PROC_COUNTER_INC" },
+    { link = "Orb Spread Quest Inc Listener.on_event", to = "Orb Owner Spread Quest Inc Sender" },
+    { clone = ["Orb Spread Quest Inc Listener"], rename = { "Orb Spread Quest Inc Listener" = "Orb Bomb Bleed Kill Listener" } },
+    { set = "Orb Bomb Bleed Kill Listener.event", value = "BLOOD_WOLF_BOMB_BLEED_KILL" },
+    { link = "Orb Bomb Bleed Kill Listener.on_event", to = "Orb Owner Bomb Bleed Kill Sender" },
+    { clone = ["Orb Spread Quest Inc Listener"], rename = { "Orb Spread Quest Inc Listener" = "Orb Bomb Bleed Tick Listener" } },
+    { set = "Orb Bomb Bleed Tick Listener.event", value = "BLOOD_WOLF_BOMB_BLEED_TICK" },
+    { link = "Orb Bomb Bleed Tick Listener.on_event", to = "Orb Owner Bomb Bleed Tick Sender" },
+    { add_link = "Event Initialize.activates", to = "Orb Spread Quest Inc Listener" },
+    { add_link = "Event Initialize.activates", to = "Orb Bomb Bleed Kill Listener" },
+    { add_link = "Event Initialize.activates", to = "Orb Bomb Bleed Tick Listener" },
+    { add_link = "State Alive.activates", to = "Orb Contact Radius" },
+    { add_link = "State Alive.activates", to = "Orb Explosion Radius" },
+    { add_link = "State Alive.activates", to = "Orb Blood Seed Time Value" },
+    { add_link = "State Alive.activates", to = "Orb Blood Bomb Explode Listener" },
+    { add_link = "State Alive.activates", to = "Orb Spread Quest Inc Listener" },
+    { add_link = "State Alive.activates", to = "Orb Bomb Bleed Kill Listener" },
+    { add_link = "State Alive.activates", to = "Orb Bomb Bleed Tick Listener" },
 ]
 
 # --- Buttons ---------------------------------------------------------------------
@@ -410,8 +1359,8 @@ name        = "Blood Fangs"
 description = "• A three-hit combo. The third hit makes enemies #Bleed@"
 cooldown    = 0.3
 combo       = [
-    { clip = "Characters\\Heroes\\RED\\Animations\\Skills\\RED_Wolf_BasicAttack_Claws_1.fbx", hit_at = 0.37, sound = "Heroes\\Hero_Red\\Hero_Red.entity.ot | Wolf Basic Attack Anim FMod Event", swing = "Heroes\\Hero_Red\\Hero_Red.entity.ot | Wolf Basic Attack Active FMod Event", swing_at = 0.37, link_at = 0.42, exit_at = 0.62, hits = [ { radius = 2.8, damage = 150, stagger = 8, fx = "Settings\\Heroes\\Hero_Red_FX\\WOLF_Basic_Attack_Slash_01_L.vfx.ot" } ] },
-    { clip = "Characters\\Heroes\\RED\\Animations\\Skills\\RED_Wolf_BasicAttack_Claws_2.fbx", hit_at = 0.37, sound = "Heroes\\Hero_Red\\Hero_Red.entity.ot | Wolf Basic Attack Anim FMod Event", swing = "Heroes\\Hero_Red\\Hero_Red.entity.ot | Wolf Basic Attack Active FMod Event", swing_at = 0.37, link_at = 0.42, exit_at = 0.62, hits = [ { radius = 2.8, damage = 150, stagger = 8, fx = "Settings\\Heroes\\Hero_Red_FX\\WOLF_Basic_Attack_Slash_01_R.vfx.ot" } ] },
+    { clip = "Characters\\Heroes\\RED\\Animations\\Skills\\RED_Wolf_BasicAttack_Claws_1.fbx", hit_at = 0.37, sound = "Heroes\\Hero_Red\\Hero_Red.entity.ot | Wolf Basic Attack Anim FMod Event", swing = "Heroes\\Hero_Red\\Hero_Red.entity.ot | Wolf Basic Attack Active FMod Event", swing_at = 0.37, link_at = 0.42, exit_at = 0.62, hits = [ { radius = 2.8, damage = 150, stagger = 4, fx = "Settings\\Heroes\\Hero_Red_FX\\WOLF_Basic_Attack_Slash_01_L.vfx.ot" } ] },
+    { clip = "Characters\\Heroes\\RED\\Animations\\Skills\\RED_Wolf_BasicAttack_Claws_2.fbx", hit_at = 0.37, sound = "Heroes\\Hero_Red\\Hero_Red.entity.ot | Wolf Basic Attack Anim FMod Event", swing = "Heroes\\Hero_Red\\Hero_Red.entity.ot | Wolf Basic Attack Active FMod Event", swing_at = 0.37, link_at = 0.42, exit_at = 0.62, hits = [ { radius = 2.8, damage = 150, stagger = 4, fx = "Settings\\Heroes\\Hero_Red_FX\\WOLF_Basic_Attack_Slash_01_R.vfx.ot" } ] },
     { clip = "Characters\\Heroes\\RED\\Animations\\Skills\\RED_Wolf_Skill_DoubleStrike.fbx", hit_at = 0.23, sound = "Heroes\\Hero_Red\\Hero_Red.entity.ot | Wolf Basic Attack Anim FMod Event", swing = "Heroes\\Hero_Red\\Hero_Red.entity.ot | Wolf Skill Dash Attack FMod Event Active", swing_at = 0.23, link_at = 0.6, exit_at = 0.8, hits = [ { radius = 3.2, damage = 180, stagger = 12, status = "Bleed", fx = "Settings\\Heroes\\Hero_Red_FX\\WOLF_Dash_Attack_Slash_01.vfx.ot", shake = "light" } ] },
 ]
 
@@ -421,14 +1370,15 @@ combo       = [
 # throughout, with Scarlet's bite effects. Her talents on it are cut. The
 # bite plants a blood seed IN the bitten enemy: Carmilla's blood-seed debuff
 # on the bite's damage (frame.edits above). The seed bursts into Blood Wolf's
-# bleed bomb when it runs out (1.5 s), or at once if the enemy dies first.
+# bleed bomb when it runs out (1.5 s, or 2.5 s with Thickening Blood), or at
+# once if the enemy dies first.
 [content.frame.abilities.power]
 icon        = "Heroes\\Red\\Ability_Wolf_Power.png"
 icon_disabled = "Heroes\\Red\\Ability_WOLF_Power_Disabled.png"
 name        = "Blood Seed"
 description = "• Rush in and bite, planting a blood seed in what you bite. It bursts into a bleeding explosion shortly after, or as soon as the enemy dies"
 template    = "Red: Wolf Primary"
-cooldown    = 6
+cooldown    = 8
 # Pam's clone: the bite's base hit at 1x (Scarlet's is higher).
 values      = { "Wolf Primary Ability Damage Multiplier Default" = 1.0 }
 
@@ -444,44 +1394,49 @@ description = "• Howl, and a dire wolf answers: it follows you and claws your 
 clip        = "Characters\\Heroes\\RED\\Animations\\Skills\\RED_Wolf_Defensive_Howl.fbx"
 sound       = "Heroes\\Hero_Red\\Hero_Red.entity.ot | Wolf Defensive Ability Anim Default FMod Event"
 duration    = 0.6
-cooldown    = 8
+cooldown    = 12
 moving      = true        # howled on the move, as the clone's special was
 
 
 # One wolf per press of the special, a pet that follows Blood Wolf and charges
-# the enemies, gone after 20 s.
+# the enemies, gone after 6 s (8 s with Rabid).
 #   Base: the dire wolf as it fights by default, with its claw (Double Slash).
 #   With Rabid (`upgrade`, while "Skill Special Rabid" is held): the bomber
 #   wolf as Pam tuned it in the clone (0.1): blood-red, it bites instead, and
-#   its first bite blows it up into Blood Wolf's bleed bomb (also if killed or
-#   after 20 s). The bite: every enemy in a cone twice as wide and long, from
-#   closer, 35% faster, retried 0.5 s after a miss, none of the enemy wolf's
-#   own debuffs.
+#   its first bite blows it up into its own bleed bomb (also if killed or
+#   after 8 s): the hero's bomb, with the bleed it applies cut by 20%. The
+#   bite: every enemy in a cone twice as wide and long, from closer, 35%
+#   faster, retried 0.5 s after a miss, none of the enemy wolf's own debuffs.
 [content.frame.pets]
 entity          = "Enemies/Wolves/Standard_Wolf_Dire"
+base            = "ally"
 count           = 1
 button          = "special"
 spawn           = "button"
 keep_ability    = true
 counter         = "none"
 aggro           = true
-lifetime        = 8
+lifetime        = 6
 burst           = "Heroes/Hero_Common/Hero_BloodWolf_Bomb"
 look            = { albedo = "art/Dire_Blood_ALB.png" }
 attack          = "Double Slash"
 attack_combo    = false
 attack_damage   = 15
 attack_cooldown = 0
-appear          = "Characters\\Enemies\\Wolves\\Animations\\Wolf_DireTimber_UTurn_R.fbx"
 talent          = "Skill Special Rabid"
 # `burst` names the bomb by its file, not "own:Bomb": RSMM 5.9.32 does not
 # resolve own: inside `upgrade` (fixed in the next CLI), and the Rabid wolf
-# then never exploded.
-upgrade         = { look = { albedo = "art/Dire_Blood_ALB.png" }, burst = "Heroes/Hero_Common/Hero_BloodWolf_Bomb", burst_on_hit = true, attack = "Bite", attack_area = 1.2, attack_reach = 2.0, attack_range = 1.0, attack_targets = 0, attack_speed = 1.35, attack_debuffs = false, attack_cooldown = 0.5 }
+# then never exploded. The Rabid wolf bursts into its own bomb (RabidBomb), the
+# hero's with the bleed it applies cut by 20%.
+upgrade         = { base = "pet", appear = "Characters\\Enemies\\Wolves\\Animations\\Wolf_DireTimber_UTurn_R.fbx", look = { albedo = "art/Dire_Blood_ALB.png" }, lifetime = 8, burst = "Heroes/Hero_Common/Hero_BloodWolf_RabidBomb", burst_on_hit = true, attack = "Bite", attack_area = 1.2, attack_reach = 2.0, attack_range = 1.0, attack_targets = 0, attack_speed = 1.35, attack_debuffs = false, attack_cooldown = 0.5 }
 
 [content.frame.animations.DefenseSlam]
-source   = "art/defenceslam2.glb"
+source   = "art/defenceslam3.glb"
 template = "Communs\\RED_Wolf_Spawning"
+
+[content.frame.animations.BloodyHowl]
+source   = "art/bloody_howl_6s.glb"
+template = "Skills\\RED_Wolf_Defensive_Howl"
 
 # Defense and the ultimates: wolf moves of its own (the clone kept Scarlet's).
 [content.frame.abilities.defense]
@@ -489,7 +1444,8 @@ icon        = "Heroes\\Red\\Ability_WOLF_Defensive.png"
 name        = "Defense"
 description = ""
 clip        = "anim:DefenseSlam"
-cooldown    = 10
+sound       = "Enemies\\Hands_Nightmares\\Hands_Nightmares_Orb_Projectile.entity.ot | Explosion Warning FMod Event"
+cooldown    = 6
 intangible  = true
 moving      = true
 
@@ -504,12 +1460,12 @@ add_stats   = [ { stat = "Convert crit into damage" } ]
 icon        = "Heroes\\Red\\Ability_Wolf_Ultimate_1.png"
 icon_disabled = "Heroes\\Red\\Ability_WOLF_Ultimate_1_Disabled.png"
 name        = "Hyper Dash"
-description = "• Dash forward through enemies, dealing #150@ damage along your path"
+description = "• Dash forward through enemies, dealing #100@ damage along your path"
 clip        = "Characters\\Heroes\\RED\\Animations\\Skills\\RED_Wolf_Aggressive_Defense_Howl.fbx"
 root_motion = 3.5
 cooldown    = 5
 hits        = [
-    { at = 0.0, radius = 1.5, damage = 900, fx = "Settings\\Heroes\\Hero_Carmilla_FX\\Carmilla_Attack_Dash_Trail_01.vfx.ot", shake = "light" },
+    { at = 0.0, radius = 1.5, damage = 683, stagger = 25, stun = 2, fx = "Settings\\Heroes\\Hero_Carmilla_FX\\Carmilla_Attack_Dash_Trail_01.vfx.ot", shake = "light" },
     { at = 0.05, radius = 1.5, damage = 0, fx = "Settings\\Heroes\\Hero_Carmilla_FX\\Carmilla_Attack_Dash_Trail_Claws_01.vfx.ot", shake = "none" },
     { at = 0.15, radius = 1.5, damage = 0, fx = "Settings\\Heroes\\Hero_Carmilla_FX\\Carmilla_Attack_Special_Rush_Slash_01_L.vfx.ot", shake = "none" },
 ]
@@ -518,26 +1474,29 @@ hits        = [
 icon        = "Heroes\\Red\\Ability_WOLF_Ultimate_2.png"
 name        = "Bloody Howl"
 description = "• Howl in place for #6@ seconds, sending out waves every second that deal area damage and make enemies #Bleed@"
-clip        = "Characters\\Heroes\\RED\\Animations\\Skills\\RED_Wolf_Defensive_Howl.fbx"
+clip        = "anim:BloodyHowl"
 duration    = 6.0
-loop        = true
+loop        = false
 root_motion = 0.0
 intangible  = 2.0
 cooldown    = 10
 sound       = "Enemies\\Wolves\\Wolves_Model.entity.ot | Attack Howl Anim FMod Event"
 hits        = [
-    { at = 0.5, radius = 9.0, damage = 100, status = "Bleed", fx = "Settings\\Enemies\\Wolves\\Elite_Wolf_Howl_01.vfx.ot", shake = "light" },
-    { at = 1.5, radius = 9.0, damage = 100, status = "Bleed", fx = "Settings\\Enemies\\Wolves\\Elite_Wolf_Howl_01.vfx.ot", shake = "light" },
-    { at = 2.5, radius = 9.0, damage = 100, status = "Bleed", fx = "Settings\\Enemies\\Wolves\\Elite_Wolf_Howl_01.vfx.ot", shake = "light" },
-    { at = 3.5, radius = 9.0, damage = 100, status = "Bleed", fx = "Settings\\Enemies\\Wolves\\Elite_Wolf_Howl_01.vfx.ot", shake = "light" },
-    { at = 4.5, radius = 9.0, damage = 100, status = "Bleed", fx = "Settings\\Enemies\\Wolves\\Elite_Wolf_Howl_01.vfx.ot", shake = "light" },
-    { at = 5.5, radius = 9.0, damage = 100, status = "Bleed", fx = "Settings\\Enemies\\Wolves\\Elite_Wolf_Howl_01.vfx.ot", shake = "light" },
+    { at = 0.55, radius = 9.0, damage = 100, status = "Bleed", fx = "Settings\\Enemies\\Wolves\\Elite_Wolf_Howl_01.vfx.ot", shake = "light" },
+    { at = 1.12, radius = 9.0, damage = 100, status = "Bleed", fx = "Settings\\Enemies\\Wolves\\Elite_Wolf_Howl_01.vfx.ot", shake = "light" },
+    { at = 1.68, radius = 9.0, damage = 100, status = "Bleed", fx = "Settings\\Enemies\\Wolves\\Elite_Wolf_Howl_01.vfx.ot", shake = "light" },
+    { at = 2.25, radius = 9.0, damage = 100, status = "Bleed", fx = "Settings\\Enemies\\Wolves\\Elite_Wolf_Howl_01.vfx.ot", shake = "light" },
+    { at = 2.81, radius = 9.0, damage = 100, status = "Bleed", fx = "Settings\\Enemies\\Wolves\\Elite_Wolf_Howl_01.vfx.ot", shake = "light" },
+    { at = 3.38, radius = 9.0, damage = 100, status = "Bleed", fx = "Settings\\Enemies\\Wolves\\Elite_Wolf_Howl_01.vfx.ot", shake = "light" },
+    { at = 3.94, radius = 9.0, damage = 100, status = "Bleed", fx = "Settings\\Enemies\\Wolves\\Elite_Wolf_Howl_01.vfx.ot", shake = "light" },
+    { at = 4.51, radius = 9.0, damage = 100, status = "Bleed", fx = "Settings\\Enemies\\Wolves\\Elite_Wolf_Howl_01.vfx.ot", shake = "light" },
+    { at = 5.07, radius = 9.0, damage = 100, status = "Bleed", fx = "Settings\\Enemies\\Wolves\\Elite_Wolf_Howl_01.vfx.ot", shake = "light" },
 ]
 
 # --- Ultimate cards --------------------------------------------------------------
 [content.frame.ultimates."Ultimate Power 1"]
 title       = "Hyper Dash"
-description = "• Dash forward through enemies, dealing #150@ damage along your path"
+description = "• Dash forward through enemies, dealing #100@ damage along your path"
 icon        = "Heroes\\Red\\Ability_Wolf_Ultimate_1.png"
 
 [content.frame.ultimates."Ultimate 1 Upgrade 1"]
@@ -571,10 +1530,10 @@ add_stats   = [ { stat = "CD reduce ultimate", values = [0.25, 0.25, 0.25, 0.25]
 # around bleeding and the pack, to be tuned with Pam.
 [[content.frame.talents]]
 name        = "Attack More Bleeding"
-title       = "More Bleeding"
-description = "• #Bleed@ deals &+{0}%~ more damage"
+title       = "Placeholder"
+description = "It does nothing so at least it's better than Seductive provocation"
 add_stats   = [
-    { stat = "more bleed damage", values = [0.18, 0.22, 0.26, 0.30] },
+    { stat = "more bleed damage", values = [0.0, 0.0, 0.0, 0.0] },
 ]
 starter     = true
 
@@ -585,77 +1544,77 @@ description = "• #ATTACK@ deals &+{0}%~ damage for each status on the enemy"
 add_stats   = [ { stat = "Increase basic damage for each debuff", values = [0.08, 0.12, 0.16, 0.20] } ]
 
 [[content.frame.talents]]
-name        = "Attack Rending Claws"
-title       = "Rending Claws"
-description = "• Critical hits make enemies #Bleed@"
-add_stats   = [ { stat = "Apply bleed on critical", values = [1, 1, 1, 1], percent = false } ]
-starter     = true
+name         = "Attack Overflowing Gluttony"
+title        = "Overflowing Gluttony"
+description  = "• Quest: Kill #100@ enemies with #Bleed@ damage.\n• Gain #+1%@ #Bleed@ damage every #10@ kills (up to #+10%@).\n• Reward: Gain &+{0}%~ #MAX HEALTH@."
+add_stats    = [ { stat = "Max health", values = [0.08, 0.12, 0.16, 0.20] } ]
+starter      = true
+show_counter = true
 
 [[content.frame.talents]]
-name        = "Power Spread"
-title       = "Spread"
-description = "• When #POWER@'s blood seed bursts, it spreads once to #3@ nearby enemies"
-starter     = true
+name         = "Power Spread"
+title        = "Spread"
+description  = "• Quest: Hit at least #2@ enemies with #Blood Seed@'s burst #10@ times.\n• Gain #+1@ Damage each time (up to #+10@).\n• Reward: When #POWER@'s blood seed bursts, it spreads once to #3@ nearby enemies (&{0}%~ #Bleed@)."
+starter      = true
+show_counter = true
 
 [[content.frame.talents]]
 name        = "Power Deep Bite"
-title       = "Deep Bite"
-description = "• #POWER@ cooldown is reduced by &{0}%~"
-add_stats   = [ { stat = "CD reduce primary", values = [0.10, 0.15, 0.20, 0.25] } ]
+title       = "Blood Orb"
+icon        = "art/blood_orb.png"
+description = "• #POWER@ becomes a slower basic swipe that launches a #Blood Orb@, detonating after #0.85@s or on enemy impact to deal #POWER@'s damage and plant a #Blood Seed@\n• #Blood Seed@'s #Bleed@ deals &+{0}%~ more damage"
 
 [[content.frame.talents]]
-name        = "Power Blood Rush"
-title       = "Blood Rush"
-description = "• #POWER@ deals &+{0}%~ damage for each status on the enemy"
-add_stats   = [ { stat = "Increase primary damage for each debuff", values = [0.10, 0.15, 0.20, 0.25] } ]
+name        = "Power Thickening Blood"
+title       = "Thickening Blood"
+description = "• #POWER@'s Blood Seed bursts later (#2.5@ s instead of #1.5@ s), and its explosion gains &+{0}%~ #Range@ and #Bleed@ damage"
 
 [[content.frame.talents]]
-name        = "Special Rabid"
-title       = "Rabid"
-description = "• #SPECIAL@ calls a rabid wolf instead: it bites, and its first bite blows it up in a #Bleed@ing explosion"
-starter     = true
+name         = "Special Rabid"
+title        = "Rabid"
+description  = "• Every &{0}~ seconds, store #1@ #Summoned Wolf@ (max #4@), released on the next #SPECIAL@"
+starter      = true
+show_counter = true
 
 [[content.frame.talents]]
-name        = "Special Quick Call"
-title       = "Quick Call"
-description = "• #SPECIAL@ cooldown is reduced by &{0}%~"
-add_stats   = [ { stat = "CD reduce secondary", values = [0.10, 0.15, 0.20, 0.25] } ]
+name         = "Special From Blood"
+title        = "From Blood To Blood"
+description  = "• Gain &+{0}%~ #Attack Speed@\n• Repeatable Quest: Hitting at least #1@ enemy with the #3rd@ hit of #ATTACK@ grants #1@ stack (#4@ stacks reset #SPECIAL@ cooldown)"
+add_stats    = [ { stat = "Basic Attack Speed", values = [0.08, 0.12, 0.16, 0.20] } ]
+show_counter = true
 
 [[content.frame.talents]]
-name        = "Defense Chilling Howl"
-title       = "Chilling Howl"
-description = "• Blood Howl also deals #200%@ area damage and leaves enemies #Weak@"
-actions     = [ { on = "defense", hits = [ { at = 0.4, radius = 4.5, damage = 200, status = "Weak", fx = "Settings\\Enemies\\Wolves\\Elite_Wolf_Howl_01.vfx.ot" } ] } ]
+name        = "Attack Spin To Bleed"
+title       = "Spin To Bleed"
+description = "• Gain &+{0}%~ #ATTACK@ range\n• The #3rd@ hit of #ATTACK@ becomes a spin hitting all around you with #+6@ Stagger and #60@ #Bleed@"
+icon        = "Heroes\\Red\\Skill Attack Cleave.png"
 
 [[content.frame.talents]]
-name        = "Defense Thick Hide"
-title       = "Thick Hide"
-description = "• While using #DEFENSE@ you are #INVULNERABLE@"
-add_stats   = [ { stat = "Invulnerable", during = "DEFENSE" } ]
+name        = "Special Wolfy Harvest"
+title       = "Wolfy Harvest"
+description = "• When a #Summoned Wolf@ dies, spawn a #Healing Orb@ (&{0}~s cooldown)"
+icon        = "Heroes\\Romeo\\Skill Attack Block.png"
 
 [[content.frame.talents]]
-name        = "Trait Blood Scent"
-title       = "Blood Scent"
-description = "• #TRAIT@ deals &+{0}%~ damage for each status on the enemy"
-add_stats   = [ { stat = "Increase trait damage for each debuff", values = [0.15, 0.20, 0.25, 0.30] } ]
+name         = "Passive Blood Scent"
+title        = "Blood Scent"
+description  = "• Repeatable Quest: After #Bleed@ has been active for #7@ seconds, gain &+{0}%~ #Bleed@ damage"
+show_counter = true
 
 [[content.frame.talents]]
-name        = "Trait Restless"
-title       = "Restless"
-description = "• #TRAIT@ cooldown is reduced by &{0}%~"
-add_stats   = [ { stat = "CD reduce trait", values = [0.10, 0.15, 0.20, 0.25] } ]
+name        = "Passive Hemorrhage"
+title       = "Hemorrhage"
+description = "• Reduces the duration of every #Bleed@ from #5@ to #3@ seconds\n• #Bleed@ deals &+{0}%~ more damage"
+add_stats   = [
+    { stat = "more bleed damage", values = [0.50, 0.60, 0.70, 0.80] },
+    { stat = "bleed duration", values = [-2.0, -2.0, -2.0, -2.0] },
+]
 
 [[content.frame.talents]]
-name        = "Dash Pounce"
-title       = "Pounce"
-description = "• Landing a dash deals #200%@ area damage and makes enemies #Bleed@"
-actions     = [ { on = "dash", hits = [ { at = 0.2, radius = 3, damage = 200, status = "Bleed", fx = "Settings\\Heroes\\Hero_Red_FX\\WOLF_Leap_Impact.vfx.ot" } ] } ]
-
-[[content.frame.talents]]
-name        = "Dash Loping Stride"
-title       = "Loping Stride"
-description = "• #DASH@ cooldown is reduced by &{0}%~"
-add_stats   = [ { stat = "CD reduce dash", values = [0.10, 0.15, 0.20, 0.25] } ]
+name        = "Dash Spike"
+title       = "Dash Spike"
+description = "• #DASH@ unleashes a blood spike in the dash direction, dealing #10@ damage, #10@ Stagger, and &{0}~ #Bleed@"
+icon        = "art/dash_spike.png"
 
 [[content.frame.talents]]
 name        = "Passive Thick Pelt"
@@ -664,10 +1623,13 @@ description = "• Gain &+{0}~ #ARMOR@"
 add_stats   = [ { stat = "Armour", values = [5, 8, 11, 15], percent = false } ]
 
 [[content.frame.talents]]
-name        = "Passive Blood Hunger"
-title       = "Blood Hunger"
-description = "• Deal &+{0}%~ damage for each status on the enemy"
-add_stats   = [ { stat = "Increase damage for each debuff", values = [0.06, 0.09, 0.12, 0.15] } ]
+name        = "Passive Blood Frenzy"
+title       = "Blood Frenzy"
+description = "• Killing an enemy with #Bleed@ grants &+{0}%~ #Attack Speed@ and #MOVE SPEED@ for #8@ seconds (refreshes duration)"
+add_stats   = [
+    { stat = "Basic Attack Speed", values = [0.08, 0.12, 0.16, 0.20] },
+    { stat = "Move Speed Ratio", values = [0.08, 0.12, 0.16, 0.20] },
+]
 
 [[content.frame.talents]]
 name        = "Passive Cornered Beast"
@@ -682,16 +1644,22 @@ description = "• Deal &+{0}%~ damage to bosses"
 add_stats   = [ { stat = "Increase damage to boss", values = [0.10, 0.15, 0.20, 0.25] } ]
 
 [[content.frame.talents]]
-name        = "Special Blood Bond"
-title       = "Blood Bond"
-description = "• #SPECIAL@ deals &+{0}%~ damage for each status on the enemy"
-add_stats   = [ { stat = "Increase secondary damage for each debuff", values = [0.10, 0.15, 0.20, 0.25] } ]
+name        = "Special Wolfs Mark"
+title       = "Wolf's Mark"
+description = "• #SPECIAL@ wolves' attacks leave enemies #Marked@ for &{0}~ seconds"
+icon        = "Heroes\\Red\\Skill Defensive Mark.png"
 
 [[content.frame.talents]]
-name        = "Defense Echoing Howl"
-title       = "Echoing Howl"
-description = "• Blood Howl echoes a moment later for #150%@ area damage and #Bleed@"
-actions     = [ { on = "defense", hits = [ { at = 1.2, radius = 4.5, damage = 150, status = "Bleed", fx = "Settings\\Enemies\\Wolves\\Elite_Wolf_Howl_01.vfx.ot" } ] } ]
+name        = "Defense Blood Pounce"
+title       = "Blood Pounce"
+description = "• After using #DEFENSE@, your next #ATTACK@ within #2@s leaps forward, dealing area damage with #20@ Stagger and &{0}~ #Bleed@"
+icon        = "art/blood_pounce.png"
+
+[[content.frame.talents]]
+name        = "Dash Bleed"
+title       = "Dash Bleed"
+description = "• After #DASH@, your next #ATTACK@ within #3@s uses the finishing move of your combo, applying &+{0}~ extra #Bleed@"
+icon        = "art/dash_bleed.png"
 
 [[content.frame.talents]]
 name        = "Trait Tear Open"

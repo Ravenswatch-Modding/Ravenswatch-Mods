@@ -17,7 +17,7 @@
 [mod]
 id           = "jack-frame"
 name         = "Jack (from scratch, boot test)"
-version      = "0.8.0"
+version      = "0.8.1"
 author       = "Ovilli"
 description  = "First boot test of a hero written from scratch: Jack's own files, no other hero inside."
 enabled      = false
@@ -94,6 +94,10 @@ albedo = "art/projectiles/jack_projectiles_alb.png"
 # Each an entity of his own on the engine's generic hero projectile, wearing
 # his own mesh and map; fired by `steps` with fire = "own:<id>" (speed,
 # damage, size, explode, knockback, root ... set per shot there).
+# 0.8.1: `explode = R` now really sizes the blast (RSMM sets the splash's own
+# "Splash Radius"; before it only moved the knockback radius and every blast
+# hit 3 m). The radii below are as written: the ultimate's fan (2 m) is now
+# smaller than before, the bean and axe blasts (3.5 / 4 m) bigger. Check it.
 [content.frame.projectiles.Axe]
 model    = "art/projectiles/jack_axe.glb"
 albedo   = "art/projectiles/jack_projectiles_alb.png"
