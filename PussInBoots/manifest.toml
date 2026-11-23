@@ -28,7 +28,7 @@ rig = "Hero_Romeo"
 mesh = "Characters\\Heroes\\Wukong\\Wukong_GEO.fbx"
 material = "Characters\\Heroes\\Wukong\\Textures\\M_Wukong.mat.ot"
 portrait = "art/ui/portrait_2.png"
-model = "art/Captain_Whiskerwind_Romeo_Proportions.glb"
+model = "art/Captain_Whiskerwind_Romeo_Proportions_62k.glb"   # decimated copy: the original has 66,756 verts, over the game's 65,535 cap
 
 [content.frame.effects.Slash]
 layers = [
