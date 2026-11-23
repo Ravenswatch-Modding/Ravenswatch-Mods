@@ -17,7 +17,7 @@
 [mod]
 id           = "jack-frame"
 name         = "Jack (from scratch, boot test)"
-version      = "0.8.1"
+version      = "0.8.2"
 author       = "Ovilli"
 description  = "First boot test of a hero written from scratch: Jack's own files, no other hero inside."
 enabled      = true
@@ -365,6 +365,12 @@ template = "Kintaro_FightingIdle_Loop"
 source   = "art/anims/jack_Chop.glb"
 clip     = "Jack_Chop"
 template = "Kintaro_BasicAttack01"
+# The glb keys DEF.RootMotion but never moves it, so he chopped standing still
+# (playtest 2026-11-23). Shipped attacks lunge on that bone (Kintaro's first
+# hit: 2.4 m, mostly before it lands); this one steps 1.5 m into the chop,
+# done just after the hit at 0.3 s.
+travel       = 1.5
+travel_until = 0.35
 
 [content.frame.animations.Timber]
 source   = "art/anims/jack_Timber.glb"
@@ -693,6 +699,8 @@ hit_at   = 0.3
 link_at  = 0.4
 exit_at  = 0.5
 sound    = "DarkHills\\Jack\\Jack_NPC_Model.entity.ot | Voice Walla Jack Dodge FMod Event"
+swing    = "Heroes\\Hero_Kintaro\\Hero_Kintaro.entity.ot | Dismounted Basic Attack FMod Event Active Default"
+swing_at = 0.3
 hits     = [ { radius = 2.5, damage = 140, stagger = 5, fx = "fx:Chop", shake = "light" } ]
 
 [[content.frame.abilities.attack.combo]]
@@ -700,6 +708,9 @@ clip     = "anim:Chop"
 hit_at   = 0.3
 link_at  = 0.4
 exit_at  = 0.5
+sound    = "Heroes\\Hero_Kintaro\\Hero_Kintaro.entity.ot | Dismounted Basic Attack FMod Event Anim Step 2"
+swing    = "Heroes\\Hero_Kintaro\\Hero_Kintaro.entity.ot | Dismounted Basic Attack FMod Event Active Default"
+swing_at = 0.3
 hits     = [ { radius = 2.8, damage = 180, stagger = 10, fx = "fx:Chop", shake = "light" } ]
 
 [content.frame.abilities.power]
