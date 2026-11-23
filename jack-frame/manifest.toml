@@ -17,7 +17,7 @@
 [mod]
 id           = "jack-frame"
 name         = "Jack (from scratch, boot test)"
-version      = "0.8.2"
+version      = "0.9.0"
 author       = "Ovilli"
 description  = "First boot test of a hero written from scratch: Jack's own files, no other hero inside."
 enabled      = true
@@ -105,6 +105,7 @@ scale    = 2.0
 lifetime = 0.8
 trail    = "fx:AxeTrail"
 impact   = "fx:WoodChips"
+pierce   = false   # stops (and bursts) at the first enemy it meets
 
 [content.frame.projectiles.Bean]
 model    = "art/projectiles/jack_bean.glb"
@@ -113,6 +114,7 @@ scale    = 2.2
 lifetime = 0.6
 trail    = "fx:BeanTrail"
 impact   = "fx:BeanBloom"
+pierce   = false   # stops (and bursts) at the first enemy it meets
 
 # --- His own effects ------------------------------------------------------------
 # Written from these layers (engine/vfx_writer.py), no other hero's effect
@@ -361,21 +363,15 @@ source   = "art/anims/jack_BookDefeat.glb"
 clip     = "Jack_BookDefeat"
 template = "Kintaro_FightingIdle_Loop"
 
-[content.frame.animations.Chop]
-source   = "art/anims/jack_Chop.glb"
-clip     = "Jack_Chop"
-template = "Kintaro_BasicAttack01"
-# The glb keys DEF.RootMotion but never moves it, so he chopped standing still
-# (playtest 2026-11-23). Shipped attacks lunge on that bone (Kintaro's first
-# hit: 2.4 m, mostly before it lands); this one steps 1.5 m into the chop,
-# done just after the hit at 0.3 s.
-travel       = 1.5
-travel_until = 0.35
+# (Chop, his own in-place swing, is no longer used: the combo plays Kintaro's
+# three axe attacks, which step forward. art/anims/jack_Chop.glb is kept.)
 
 [content.frame.animations.Timber]
 source   = "art/anims/jack_Timber.glb"
 clip     = "Jack_Timber"
 template = "Kintaro_BasicAttack01"
+travel       = 1.0
+travel_until = 0.4
 
 [content.frame.animations.Whirl]
 source   = "art/anims/jack_Whirl.glb"
@@ -391,16 +387,22 @@ template = "Kintaro_BasicAttack01"
 source   = "art/anims/jack_Bean.glb"
 clip     = "Jack_Bean"
 template = "Kintaro_BasicAttack01"
+travel       = 0.4
+travel_until = 0.25
 
 [content.frame.animations.GiantFalls]
 source   = "art/anims/jack_GiantFalls.glb"
 clip     = "Jack_GiantFalls"
 template = "Kintaro_BasicAttack01"
+travel       = 1.2
+travel_until = 0.45
 
 [content.frame.animations.GiantSlayer]
 source   = "art/anims/jack_GiantSlayer.glb"
 clip     = "Jack_GiantSlayer"
 template = "Kintaro_BasicAttack01"
+travel       = 0.6
+travel_until = 0.5
 
 [content.frame.slots."Default Idle Anim"]
 clip = "anim:Idle"
@@ -686,103 +688,122 @@ text  = "\"The bigger they are,\" Jack tells the Nightmares, sharpening the blad
 [content.frame.abilities.attack]
 icon        = "Heroes\\Kintaro\\Ability_Kintaro_Dismounted_Attack.png"   # HUD picture (borrowed until Jack has his own)
 name        = "Woodcutter's Chop"
-description = "• Two quick chops of the axe; each staggers what it hits"
+description = "• Three swings of the axe, each a step forward. The third is an overhead chop that knocks enemies back"
 cooldown    = 0.1
-# A combo as shipped heroes build it (their AttackCombo): each step's timeline
-# lands the hit (hit_at), opens the next press (link_at) and lets him MOVE
-# again (exit_at: pushing the stick then ends the step). A single timer-driven
-# button had no exit, so Jack stood rooted for the whole chop (playtest
-# 2026-11-16).
+# A three-step combo on Kintaro's own axe attacks (same skeleton), at Kintaro's
+# shipped timings (Hero_Kintaro "Dismounted Basic Attack Anim Step 1/2/
+# Finisher": hit 0.50 / 0.40 / 0.57, chain 0.61 / 0.48, exit 0.70 / 0.70 /
+# 0.91). Those clips carry him forward 2.4, 1.8 and 3.7 m (root motion); his own
+# Chop was animated in place, so he swung standing still (playtest 2026-11-23).
+# Each hit is a cone in front of him (`arc`), not a ring around him.
 [[content.frame.abilities.attack.combo]]
-clip     = "anim:Chop"
-hit_at   = 0.3
-link_at  = 0.4
-exit_at  = 0.5
+clip     = "Characters\\Heroes\\Kintaro\\Animations\\Kintaro_BasicAttack01.fbx"
+hit_at   = 0.5
+link_at  = 0.61
+exit_at  = 0.7
 sound    = "DarkHills\\Jack\\Jack_NPC_Model.entity.ot | Voice Walla Jack Dodge FMod Event"
 swing    = "Heroes\\Hero_Kintaro\\Hero_Kintaro.entity.ot | Dismounted Basic Attack FMod Event Active Default"
-swing_at = 0.3
-hits     = [ { radius = 2.5, damage = 140, stagger = 5, fx = "fx:Chop", shake = "light" } ]
+swing_at = 0.5
+hits     = [ { radius = 2.8, arc = 140, damage = 140, stagger = 6, fx = "fx:Chop", sound = "Heroes\\Hero_Kintaro\\Hero_Kintaro.entity.ot | Dismounted Basic Attack FMod Event Character Impact Default", shake = "light" } ]
 
 [[content.frame.abilities.attack.combo]]
-clip     = "anim:Chop"
-hit_at   = 0.3
-link_at  = 0.4
-exit_at  = 0.5
+clip     = "Characters\\Heroes\\Kintaro\\Animations\\Kintaro_BasicAttack02.fbx"
+hit_at   = 0.4
+link_at  = 0.48
+exit_at  = 0.7
 sound    = "Heroes\\Hero_Kintaro\\Hero_Kintaro.entity.ot | Dismounted Basic Attack FMod Event Anim Step 2"
 swing    = "Heroes\\Hero_Kintaro\\Hero_Kintaro.entity.ot | Dismounted Basic Attack FMod Event Active Default"
-swing_at = 0.3
-hits     = [ { radius = 2.8, damage = 180, stagger = 10, fx = "fx:Chop", shake = "light" } ]
+swing_at = 0.4
+hits     = [ { radius = 2.8, arc = 140, damage = 160, stagger = 8, fx = "fx:Chop", sound = "Heroes\\Hero_Kintaro\\Hero_Kintaro.entity.ot | Dismounted Basic Attack FMod Event Character Impact Default", shake = "light" } ]
 
+[[content.frame.abilities.attack.combo]]
+clip     = "Characters\\Heroes\\Kintaro\\Animations\\Kintaro_BasicAttack03.fbx"
+hit_at   = 0.57
+link_at  = 0.85
+exit_at  = 0.91
+sound    = "Heroes\\Hero_Kintaro\\Hero_Kintaro.entity.ot | Dismounted Basic Attack FMod Event Anim Finisher"
+swing    = "Heroes\\Hero_Kintaro\\Hero_Kintaro.entity.ot | Dismounted Basic Attack FMod Event Active Finisher"
+swing_at = 0.57
+hits     = [ { radius = 3.4, arc = 180, damage = 280, stagger = 20, knockback = 40, fx = "fx:GroundBurst", sound = "Heroes\\Hero_Kintaro\\Hero_Kintaro.entity.ot | Dismounted Basic Attack FMod Event Character Impact Finisher", shake = "medium" } ]
+
+# Timber! He steps in (travel on the clip) and brings the axe down: the blow
+# lands as a cone AHEAD of him (it was a ring around him, so it hit behind him
+# too), and the thrown axe flies on and bursts at the first enemy it meets.
 [content.frame.abilities.power]
 icon        = "Heroes\\Kintaro\\Ability_Kintaro_Dismounted_Power.png"   # HUD picture (borrowed until Jack has his own)
 name        = "Timber!"
-description = "• Hurl the axe down ahead of you: a beanstalk bursts where it lands, #stunning@ and throwing back everything around you"
+description = "• Step in and bring the axe down ahead of you, #stunning@ and throwing back what it hits. The axe flies on and bursts at the first enemy"
 clip        = "anim:Timber"
 sound       = "DarkHills\\Jack\\Jack_NPC_Model.entity.ot | Beanstalk ShakeImpact FMod Event"
 duration    = 1.0
 cooldown    = 6
-hits        = [ { at = 0.45, radius = 3.5, damage = 350, stun = 1.0, knockback = 60, stagger = 20, fx = "fx:GroundBurst", shake = "medium" } ]
-steps       = [ { wait = 0.3 }, { fire = "own:Axe", speed = 18, lifetime = 0.5, damage = 250, size = 1.3, explode = 3, forward = 0.5 } ]
-indicator   = { radius = 3, forward = 2.5, color = [0.55, 0.9, 0.3, 1] }
+hits        = [ { at = 0.45, radius = 4.5, arc = 90, damage = 350, stun = 1.0, knockback = 60, stagger = 20, fx = "fx:GroundBurst", shake = "medium" } ]
+steps       = [ { wait = 0.45 }, { fire = "own:Axe", speed = 20, lifetime = 0.45, damage = 200, size = 1.4, explode = 2.5, knockback = 20, stagger = 10, forward = 1 } ]
+indicator   = { radius = 3, forward = 3, color = [0.55, 0.9, 0.3, 1] }
 
+# Woodcutter's Whirl: he can WALK while he spins (moving), so the whirl is
+# steered into a crowd instead of planted in one spot.
 [content.frame.abilities.special]
 icon        = "Heroes\\Kintaro\\Ability_Kintaro_Dismounted_Special.png"   # HUD picture (borrowed until Jack has his own)
 name        = "Woodcutter's Whirl"
-description = "• HOLD to keep sweeping the axe around you, knocking enemies away; the first sweep flings magic beans in every direction"
+description = "• HOLD to keep sweeping the axe around you as you walk, knocking enemies away; the first sweep flings magic beans in every direction that briefly #Root@ what they hit"
 clip        = "anim:Whirl"
 sound       = "DarkHills\\Jack\\Jack_NPC_Model.entity.ot | Voice Walla Jack Seed Bean Jump FMod Event"
 duration    = 2.5            # the longest it can be held
 hold        = true           # let go to stop
 loop        = true
+moving      = true
 cooldown    = 8
 hits        = [ { at = 0.45, radius = 4, damage = 180, knockback = 30, fx = "fx:Whirl", shake = "light" }, { at = 0.85, radius = 4, damage = 120, knockback = 30, fx = "fx:Whirl", shake = "light" }, { at = 1.25, radius = 4, damage = 120, knockback = 30, fx = "fx:Whirl", shake = "light" }, { at = 1.65, radius = 4, damage = 120, knockback = 30, fx = "fx:Whirl", shake = "light" }, { at = 2.05, radius = 4, damage = 120, knockback = 30, fx = "fx:Whirl", shake = "light" } ]
 indicator   = { radius = 4, color = [0.55, 0.9, 0.3, 1] }
-steps       = [ { wait = 0.45 }, { fire = "own:Bean", angles = [0, 60, 120, 180, 240, 300], speed = 12, lifetime = 0.7, damage = 80, size = 1.5 } ]
+steps       = [ { wait = 0.45 }, { fire = "own:Bean", angles = [0, 60, 120, 180, 240, 300], speed = 13, lifetime = 0.6, damage = 90, size = 1.5, root = 0.75 } ]
 
 [content.frame.abilities.defense]
 icon        = "Heroes\\Kintaro\\Ability_Kintaro_Dismounted_Defensive.png"   # HUD picture (borrowed until Jack has his own)
 name        = "Fee-Fi-Fo-Fum!"
-description = "• Fee-Fi-Fo-Fum! A giant's roar that #stuns@ and #Weakens@ enemies around you"
+description = "• Fee-Fi-Fo-Fum! A giant's roar that #stuns@, #Weakens@ and pushes back enemies around you"
 clip        = "anim:Shout"
 sound       = "Enemies\\Ogres\\Ogre_Cyclop_Sinbad_Quest.entity.ot | Cine Scream FMod Event"
 duration    = 1.05
 cooldown    = 8
-hits        = [ { at = 0.3, radius = 3.5, damage = 150, stun = 0.8, status = "Weak", fx = "fx:Roar", shake = "medium" } ]
+hits        = [ { at = 0.3, radius = 3.5, damage = 150, stun = 0.8, knockback = 35, status = "Weak", fx = "fx:Roar", shake = "medium" } ]
 indicator   = { radius = 3.5, color = [0.55, 0.9, 0.3, 1] }
 
+# Magic Bean: thrown ahead; it bursts and roots at the FIRST enemy it meets
+# (Bean no longer pierces), and the beanstalk erupts around him as before.
 [content.frame.abilities.trait]
 icon        = "Heroes\\Kintaro\\Ability_Kintaro_Dismounted_Trait.png"   # HUD picture (borrowed until Jack has his own)
 name        = "Magic Bean"
-description = "• Plant a magic bean ahead of you: a beanstalk erupts from it and #Roots@ every enemy around"
+description = "• Throw a magic bean ahead: it bursts at the first enemy it meets, and a beanstalk erupts around you, #Rooting@ every enemy near"
 clip        = "anim:Bean"
 sound       = "DarkHills\\Jack\\Bean_Stalk.entity.ot | FMod Event BeanstalkGrows Phase01"
-# TEMPORARY playtest bisection: no duration override, so its timeline is the
-# clip's own length, as the dash's (the one button that animates) is.
 cooldown    = 12
 hits        = [ { at = 0.9, radius = 5, damage = 300, status = "Rooted", fx = "fx:BeanBloom", shake = "medium" } ]
-steps       = [ { wait = 0.2 }, { fire = "own:Bean", speed = 9, lifetime = 0.7, damage = 150, size = 2, explode = 3.5, root = 2, forward = 0.5 } ]
+steps       = [ { wait = 0.2 }, { fire = "own:Bean", speed = 11, lifetime = 0.7, damage = 180, size = 2, explode = 3.5, root = 2, forward = 0.5 } ]
 indicator   = { radius = 3.5, forward = 3, color = [0.55, 0.9, 0.3, 1] }
 
 [content.frame.abilities.ultimate]
 icon        = "Heroes\\Kintaro\\Ability_Kintaro_Ultimate_1.png"   # HUD picture (borrowed until Jack has his own)
 name        = "The Giant Falls"
-description = "• Fell the beanstalk: the giant comes crashing down, #stunning@ everything and leaving it #Vulnerable@"
+description = "• Fell the beanstalk: the giant comes crashing down ahead of you, #stunning@ everything and leaving it #Vulnerable@"
 clip        = "anim:GiantFalls"
 sound       = "DarkHills\\Jack\\Ogre_Fight_Intro_Cinematic.entity.ot | Cine Beanstalk Top Shake FMod Event"
 duration    = 1.1
 cooldown    = 60
 hits        = [ { at = 0.45, radius = 6, damage = 800, knockback = 80, fx = "fx:GroundBurst", shake = "medium" }, { at = 0.9, radius = 8, damage = 2000, stun = 2.0, status = "Vulnerable", fx = "fx:GiantImpact", shake = "heavy" } ]
-steps       = [ { wait = 0.8 }, { fire = "own:Axe", speed = 14, lifetime = 0.6, damage = 800, size = 2.5, explode = 4, forward = 1 } ]
+steps       = [ { wait = 0.8 }, { fire = "own:Axe", speed = 14, lifetime = 0.6, damage = 800, size = 2.5, explode = 4, knockback = 40, forward = 1 } ]
 indicator   = { radius = 4, forward = 4, color = [0.55, 0.9, 0.3, 1] }
 
+# Giant-Slayer: two volleys of three axes, a quarter second apart, each axe
+# bursting at the first enemy it meets.
 [content.frame.abilities.ultimate2]
 icon        = "Heroes\\Kintaro\\Ability_Kintaro_Ultimate_2.png"   # HUD picture (borrowed until Jack has his own)
 name        = "Giant-Slayer"
-description = "• Hurl three spinning axes ahead that burst on impact, and #stun@ and #Bleed@ everything close"
+description = "• Hurl two volleys of spinning axes ahead that burst on impact, then #stun@ and #Bleed@ everything close"
 clip        = "anim:GiantSlayer"
 sound       = "DarkHills\\Jack\\Jack_NPC_Model.entity.ot | Voice Walla Jack Shake Beanstalk FMod Event"
 duration    = 2.4
 cooldown    = 60
 hits        = [ { at = 1.2, radius = 4, damage = 500, stun = 1.5, status = "Bleed", fx = "fx:AxeBurst", shake = "medium" } ]
-steps       = [ { wait = 1.0 }, { fire = "own:Axe", angles = [-15, 0, 15], speed = 25, damage = 800, explode = 2, forward = 1 } ]
+steps       = [ { wait = 1.0 }, { repeat = 2, every = 0.25, steps = [ { fire = "own:Axe", angles = [-15, 0, 15], speed = 25, lifetime = 0.6, damage = 600, size = 1.6, explode = 2.5, knockback = 25, forward = 1 } ] } ]
 indicator   = { radius = 4, color = [0.55, 0.9, 0.3, 1] }
