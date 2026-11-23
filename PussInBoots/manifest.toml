@@ -25,10 +25,11 @@ text = "Write your hero's story here."
 
 [content.frame]
 rig = "Hero_Romeo"
-mesh = "Characters\\Heroes\\Wukong\\Wukong_GEO.fbx"
-material = "Characters\\Heroes\\Wukong\\Textures\\M_Wukong.mat.ot"
+mesh = "Characters\\Heroes\\Romeo\\Romeo_GEO.fbx"   # Romeo's rig wears Romeo's skeleton (Wukong's has other bones)
+material = "Characters\\Heroes\\Romeo\\Textures\\M_Romeo.mat.ot"
+albedo = "art/PussInBoots_ALB.png"   # his own colour map, from the model's glb (Wukong's was painted for Wukong's UVs)
 portrait = "art/ui/portrait_2.png"
-model = "art/Captain_Whiskerwind_Romeo_Proportions_62k.glb"   # decimated copy: the original has 66,756 verts, over the game's 65,535 cap
+model = "art/PussInBoots_RomeoRig.glb"   # re-rigged onto Romeo's skeleton (was Mixamo bones) and decimated under the 65,535-vertex cap; originals kept in art/
 
 [content.frame.effects.Slash]
 layers = [
