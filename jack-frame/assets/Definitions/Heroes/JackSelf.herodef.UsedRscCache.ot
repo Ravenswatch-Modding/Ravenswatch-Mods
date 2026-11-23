@@ -85,7 +85,6 @@
 3D|Characters\Heroes\Kintaro\Animations\Hero_JackSelf_BookSelect.fbx|oCAnimation
 3D|Characters\Heroes\Kintaro\Animations\Hero_JackSelf_BookSelectIn.fbx|oCAnimation
 3D|Characters\Heroes\Kintaro\Animations\Hero_JackSelf_BookVictory.fbx|oCAnimation
-3D|Characters\Heroes\Kintaro\Animations\Hero_JackSelf_Chop.fbx|oCAnimation
 3D|Characters\Heroes\Kintaro\Animations\Hero_JackSelf_DangerIn.fbx|oCAnimation
 3D|Characters\Heroes\Kintaro\Animations\Hero_JackSelf_DangerLoop.fbx|oCAnimation
 3D|Characters\Heroes\Kintaro\Animations\Hero_JackSelf_Dash.fbx|oCAnimation
@@ -103,6 +102,9 @@
 3D|Characters\Heroes\Kintaro\Animations\Hero_JackSelf_Idle.fbx|oCAnimation
 3D|Characters\Heroes\Kintaro\Animations\Hero_JackSelf_InteractIn.fbx|oCAnimation
 3D|Characters\Heroes\Kintaro\Animations\Hero_JackSelf_InteractLoop.fbx|oCAnimation
+3D|Characters\Heroes\Kintaro\Animations\Hero_JackSelf_Kintaro_BasicAttack01.fbx|oCAnimation
+3D|Characters\Heroes\Kintaro\Animations\Hero_JackSelf_Kintaro_BasicAttack02.fbx|oCAnimation
+3D|Characters\Heroes\Kintaro\Animations\Hero_JackSelf_Kintaro_BasicAttack03.fbx|oCAnimation
 3D|Characters\Heroes\Kintaro\Animations\Hero_JackSelf_Kintaro_Book_Defeat_Loop.fbx|oCAnimation
 3D|Characters\Heroes\Kintaro\Animations\Hero_JackSelf_Kintaro_Book_Ready_In.fbx|oCAnimation
 3D|Characters\Heroes\Kintaro\Animations\Hero_JackSelf_Kintaro_Book_Ready_Loop.fbx|oCAnimation
