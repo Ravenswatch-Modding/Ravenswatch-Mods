@@ -273,7 +273,13 @@ edits = [
     { link = "Rabid Quest Timer.duration", to = "Skill Special Rabid Duration" },
     { link = "Rabid Quest Timer.on_end", to = "" },
     { event = "Event Rabid Quest Tick" },
-    { link = "Rabid Quest Timer.on_tick", to = "Event Rabid Quest Tick" },
+    # Tick only counts while the talent is held: "State Special Ability.disables_while_active?" below
+    # re-enables the timer when any Special ends, so it ran (and stacked wolves) before the pick.
+    { clone = ["Teleport Out From Deathdoor Or Regular Tester"], from = "Hero_Common", rename = { "Teleport Out From Deathdoor Or Regular Tester" = "Rabid Quest Tick Tester" } },
+    { link = "Rabid Quest Tick Tester.test", to = "Skill Special Rabid" },
+    { link = "Rabid Quest Tick Tester.on_true", to = "Event Rabid Quest Tick" },
+    { link = "Rabid Quest Tick Tester.on_false", to = "" },
+    { link = "Rabid Quest Timer.on_tick", to = "Rabid Quest Tick Tester" },
     { add_link = "Event Rabid Quest Tick.activates", to = "Rabid Quest Counter Inc Sender" },
     { add_link = "Event Rabid Quest Tick.activates", to = "State Rabid Quest Above Zero" },
     { add_link = "Skill Special Rabid.while_active", to = "Rabid Quest Counter" },
