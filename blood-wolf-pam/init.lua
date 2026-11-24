@@ -34,7 +34,7 @@ if R.damage and R.damage.enable and R.damage.on then
     end)
 end
 
--- TEMP test-only: grant 7000 XP at run start — delete before release.
+-- TEMP test-only: grant 100000 XP at run start — delete before release.
 if R.xp and R.xp.arm and R.xp.grant and R.stat and R.stat.enable_writes then
     R.xp.arm()
     R.stat.enable_writes()
@@ -43,9 +43,9 @@ if R.xp and R.xp.arm and R.xp.grant and R.stat and R.stat.enable_writes then
         if xp_granted or tries <= 0 then return end
         R.schedule.next_main(function()
             if xp_granted then return end
-            if R.xp.grant(7000) then
+            if R.xp.grant(100000) then
                 xp_granted = true
-                R.log("[xp-test] granted 7000 XP")
+                R.log("[xp-test] granted 100000 XP")
             else
                 R.schedule.after(1.0, function() try_grant(tries - 1) end)
             end
