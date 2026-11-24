@@ -32,7 +32,7 @@ loader_flags      = ["RSMM_ENABLE_HERO_CAPTURE"]
 # build it made (what "nothing changes between versions" looked like).
 [requires]
 cli    = 33
-loader = 64
+loader = 65
 
 [[content]]
 kind        = "hero"
