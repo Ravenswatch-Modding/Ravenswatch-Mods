@@ -7,7 +7,7 @@ version     = "0.1.0"
 author      = "Boris"
 summary     = "Adds a new Hero"
 description = "Adds a new Hero"
-enabled     = true
+enabled     = false
 sdk_version = ">=3.0,<4"
 tags        = ["gameplay", "hero"]
 license     = ""
