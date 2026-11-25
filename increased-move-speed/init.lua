@@ -44,6 +44,16 @@ local function set_target_percent(target)
     R.log(("[double-movement-speed] Movement speed set to %d%% of starting speed."):format(target))
 end
 
+-- The bonus is a run-scoped modifier on the run's hero, so the next run starts
+-- at base speed and must be re-applied. Not on run:start: that can arrive after
+-- the hero spawned and the bonus was applied, which would re-read the boosted
+-- speed as the base and stack the bonus.
+local function reset_run_state()
+    initialized, starting_speed, applied_percent = false, nil, nil
+end
+R.on("run:end", reset_run_state)
+R.on("menu:enter", reset_run_state)
+
 R.on("*", function(ev)
     if initialized or applying or not ev or ev.source ~= "gameplay" then return end
     if not R.entity.ready() then return end
