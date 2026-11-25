@@ -1,0 +1,5 @@
+[fields.target_percent]
+type    = "enum"
+choices = ["100", "150", "200", "500"]
+default = "200"
+label   = "Movement speed (% of starting speed)"
