@@ -1,7 +1,6 @@
 # Written by rsmm map-editor. Hand edits are fine; the editor reads this file back.
 
 [mod]
-enabled = false
 id          = "test-map-idea"
 name        = "TestMapIdea"
 version     = "0.1.0"
@@ -7856,6 +7855,22 @@ yaw = -137.95533752441406
 entity = "Storm_Island\\SceneryObjects_Storm_Island\\Corpse_Human_Front_B.entity.ot"
 pos = [-37.152183532714844, 0.6141351461410522, 11.176472663879395]
 scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+collision = [{ at = [0.0, 1.5, 0.0], kind = "wall", size = [3.0, 3.0, 3.0] }]
+model = "art/test_crate.glb"
+pos = [-23.599349975585938, 0.0, 6.456047058105469]
+scale = 4.0183796882629395
+texture = "art/test_crate.png"
+yaw = 0.0
+
+[[content.objects]]
+collision = [{ at = [0.0, 1.5, 0.0], kind = "wall", size = [3.0, 3.0, 3.0] }]
+model = "art/test_crate.glb"
+pos = [38.25517654418945, 0.0, 6.8020782470703125]
+scale = 4.595419406890869
+texture = "art/test_crate.png"
 yaw = 0.0
 
 [content.tilegen.kinds."Altar_Of_Heroes"]
