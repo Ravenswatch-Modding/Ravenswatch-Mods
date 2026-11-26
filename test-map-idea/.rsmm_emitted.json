@@ -1,0 +1,18 @@
+[
+  "3D/Scenery/DarkHills/M_Map_DarkHills_Empty2_Obj0.mat.ot.Material.gen",
+  "3D/Scenery/DarkHills/Map_DarkHills_Empty2_Obj0.fbx.Geometry.gen",
+  "3D/Scenery/DarkHills/T_Map_DarkHills_Empty2_Obj0_ALB.tga.Texture.dxt",
+  "Definitions/GameModes/All_Chapters.gamemodedefaultdef.UsedRscCache.ot",
+  "Definitions/GameModes/All_Chapters.gamemodedefaultdef.ot.meModeDefaultDefinition.gen",
+  "Definitions/Maps/Map_DarkHills_Empty2.mapdef.UsedRscCache.ot",
+  "Definitions/Maps/Map_DarkHills_Empty2.mapdef.ot.DtMapDefinition.gen",
+  "EntitySettings/DarkHills/SceneryObjects_DarkHills/Map_DarkHills_Empty2_Obj0.entity.ot.EntitySettingsResource.gen",
+  "Ot/DarkHills/Map_Map_DarkHills_Empty2.level.ot.GameStream.gen",
+  "Ot/DarkHills/Map_Map_DarkHills_Empty2_Collisions.level.ot.GameStream.gen",
+  "Ot/DarkHills/Map_Map_DarkHills_Empty2_Gameplay.level.ot.GameStream.gen",
+  "Ot/DarkHills/Map_Map_DarkHills_Empty2_Scenery.level.ot.GameStream.gen",
+  "Ot/DarkHills/Map_Map_DarkHills_Empty2_Scenery_NorthEast.level.ot.GameStream.gen",
+  "Ot/DarkHills/Map_Map_DarkHills_Empty2_Scenery_SouthWest.level.ot.GameStream.gen",
+  "Ot/DarkHills/Map_Map_DarkHills_Empty2_Terrain.level.ot.GameStream.gen",
+  "Ot/DarkHills/Map_Map_DarkHills_Empty2_TileGeneration.level.ot.GameStream.gen"
+]

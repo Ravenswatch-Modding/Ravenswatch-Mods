@@ -1,6 +1,7 @@
 # Written by rsmm map-editor. Hand edits are fine; the editor reads this file back.
 
 [mod]
+enabled = true
 id          = "test-map-idea"
 name        = "TestMapIdea"
 version     = "0.1.0"

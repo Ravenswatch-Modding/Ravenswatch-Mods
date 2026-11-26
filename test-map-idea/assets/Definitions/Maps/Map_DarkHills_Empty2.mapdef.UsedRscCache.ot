@@ -1222,6 +1222,7 @@
 3D|Scenery\DarkHills\M_Lantern_B.mat.ot|oCMaterial
 3D|Scenery\DarkHills\M_Long_Herbs_Medium.mat.ot|oCMaterial
 3D|Scenery\DarkHills\M_Long_Herbs_Medium_Whithout_Wind.mat.ot|oCMaterial
+3D|Scenery\DarkHills\M_Map_DarkHills_Empty2_Obj0.mat.ot|oCMaterial
 3D|Scenery\DarkHills\M_Menhirs.mat.ot|oCMaterial
 3D|Scenery\DarkHills\M_Menhirs_Moss.mat.ot|oCMaterial
 3D|Scenery\DarkHills\M_Ogre_Tissu.mat.ot|oCMaterial
@@ -1267,8 +1268,6 @@
 3D|Scenery\DarkHills\M_Terrain.mat.ot|oCMaterial
 3D|Scenery\DarkHills\M_Terrain_DarkHills.mat.ot|oCMaterial
 3D|Scenery\DarkHills\M_Terrain_Fog_DarkHills.mat.ot|oCMaterial
-3D|Scenery\DarkHills\M_Test_Empty_Chapter_Obj0.mat.ot|oCMaterial
-3D|Scenery\DarkHills\M_Test_Empty_Chapter_Obj1.mat.ot|oCMaterial
 3D|Scenery\DarkHills\M_Tiles.mat.ot|oCMaterial
 3D|Scenery\DarkHills\M_Torch_Wood_House.mat.ot|oCMaterial
 3D|Scenery\DarkHills\M_Town_Sign_Atlas.mat.ot|oCMaterial
@@ -1290,6 +1289,7 @@
 3D|Scenery\DarkHills\M_Wood_Planks_B_SKINNED.mat.ot|oCMaterial
 3D|Scenery\DarkHills\M_Wood_Planks_Burning_A.mat.ot|oCMaterial
 3D|Scenery\DarkHills\M_Wood_Planks_Burning_B.mat.ot|oCMaterial
+3D|Scenery\DarkHills\Map_DarkHills_Empty2_Obj0.fbx|oCGeometry
 3D|Scenery\DarkHills\Material_Container.fbx|oCGeometry
 3D|Scenery\DarkHills\Menhir_Big_A.fbx|oCGeometry
 3D|Scenery\DarkHills\Menhir_Medium_A.fbx|oCGeometry
@@ -1788,6 +1788,7 @@
 3D|Scenery\DarkHills\T_Lentils_NRM.tga|oCTexture
 3D|Scenery\DarkHills\T_Long_Herbs_Pampa_ALB.tga|oCTexture
 3D|Scenery\DarkHills\T_Long_Herbs_Pampa_MRA.tga|oCTexture
+3D|Scenery\DarkHills\T_Map_DarkHills_Empty2_Obj0_ALB.tga|oCTexture
 3D|Scenery\DarkHills\T_Menhirs_ALB.tga|oCTexture
 3D|Scenery\DarkHills\T_Menhirs_MRA.tga|oCTexture
 3D|Scenery\DarkHills\T_Menhirs_NRM.tga|oCTexture
@@ -1880,8 +1881,6 @@
 3D|Scenery\DarkHills\T_Stump_ALB.tga|oCTexture
 3D|Scenery\DarkHills\T_Stump_MRA.tga|oCTexture
 3D|Scenery\DarkHills\T_Stump_NRM.tga|oCTexture
-3D|Scenery\DarkHills\T_Test_Empty_Chapter_Obj0_ALB.tga|oCTexture
-3D|Scenery\DarkHills\T_Test_Empty_Chapter_Obj1_ALB.tga|oCTexture
 3D|Scenery\DarkHills\T_Tiles_ALB.tga|oCTexture
 3D|Scenery\DarkHills\T_Tiles_MRA.tga|oCTexture
 3D|Scenery\DarkHills\T_Tiles_NRM.tga|oCTexture
@@ -1918,8 +1917,6 @@
 3D|Scenery\DarkHills\T_Wood_Planks_B_MRA.tga|oCTexture
 3D|Scenery\DarkHills\T_Wood_Planks_B_NRM.tga|oCTexture
 3D|Scenery\DarkHills\Table_Heavy.fbx|oCGeometry
-3D|Scenery\DarkHills\Test_Empty_Chapter_Obj0.fbx|oCGeometry
-3D|Scenery\DarkHills\Test_Empty_Chapter_Obj1.fbx|oCGeometry
 3D|Scenery\DarkHills\Thieve_BasicChest.fbx|oCGeometry
 3D|Scenery\DarkHills\Thieve_Basin.fbx|oCGeometry
 3D|Scenery\DarkHills\Thieve_Blood_Fountain.fbx|oCGeometry
@@ -2127,7 +2124,7 @@ Definitions|EnemyTribes\Thieves.enemytribedef.ot|oCDtEnemyTribeDefinition
 Definitions|EnemyTribes\Treants.enemytribedef.ot|oCDtEnemyTribeDefinition
 Definitions|EnemyTribes\Undead_Hogs.enemytribedef.ot|oCDtEnemyTribeDefinition
 Definitions|EnemyTribes\White_Ladies.enemytribedef.ot|oCDtEnemyTribeDefinition
-Definitions|Maps\Test_Empty_Chapter.mapdef.ot|oCDtMapDefinition
+Definitions|Maps\Map_DarkHills_Empty2.mapdef.ot|oCDtMapDefinition
 Definitions|Tiles\Dark_Hills\3x3_Blocker_01.tiledef.ot|oCDtTileDefinition
 Definitions|Tiles\Dark_Hills\3x3_Blocker_Props_01.tiledef.ot|oCDtTileDefinition
 Definitions|Tiles\Dark_Hills\3x3_Blocker_Props_02.tiledef.ot|oCDtTileDefinition
@@ -3032,6 +3029,7 @@ EntitySettings|DarkHills\SceneryObjects_DarkHills\Log_small.entity.ot|oCEntitySe
 EntitySettings|DarkHills\SceneryObjects_DarkHills\Log_small_B.entity.ot|oCEntitySettingsResource
 EntitySettings|DarkHills\SceneryObjects_DarkHills\Log_small_C.entity.ot|oCEntitySettingsResource
 EntitySettings|DarkHills\SceneryObjects_DarkHills\Log_small_D.entity.ot|oCEntitySettingsResource
+EntitySettings|DarkHills\SceneryObjects_DarkHills\Map_DarkHills_Empty2_Obj0.entity.ot|oCEntitySettingsResource
 EntitySettings|DarkHills\SceneryObjects_DarkHills\Material_Container_Scenery.entity.ot|oCEntitySettingsResource
 EntitySettings|DarkHills\SceneryObjects_DarkHills\Menhir_Big_A.entity.ot|oCEntitySettingsResource
 EntitySettings|DarkHills\SceneryObjects_DarkHills\Menhir_Medium_A.entity.ot|oCEntitySettingsResource
@@ -3337,8 +3335,6 @@ EntitySettings|DarkHills\SceneryObjects_DarkHills\TallGrass_Patch_B.entity.ot|oC
 EntitySettings|DarkHills\SceneryObjects_DarkHills\TallGrass_Small.entity.ot|oCEntitySettingsResource
 EntitySettings|DarkHills\SceneryObjects_DarkHills\TallGrass_Small_B.entity.ot|oCEntitySettingsResource
 EntitySettings|DarkHills\SceneryObjects_DarkHills\TallGrass_Small_C.entity.ot|oCEntitySettingsResource
-EntitySettings|DarkHills\SceneryObjects_DarkHills\Test_Empty_Chapter_Obj0.entity.ot|oCEntitySettingsResource
-EntitySettings|DarkHills\SceneryObjects_DarkHills\Test_Empty_Chapter_Obj1.entity.ot|oCEntitySettingsResource
 EntitySettings|DarkHills\SceneryObjects_DarkHills\Thieve_Bag_Big.entity.ot|oCEntitySettingsResource
 EntitySettings|DarkHills\SceneryObjects_DarkHills\Thieve_Bag_Small.entity.ot|oCEntitySettingsResource
 EntitySettings|DarkHills\SceneryObjects_DarkHills\Thieve_BasicChest.entity.ot|oCEntitySettingsResource
@@ -5087,14 +5083,14 @@ Ot|DarkHills\Map_Dark_Hills_Audio.level.ot|oCGameStream
 Ot|DarkHills\Map_Dark_Hills_EntityPooling_Settings.level.ot|oCGameStream
 Ot|DarkHills\Map_Dark_Hills_NavMeshes.level.ot|oCGameStream
 Ot|DarkHills\Map_Dark_Hills_Render_Settings.level.ot|oCGameStream
-Ot|DarkHills\Map_Test_Empty_Chapter.level.ot|oCGameStream
-Ot|DarkHills\Map_Test_Empty_Chapter_Collisions.level.ot|oCGameStream
-Ot|DarkHills\Map_Test_Empty_Chapter_Gameplay.level.ot|oCGameStream
-Ot|DarkHills\Map_Test_Empty_Chapter_Scenery.level.ot|oCGameStream
-Ot|DarkHills\Map_Test_Empty_Chapter_Scenery_NorthEast.level.ot|oCGameStream
-Ot|DarkHills\Map_Test_Empty_Chapter_Scenery_SouthWest.level.ot|oCGameStream
-Ot|DarkHills\Map_Test_Empty_Chapter_Terrain.level.ot|oCGameStream
-Ot|DarkHills\Map_Test_Empty_Chapter_TileGeneration.level.ot|oCGameStream
+Ot|DarkHills\Map_Map_DarkHills_Empty2.level.ot|oCGameStream
+Ot|DarkHills\Map_Map_DarkHills_Empty2_Collisions.level.ot|oCGameStream
+Ot|DarkHills\Map_Map_DarkHills_Empty2_Gameplay.level.ot|oCGameStream
+Ot|DarkHills\Map_Map_DarkHills_Empty2_Scenery.level.ot|oCGameStream
+Ot|DarkHills\Map_Map_DarkHills_Empty2_Scenery_NorthEast.level.ot|oCGameStream
+Ot|DarkHills\Map_Map_DarkHills_Empty2_Scenery_SouthWest.level.ot|oCGameStream
+Ot|DarkHills\Map_Map_DarkHills_Empty2_Terrain.level.ot|oCGameStream
+Ot|DarkHills\Map_Map_DarkHills_Empty2_TileGeneration.level.ot|oCGameStream
 Ot|DarkHills\Tiles\3x3_Blocker_01.level.ot|oCGameStream
 Ot|DarkHills\Tiles\3x3_Blocker_Props_01.level.ot|oCGameStream
 Ot|DarkHills\Tiles\3x3_Blocker_Props_02.level.ot|oCGameStream

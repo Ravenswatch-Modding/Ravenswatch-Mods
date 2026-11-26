@@ -1,7 +1,7 @@
 # Written by rsmm map-editor. Hand edits are fine; the editor reads this file back.
 
 [mod]
-enabled = true
+enabled = false
 id          = "test-empty-chapter"
 name        = "Test: empty chapter"
 version     = "0.1.0"
