@@ -1,0 +1,97 @@
+# Written by rsmm map-editor. Hand edits are fine; the editor reads this file back.
+
+[mod]
+enabled = true
+id          = "test-empty-chapter"
+name        = "Test: empty chapter"
+version     = "0.1.0"
+author      = "RSMM map editor"
+description = "A new map from Dark Hills."
+sdk_version = ">=3.0,<4"
+license     = "MIT"
+tags        = ["maps", "generation"]
+# Every player loads the chapter's scenery from their own copy, so
+# everyone in the lobby needs this mod at the same version.
+multiplayer_scope = "deterministic-shared"
+experimental = true
+
+[[content]]
+kind    = "map"
+id      = "Test_Empty_Chapter"
+base    = "Dark_Hills"
+chapter = 0
+blank   = { height = 0.0 }
+
+[[content.objects]]
+entity = "DarkHills\\SceneryObjects_DarkHills\\Wall_Ruins_Block_Small_A.entity.ot"
+pos = [-109.0, 0.0, -112.0]
+yaw = 0.0
+scale = 1.0
+name = "Ruin block"
+
+[[content.objects]]
+entity = "DarkHills\\Objects_DarkHills\\Post_Lantern_A_Light.entity.ot"
+pos = [-109.0, 0.0, -106.0]
+yaw = 0.0
+scale = 1.0
+name = "Lantern"
+
+[[content.objects]]
+entity = "DarkHills\\SceneryObjects_DarkHills\\Rock_Moss_Medium_B.entity.ot"
+pos = [-109.0, 0.0, -118.0]
+yaw = 30.0
+scale = 1.0
+name = "Mossy rock"
+
+[[content.objects]]
+model = "art/test_crate.glb"
+texture = "art/test_crate.png"
+pos = [-131.0, 0.0, -112.0]
+yaw = 0.0
+scale = 1.0
+name = "Solid crate"
+collision = [{ kind = "wall", size = [3.0, 3.0, 3.0], at = [0.0, 1.5, 0.0] }]
+
+[[content.objects]]
+model = "art/test_crate.glb"
+texture = "art/test_crate.png"
+pos = [-131.0, 0.0, -104.0]
+yaw = 0.0
+scale = 1.0
+name = "Walk-through crate"
+
+[content.tilegen.kinds."Altar_Of_Heroes"]
+count = 0
+
+[content.tilegen.kinds."Camp"]
+count = 0
+
+[content.tilegen.kinds."Corpse_Master"]
+count = 0
+
+[content.tilegen.kinds."Crystal"]
+count = 0
+
+[content.tilegen.kinds."Fountain"]
+count = 0
+
+[content.tilegen.kinds."Key_Keeper"]
+count = 0
+
+[content.tilegen.kinds."Special"]
+count = 0
+
+[content.tilegen.kinds."Teleporter"]
+count = 0
+
+[content.tilegen.kinds."Thieves_Entrance"]
+count = 0
+
+[content.tilegen.kinds."Wandering_Camp"]
+count = 0
+
+[content.tilegen.fill]
+"3x3" = []
+"40x40" = []
+"64x64" = []
+"6x6" = []

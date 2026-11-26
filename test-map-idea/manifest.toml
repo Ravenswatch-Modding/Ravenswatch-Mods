@@ -1,0 +1,8039 @@
+# Written by rsmm map-editor. Hand edits are fine; the editor reads this file back.
+
+[mod]
+enabled = false
+id          = "test-map-idea"
+name        = "TestMapIdea"
+version     = "0.1.0"
+author      = "RSMM map editor"
+description = "A new map from Dark Hills."
+sdk_version = ">=3.0,<4"
+license     = "MIT"
+tags        = ["maps", "generation"]
+# Every player loads the chapter's scenery from their own copy, so
+# everyone in the lobby needs this mod at the same version.
+multiplayer_scope = "deterministic-shared"
+experimental = true
+
+[[content]]
+kind    = "map"
+id      = "Map_DarkHills_Empty2"
+base    = "Dark_Hills"
+chapter = 0
+blank   = { height = 0.0 }
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 39.36000061035156
+z = 23.600000381469727
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 37.2599983215332
+z = 19.110000610351562
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 35.560001373291016
+z = 16.450000762939453
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 33.54999923706055
+z = 12.979999542236328
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 31.420000076293945
+z = 9.75
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 30.75
+z = 8.699999809265137
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 30.059999465942383
+z = 7.650000095367432
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 29.110000610351562
+z = 6.489999771118164
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 18.459999084472656
+z = -7.5
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 15.989999771118164
+z = -10.550000190734863
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 15.210000038146973
+z = -11.510000228881836
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 14.510000228881836
+z = -12.119999885559082
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 4.550000190734863
+z = -21.75
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 1.5700000524520874
+z = -24.299999237060547
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 0.75
+z = -25.020000457763672
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 0.17000000178813934
+z = -25.459999084472656
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = -1.1399999856948853
+z = -26.229999542236328
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = -3.069999933242798
+z = -27.469999313354492
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = -23.510000228881836
+z = -31.760000228881836
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = -24.75
+z = -31.719999313354492
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = -29.229999542236328
+z = -28.8700008392334
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = -30.81999969482422
+z = -27.81999969482422
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = -31.59000015258789
+z = -27.0
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = -32.22999954223633
+z = -26.31999969482422
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = -33.0
+z = -25.5
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = -34.15999984741211
+z = -22.969999313354492
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = -47.540000915527344
+z = 3.1700000762939453
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = -50.09000015258789
+z = 8.899999618530273
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = -50.4900016784668
+z = 9.930000305175781
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = -51.130001068115234
+z = 14.720000267028809
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = -51.08000183105469
+z = 15.829999923706055
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = -50.90999984741211
+z = 16.799999237060547
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = -43.72999954223633
+z = 34.779998779296875
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = -41.279998779296875
+z = 38.040000915527344
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = -40.31999969482422
+z = 39.400001525878906
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = -39.09000015258789
+z = 40.900001525878906
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = -37.880001068115234
+z = 42.38999938964844
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = -35.68000030517578
+z = 45.0
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = -7.599999904632568
+z = 68.51000213623047
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = -1.0800000429153442
+z = 71.41999816894531
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 0.4699999988079071
+z = 72.05000305175781
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 1.8300000429153442
+z = 72.56999969482422
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 5.949999809265137
+z = 73.88999938964844
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 24.600000381469727
+z = 71.37000274658203
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 27.0
+z = 69.2699966430664
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 27.610000610351562
+z = 68.62000274658203
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 28.139999389648438
+z = 68.05000305175781
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 29.899999618530273
+z = 66.18000030517578
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 31.1200008392334
+z = 64.87999725341797
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 36.09000015258789
+z = 54.650001525878906
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 36.220001220703125
+z = 53.540000915527344
+
+[[content.terrain]]
+amount = 0.44999998807907104
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.600000023841858
+x = 36.119998931884766
+z = 52.66999816894531
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 17.639999389648438
+z = 31.959999084472656
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 18.010000228881836
+z = 31.559999465942383
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 18.450000762939453
+z = 31.43000030517578
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 19.8700008392334
+z = 30.56999969482422
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 20.329999923706055
+z = 30.079999923706055
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 20.700000762939453
+z = 29.690000534057617
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 24.889999389648438
+z = 26.540000915527344
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 26.31999969482422
+z = 25.34000015258789
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 27.309999465942383
+z = 24.270000457763672
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 27.950000762939453
+z = 23.59000015258789
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 28.68000030517578
+z = 21.84000015258789
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 28.739999771118164
+z = 21.110000610351562
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 28.25
+z = 16.93000030517578
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 28.0
+z = 15.829999923706055
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 27.1200008392334
+z = 13.989999771118164
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 26.889999389648438
+z = 13.520000457763672
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 26.440000534057617
+z = 12.579999923706055
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 25.530000686645508
+z = 10.670000076293945
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 23.09000015258789
+z = 5.440000057220459
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 17.1299991607666
+z = 36.540000915527344
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 16.360000610351562
+z = 37.849998474121094
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 16.079999923706055
+z = 38.310001373291016
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 15.729999542236328
+z = 38.7400016784668
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 13.890000343322754
+z = 40.68000030517578
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 13.380000114440918
+z = 40.93000030517578
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 12.720000267028809
+z = 41.150001525878906
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 12.210000038146973
+z = 41.279998779296875
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 5.800000190734863
+z = 40.86000061035156
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 4.75
+z = 40.68000030517578
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 4.130000114440918
+z = 40.58000183105469
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 12.84000015258789
+z = 39.22999954223633
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 14.130000114440918
+z = 39.31999969482422
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 14.59000015258789
+z = 39.400001525878906
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 7.300000190734863
+z = 40.349998474121094
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 5.159999847412109
+z = 40.43000030517578
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 3.8399999141693115
+z = 40.529998779296875
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 6.159999847412109
+z = 40.91999816894531
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 9.020000457763672
+z = 40.75
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 11.710000038146973
+z = 40.41999816894531
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 12.25
+z = 40.400001525878906
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 12.75
+z = 40.369998931884766
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 10.300000190734863
+z = 40.959999084472656
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 7.079999923706055
+z = 41.38999938964844
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 6.309999942779541
+z = 41.470001220703125
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 5.440000057220459
+z = 41.529998779296875
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = -1.840000033378601
+z = 41.33000183105469
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = -0.20000000298023224
+z = 41.599998474121094
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 0.33000001311302185
+z = 41.689998626708984
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 7.559999942779541
+z = 42.20000076293945
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 8.050000190734863
+z = 42.279998779296875
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "lower"
+radius = 1.5
+x = 3.549999952316284
+z = 41.72999954223633
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 2.5999999046325684
+z = 36.40999984741211
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 1.7699999809265137
+z = 37.47999954223633
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -0.25
+z = 37.150001525878906
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 2.0
+z = 37.52000045776367
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 2.5
+z = 37.61000061035156
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 6.019999980926514
+z = 38.54999923706055
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 7.989999771118164
+z = 39.34000015258789
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 9.489999771118164
+z = 39.939998626708984
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 5.119999885559082
+z = 39.31999969482422
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 4.53000020980835
+z = 39.220001220703125
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 9.729999542236328
+z = 38.58000183105469
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 11.65999984741211
+z = 38.29999923706055
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 12.65999984741211
+z = 38.22999954223633
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 3.069999933242798
+z = 38.630001068115234
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 6.880000114440918
+z = 38.93000030517578
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 10.380000114440918
+z = 38.689998626708984
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 11.239999771118164
+z = 38.720001220703125
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 11.949999809265137
+z = 38.720001220703125
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 12.65999984741211
+z = 38.720001220703125
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 13.890000343322754
+z = 38.91999816894531
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 11.84000015258789
+z = 41.220001220703125
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 9.300000190734863
+z = 41.22999954223633
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 6.619999885559082
+z = 41.099998474121094
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 6.119999885559082
+z = 41.02000045776367
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 5.579999923706055
+z = 40.93000030517578
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 4.130000114440918
+z = 40.790000915527344
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 5.25
+z = 40.869998931884766
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 6.239999771118164
+z = 40.81999969482422
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 6.860000133514404
+z = 40.81999969482422
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 8.09000015258789
+z = 40.70000076293945
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 13.180000305175781
+z = 40.560001373291016
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 11.640000343322754
+z = 40.86000061035156
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 9.380000114440918
+z = 41.13999938964844
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 8.75
+z = 41.13999938964844
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 8.050000190734863
+z = 41.130001068115234
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 2.140000104904175
+z = 40.349998474121094
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 4.53000020980835
+z = 40.75
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 7.019999980926514
+z = 41.16999816894531
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 7.739999771118164
+z = 41.290000915527344
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 8.539999961853027
+z = 41.41999816894531
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 9.880000114440918
+z = 41.650001525878906
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 10.449999809265137
+z = 41.75
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 7.619999885559082
+z = 43.5099983215332
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 5.269999980926514
+z = 43.209999084472656
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 4.510000228881836
+z = 43.08000183105469
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 3.680000066757202
+z = 42.939998626708984
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 2.8499999046325684
+z = 42.79999923706055
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 2.1600000858306885
+z = 42.689998626708984
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 1.4600000381469727
+z = 41.380001068115234
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 3.619999885559082
+z = 41.63999938964844
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 5.010000228881836
+z = 41.66999816894531
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 5.46999979019165
+z = 41.7400016784668
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -7.340000152587891
+z = 39.900001525878906
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -6.539999961853027
+z = 39.93000030517578
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 2.799999952316284
+z = 41.189998626708984
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 2.2699999809265137
+z = 41.099998474121094
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -5.369999885559082
+z = 36.869998931884766
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -0.8299999833106995
+z = 37.86000061035156
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -5.579999923706055
+z = 37.630001068115234
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -7.25
+z = 37.349998474121094
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -7.800000190734863
+z = 37.2599983215332
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -8.319999694824219
+z = 37.16999816894531
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -9.399999618530273
+z = 36.9900016784668
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -4.230000019073486
+z = 42.470001220703125
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -3.690000057220459
+z = 43.209999084472656
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -6.829999923706055
+z = 39.880001068115234
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -7.559999942779541
+z = 38.83000183105469
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 0.07000000029802322
+z = 41.45000076293945
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -6.519999980926514
+z = 37.59000015258789
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -5.800000190734863
+z = 37.599998474121094
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -1.5
+z = 38.650001525878906
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -0.12999999523162842
+z = 38.9900016784668
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 0.5899999737739563
+z = 39.33000183105469
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -0.0
+z = 39.22999954223633
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -0.699999988079071
+z = 39.119998931884766
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -1.909999966621399
+z = 38.90999984741211
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -2.5299999713897705
+z = 38.810001373291016
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -4.0
+z = 38.560001373291016
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -3.1500000953674316
+z = 38.70000076293945
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -2.4000000953674316
+z = 39.04999923706055
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -1.350000023841858
+z = 39.54999923706055
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 0.6600000262260437
+z = 41.45000076293945
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 0.05999999865889549
+z = 41.349998474121094
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -0.5400000214576721
+z = 41.25
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -1.0700000524520874
+z = 41.15999984741211
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -1.649999976158142
+z = 41.15999984741211
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -1.0499999523162842
+z = 41.36000061035156
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -0.41999998688697815
+z = 41.470001220703125
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 0.46000000834465027
+z = 41.61000061035156
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -0.7699999809265137
+z = 41.79999923706055
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -1.4299999475479126
+z = 41.689998626708984
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -7.710000038146973
+z = 38.25
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -9.220000267028809
+z = 36.81999969482422
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -9.710000038146973
+z = 36.349998474121094
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -10.25
+z = 35.849998474121094
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -10.720000267028809
+z = 35.439998626708984
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -11.720000267028809
+z = 34.47999954223633
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -10.800000190734863
+z = 34.86000061035156
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -9.329999923706055
+z = 35.869998931884766
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -8.300000190734863
+z = 36.540000915527344
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -8.779999732971191
+z = 36.189998626708984
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -9.220000267028809
+z = 35.849998474121094
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -9.6899995803833
+z = 35.439998626708984
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -10.529999732971191
+z = 34.59000015258789
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -9.6899995803833
+z = 35.439998626708984
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -9.069999694824219
+z = 36.150001525878906
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -11.449999809265137
+z = 33.83000183105469
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -9.520000457763672
+z = 36.16999816894531
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -10.3100004196167
+z = 35.029998779296875
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -10.59000015258789
+z = 34.630001068115234
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -10.819999694824219
+z = 34.22999954223633
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -11.369999885559082
+z = 33.349998474121094
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -14.619999885559082
+z = 27.299999237060547
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -13.300000190734863
+z = 28.510000228881836
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -12.819999694824219
+z = 29.010000228881836
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -12.260000228881836
+z = 29.610000610351562
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -11.8100004196167
+z = 30.170000076293945
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -11.270000457763672
+z = 30.809999465942383
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -7.929999828338623
+z = 35.0
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -9.300000190734863
+z = 33.7599983215332
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -9.680000305175781
+z = 33.369998931884766
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -10.100000381469727
+z = 32.90999984741211
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -10.949999809265137
+z = 32.029998779296875
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -12.800000190734863
+z = 30.139999389648438
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -11.170000076293945
+z = 32.09000015258789
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -10.760000228881836
+z = 32.61000061035156
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -10.270000457763672
+z = 33.16999816894531
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -9.3100004196167
+z = 34.33000183105469
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -7.039999961853027
+z = 37.529998779296875
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -8.460000038146973
+z = 36.41999816894531
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -8.8100004196167
+z = 36.119998931884766
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -9.850000381469727
+z = 35.130001068115234
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -10.199999809265137
+z = 34.81999969482422
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -10.850000381469727
+z = 34.349998474121094
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -5.230000019073486
+z = 38.470001220703125
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -3.5899999141693115
+z = 39.40999984741211
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -3.009999990463257
+z = 39.72999954223633
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -2.569999933242798
+z = 40.0099983215332
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -2.0999999046325684
+z = 40.22999954223633
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -1.309999942779541
+z = 40.630001068115234
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -2.5399999618530273
+z = 38.56999969482422
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -4.5
+z = 37.20000076293945
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -5.090000152587891
+z = 36.869998931884766
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -7.21999979019165
+z = 35.75
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -8.65999984741211
+z = 35.29999923706055
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -2.7699999809265137
+z = 41.7599983215332
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -2.069999933242798
+z = 42.349998474121094
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -10.039999961853027
+z = 39.08000183105469
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -12.770000457763672
+z = 37.25
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -14.720000267028809
+z = 35.790000915527344
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -11.869999885559082
+z = 37.439998626708984
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -8.869999885559082
+z = 39.61000061035156
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -6.099999904632568
+z = 41.849998474121094
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -2.890000104904175
+z = 43.880001068115234
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -3.5
+z = 42.93000030517578
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -14.140000343322754
+z = 31.489999771118164
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -15.119999885559082
+z = 30.440000534057617
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -12.239999771118164
+z = 36.0
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -12.010000228881836
+z = 36.7400016784668
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -13.630000114440918
+z = 33.93000030517578
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -13.899999618530273
+z = 33.459999084472656
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -14.430000305175781
+z = 32.459999084472656
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -14.699999809265137
+z = 31.989999771118164
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -14.979999542236328
+z = 31.510000228881836
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -15.369999885559082
+z = 30.670000076293945
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -15.789999961853027
+z = 29.75
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -14.979999542236328
+z = 31.700000762939453
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -14.819999694824219
+z = 32.2599983215332
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -14.710000038146973
+z = 32.79999923706055
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -14.579999923706055
+z = 33.279998779296875
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -15.170000076293945
+z = 33.689998626708984
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -15.539999961853027
+z = 33.439998626708984
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -16.65999984741211
+z = 32.66999816894531
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -17.030000686645508
+z = 32.36000061035156
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -17.43000030517578
+z = 32.029998779296875
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -17.920000076293945
+z = 31.610000610351562
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -18.459999084472656
+z = 31.170000076293945
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = -18.8700008392334
+z = 30.84000015258789
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 13.789999961853027
+z = 39.209999084472656
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 23.350000381469727
+z = 31.81999969482422
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 22.579999923706055
+z = 32.16999816894531
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 15.600000381469727
+z = 37.099998474121094
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 14.15999984741211
+z = 38.2599983215332
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 23.40999984741211
+z = 30.030000686645508
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 22.889999389648438
+z = 30.510000228881836
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 10.079999923706055
+z = 36.709999084472656
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 11.850000381469727
+z = 35.70000076293945
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 14.460000038146973
+z = 34.22999954223633
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 15.229999542236328
+z = 33.849998474121094
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 16.06999969482422
+z = 33.470001220703125
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 16.729999542236328
+z = 33.130001068115234
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 17.520000457763672
+z = 32.7400016784668
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 18.25
+z = 32.400001525878906
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 17.239999771118164
+z = 33.84000015258789
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 13.960000038146973
+z = 35.45000076293945
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 11.300000190734863
+z = 36.88999938964844
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 10.850000381469727
+z = 37.119998931884766
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 10.0600004196167
+z = 37.52000045776367
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 10.90999984741211
+z = 36.91999816894531
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 11.479999542236328
+z = 36.59000015258789
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 12.109999656677246
+z = 36.220001220703125
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 12.739999771118164
+z = 35.900001525878906
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 13.5
+z = 35.529998779296875
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 23.489999771118164
+z = 31.549999237060547
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 22.1200008392334
+z = 32.86000061035156
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 21.469999313354492
+z = 33.369998931884766
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 20.84000015258789
+z = 33.83000183105469
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 19.329999923706055
+z = 34.720001220703125
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 13.199999809265137
+z = 37.72999954223633
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 14.739999771118164
+z = 36.380001068115234
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 16.68000030517578
+z = 34.7599983215332
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 17.229999542236328
+z = 34.310001373291016
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 17.780000686645508
+z = 33.86000061035156
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 20.200000762939453
+z = 32.2599983215332
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 19.889999389648438
+z = 32.619998931884766
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 15.1899995803833
+z = 37.130001068115234
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 15.489999771118164
+z = 36.72999954223633
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 19.520000457763672
+z = 32.65999984741211
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 21.3700008392334
+z = 30.790000915527344
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 22.59000015258789
+z = 29.959999084472656
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 20.729999542236328
+z = 33.18000030517578
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 19.270000457763672
+z = 34.66999816894531
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 18.950000762939453
+z = 35.029998779296875
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 18.450000762939453
+z = 35.47999954223633
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 19.139999389648438
+z = 34.81999969482422
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 19.520000457763672
+z = 34.40999984741211
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 1.5
+x = 20.030000686645508
+z = 33.959999084472656
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 22.0
+x = 13.079999923706055
+z = 37.81999969482422
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 22.0
+x = 19.739999771118164
+z = 35.16999816894531
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 22.0
+x = 24.40999984741211
+z = 26.729999542236328
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 22.0
+x = 23.600000381469727
+z = 13.890000343322754
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 22.0
+x = 19.239999771118164
+z = 3.0399999618530273
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 22.0
+x = 12.960000038146973
+z = 0.4099999964237213
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 22.0
+x = 4.090000152587891
+z = -0.17000000178813934
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 22.0
+x = -4.900000095367432
+z = 0.46000000834465027
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 22.0
+x = 9.15999984741211
+z = 44.869998931884766
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 22.0
+x = -1.9900000095367432
+z = 41.83000183105469
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 22.0
+x = -9.59000015258789
+z = 28.950000762939453
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 22.0
+x = -10.039999961853027
+z = 18.540000915527344
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 22.0
+x = -4.130000114440918
+z = 2.5
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 22.0
+x = 11.220000267028809
+z = 2.359999895095825
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 22.0
+x = 20.920000076293945
+z = 17.56999969482422
+
+[[content.terrain]]
+amount = 1.0
+color = "#020202"
+falloff = "smooth"
+layer = "Base Terrain Vertex Color"
+op = "tint"
+radius = 22.0
+x = -28.459999084472656
+z = -10.279999732971191
+
+[[content.terrain]]
+amount = 1.0
+color = "#020202"
+falloff = "smooth"
+layer = "Base Terrain Vertex Color"
+op = "tint"
+radius = 22.0
+x = -32.45000076293945
+z = -1.659999966621399
+
+[[content.terrain]]
+amount = 1.0
+color = "#020202"
+falloff = "smooth"
+layer = "Base Terrain Vertex Color"
+op = "tint"
+radius = 22.0
+x = -34.90999984741211
+z = 4.519999980926514
+
+[[content.terrain]]
+amount = 1.0
+color = "#020202"
+falloff = "smooth"
+layer = "Base Terrain Vertex Color"
+op = "tint"
+radius = 22.0
+x = -36.45000076293945
+z = 11.09000015258789
+
+[[content.terrain]]
+amount = 1.0
+color = "#020202"
+falloff = "smooth"
+layer = "Base Terrain Vertex Color"
+op = "tint"
+radius = 22.0
+x = -35.529998779296875
+z = 3.890000104904175
+
+[[content.terrain]]
+amount = 1.0
+color = "#020202"
+falloff = "smooth"
+layer = "Base Terrain Vertex Color"
+op = "tint"
+radius = 22.0
+x = -33.09000015258789
+z = -3.2799999713897705
+
+[[content.terrain]]
+amount = 1.0
+color = "#020202"
+falloff = "smooth"
+layer = "Base Terrain Vertex Color"
+op = "tint"
+radius = 22.0
+x = -30.770000457763672
+z = -10.140000343322754
+
+[[content.terrain]]
+amount = 1.0
+color = "#020202"
+falloff = "smooth"
+layer = "Base Terrain Vertex Color"
+op = "tint"
+radius = 22.0
+x = -25.489999771118164
+z = -19.18000030517578
+
+[[content.terrain]]
+amount = 1.0
+color = "#020202"
+falloff = "smooth"
+layer = "Base Terrain Vertex Color"
+op = "tint"
+radius = 22.0
+x = -20.329999923706055
+z = -23.93000030517578
+
+[[content.terrain]]
+amount = 1.0
+color = "#020202"
+falloff = "smooth"
+layer = "Base Terrain Vertex Color"
+op = "tint"
+radius = 22.0
+x = -14.270000457763672
+z = -29.360000610351562
+
+[[content.terrain]]
+amount = 1.0
+color = "#020202"
+falloff = "smooth"
+layer = "Base Terrain Vertex Color"
+op = "tint"
+radius = 22.0
+x = -8.229999542236328
+z = -33.08000183105469
+
+[[content.terrain]]
+amount = 1.0
+color = "#020202"
+falloff = "smooth"
+layer = "Base Terrain Vertex Color"
+op = "tint"
+radius = 22.0
+x = -0.9700000286102295
+z = -35.16999816894531
+
+[[content.terrain]]
+amount = 1.0
+color = "#020202"
+falloff = "smooth"
+layer = "Base Terrain Vertex Color"
+op = "tint"
+radius = 22.0
+x = 5.989999771118164
+z = -35.599998474121094
+
+[[content.terrain]]
+amount = 1.0
+color = "#020202"
+falloff = "smooth"
+layer = "Base Terrain Vertex Color"
+op = "tint"
+radius = 22.0
+x = 12.890000343322754
+z = -34.36000061035156
+
+[[content.terrain]]
+amount = 1.0
+color = "#020202"
+falloff = "smooth"
+layer = "Base Terrain Vertex Color"
+op = "tint"
+radius = 22.0
+x = 19.6299991607666
+z = -32.4900016784668
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -41.36000061035156
+z = 2.950000047683716
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -39.900001525878906
+z = -6.139999866485596
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -37.630001068115234
+z = -12.569999694824219
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -34.310001373291016
+z = -18.450000762939453
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -29.18000030517578
+z = -23.950000762939453
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -22.280000686645508
+z = -30.149999618530273
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -15.239999771118164
+z = -34.959999084472656
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -8.989999771118164
+z = -38.83000183105469
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 7.690000057220459
+z = -44.47999954223633
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 14.8100004196167
+z = -45.63999938964844
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 8.1899995803833
+z = -41.810001373291016
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -16.829999923706055
+z = -29.899999618530273
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -26.68000030517578
+z = -20.6299991607666
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -30.309999465942383
+z = -14.079999923706055
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -36.220001220703125
+z = -4.269999980926514
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -40.09000015258789
+z = 5.239999771118164
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -41.279998779296875
+z = 11.739999771118164
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -36.439998626708984
+z = 6.090000152587891
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -25.280000686645508
+z = -6.659999847412109
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -8.3100004196167
+z = -22.829999923706055
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 3.4000000953674316
+z = -28.270000457763672
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 13.350000381469727
+z = -24.149999618530273
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 27.020000457763672
+z = -12.510000228881836
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 33.86000061035156
+z = 2.740000009536743
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 37.45000076293945
+z = 16.31999969482422
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 38.47999954223633
+z = 23.8700008392334
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 42.02000045776367
+z = 17.25
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 49.380001068115234
+z = 16.600000381469727
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 55.38999938964844
+z = 20.530000686645508
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 54.58000183105469
+z = 11.329999923706055
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 51.650001525878906
+z = 20.290000915527344
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 53.45000076293945
+z = 8.130000114440918
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 50.689998626708984
+z = 14.329999923706055
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 43.9900016784668
+z = 17.530000686645508
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 42.810001373291016
+z = 10.739999771118164
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 46.27000045776367
+z = 17.65999984741211
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 42.36000061035156
+z = 11.529999732971191
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 35.91999816894531
+z = 5.329999923706055
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 34.13999938964844
+z = -2.190000057220459
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 26.700000762939453
+z = -4.929999828338623
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 20.1299991607666
+z = -7.329999923706055
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 12.180000305175781
+z = -10.710000038146973
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 18.149999618530273
+z = -7.78000020980835
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 35.22999954223633
+z = -2.3299999237060547
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 20.5
+z = -18.6200008392334
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 32.77000045776367
+z = -9.970000267028809
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 26.780000686645508
+z = -12.760000228881836
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 19.459999084472656
+z = -18.200000762939453
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 28.399999618530273
+z = -14.350000381469727
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 38.13999938964844
+z = -14.15999984741211
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 24.540000915527344
+z = -16.8700008392334
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 43.689998626708984
+z = -15.770000457763672
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 36.400001525878906
+z = -13.470000267028809
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 24.020000457763672
+z = -15.390000343322754
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 14.859999656677246
+z = -21.1200008392334
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 3.6500000953674316
+z = -20.34000015258789
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -7.210000038146973
+z = -19.06999969482422
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -17.18000030517578
+z = -16.25
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -24.239999771118164
+z = -11.260000228881836
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -32.959999084472656
+z = -0.41999998688697815
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -36.31999969482422
+z = 5.340000152587891
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -40.66999816894531
+z = 22.18000030517578
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -36.38999938964844
+z = 12.84000015258789
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -32.54999923706055
+z = 6.199999809265137
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -29.59000015258789
+z = 0.05000000074505806
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -21.65999984741211
+z = -17.40999984741211
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -16.899999618530273
+z = -22.219999313354492
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -0.25
+z = -26.549999237060547
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 8.390000343322754
+z = -23.68000030517578
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 21.799999237060547
+z = -15.09000015258789
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 13.550000190734863
+z = -20.59000015258789
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 5.760000228881836
+z = -24.3700008392334
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -7.230000019073486
+z = -26.65999984741211
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -16.770000457763672
+z = -24.770000457763672
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 14.069999694824219
+z = -22.079999923706055
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 21.3799991607666
+z = -12.470000267028809
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 26.440000534057617
+z = -7.789999961853027
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 33.54999923706055
+z = -4.0
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 43.56999969482422
+z = -2.4600000381469727
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 52.18000030517578
+z = -2.319999933242798
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 44.11000061035156
+z = -3.8299999237060547
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 49.400001525878906
+z = 4.590000152587891
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 56.9900016784668
+z = 8.069999694824219
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 54.59000015258789
+z = 0.8100000023841858
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 48.2400016784668
+z = 21.020000457763672
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 41.2599983215332
+z = 41.61000061035156
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 38.02000045776367
+z = 47.540000915527344
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 42.79999923706055
+z = 40.91999816894531
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 36.93000030517578
+z = 45.04999923706055
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 42.95000076293945
+z = 32.63999938964844
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 38.47999954223633
+z = 40.459999084472656
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 43.529998779296875
+z = 31.139999389648438
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 35.2400016784668
+z = 45.75
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 40.09000015258789
+z = 35.93000030517578
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 56.790000915527344
+z = 49.5099983215332
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 41.79999923706055
+z = 57.06999969482422
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 34.38999938964844
+z = 59.83000183105469
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 15.029999732971191
+z = 62.09000015258789
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 7.630000114440918
+z = 61.790000915527344
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -5.460000038146973
+z = 59.2599983215332
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -12.300000190734863
+z = 55.56999969482422
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -20.649999618530273
+z = 49.959999084472656
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -26.719999313354492
+z = 45.77000045776367
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -34.04999923706055
+z = 32.849998474121094
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -35.90999984741211
+z = 25.700000762939453
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -32.22999954223633
+z = 7.090000152587891
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -38.54999923706055
+z = 28.75
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -36.54999923706055
+z = 35.91999816894531
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -30.170000076293945
+z = 48.02000045776367
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -24.899999618530273
+z = 53.599998474121094
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -4.090000152587891
+z = 62.84000015258789
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 7.059999942779541
+z = 64.05999755859375
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 19.040000915527344
+z = 62.61000061035156
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 27.8700008392334
+z = 59.13999938964844
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 33.970001220703125
+z = 55.959999084472656
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 42.59000015258789
+z = 28.280000686645508
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 46.709999084472656
+z = 43.0
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 43.25
+z = 49.34000015258789
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 38.33000183105469
+z = 59.279998779296875
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 27.829999923706055
+z = 65.5199966430664
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 8.789999961853027
+z = 69.61000061035156
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 1.9700000286102295
+z = 70.0
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -30.31999969482422
+z = 56.22999954223633
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -36.31999969482422
+z = 52.7400016784668
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -43.869998931884766
+z = 47.02000045776367
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -61.459999084472656
+z = 27.260000228881836
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -59.27000045776367
+z = 18.860000610351562
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -54.66999816894531
+z = 14.09000015258789
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -46.900001525878906
+z = 2.8299999237060547
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -33.599998474121094
+z = -14.880000114440918
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -28.149999618530273
+z = -20.93000030517578
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -31.059999465942383
+z = -14.550000190734863
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -34.88999938964844
+z = -6.199999809265137
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -38.939998626708984
+z = 2.109999895095825
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -50.720001220703125
+z = 22.799999237060547
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -49.310001373291016
+z = 35.5
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -45.369998931884766
+z = 27.219999313354492
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -30.540000915527344
+z = -4.699999809265137
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -25.59000015258789
+z = -13.210000038146973
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -15.170000076293945
+z = -34.099998474121094
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -2.549999952316284
+z = -44.36000061035156
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 10.130000114440918
+z = -44.29999923706055
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 16.979999542236328
+z = -42.599998474121094
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 26.209999084472656
+z = -41.939998626708984
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 47.79999923706055
+z = -33.34000015258789
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 48.869998931884766
+z = -26.700000762939453
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 49.040000915527344
+z = 4.760000228881836
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 46.79999923706055
+z = 11.680000305175781
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 45.529998779296875
+z = 18.489999771118164
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 42.650001525878906
+z = 31.020000457763672
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 38.849998474121094
+z = 36.79999923706055
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 34.47999954223633
+z = 42.31999969482422
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 24.100000381469727
+z = 54.369998931884766
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 18.030000686645508
+z = 58.27000045776367
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -15.699999809265137
+z = 55.56999969482422
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -24.770000457763672
+z = 52.779998779296875
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -32.45000076293945
+z = 48.59000015258789
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -39.88999938964844
+z = 43.400001525878906
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -45.939998626708984
+z = 38.90999984741211
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -50.779998779296875
+z = 9.369999885559082
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -43.099998474121094
+z = 1.100000023841858
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -36.54999923706055
+z = -1.7100000381469727
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -1.4500000476837158
+z = -34.380001068115234
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 7.159999847412109
+z = -35.65999984741211
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 37.25
+z = -27.450000762939453
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 43.70000076293945
+z = -18.479999542236328
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 52.150001525878906
+z = -12.6899995803833
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 66.45999908447266
+z = 17.15999984741211
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 64.6500015258789
+z = 23.950000762939453
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 61.70000076293945
+z = 30.540000915527344
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 57.20000076293945
+z = 35.939998626708984
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 51.25
+z = 41.13999938964844
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 28.489999771118164
+z = 59.5
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 21.68000030517578
+z = 62.59000015258789
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -13.789999961853027
+z = 58.959999084472656
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -21.719999313354492
+z = 56.22999954223633
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -29.510000228881836
+z = 52.529998779296875
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -35.47999954223633
+z = 48.97999954223633
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -46.540000915527344
+z = 25.600000381469727
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -43.11000061035156
+z = 18.979999542236328
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -8.960000038146973
+z = -20.15999984741211
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -2.0399999618530273
+z = -22.84000015258789
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 5.409999847412109
+z = -25.5
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 40.40999984741211
+z = -21.0
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 46.52000045776367
+z = -15.489999771118164
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 55.880001068115234
+z = -14.119999885559082
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 62.83000183105469
+z = -10.40999984741211
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 63.849998474121094
+z = 25.040000915527344
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 60.630001068115234
+z = 31.3799991607666
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 56.7400016784668
+z = 38.08000183105469
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 52.439998626708984
+z = 44.22999954223633
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 24.280000686645508
+z = 66.41999816894531
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 17.350000381469727
+z = 68.30000305175781
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 9.710000038146973
+z = 69.04000091552734
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -32.0
+z = 53.709999084472656
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -38.70000076293945
+z = 44.310001373291016
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -41.779998779296875
+z = 38.06999969482422
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -34.52000045776367
+z = 3.6500000953674316
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -24.40999984741211
+z = -8.180000305175781
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -18.110000610351562
+z = -14.539999961853027
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 32.099998474121094
+z = -45.2599983215332
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 41.0
+z = -45.470001220703125
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 64.13999938964844
+z = -11.470000267028809
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 66.37000274658203
+z = -2.130000114440918
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 66.0
+z = 6.289999961853027
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 59.790000915527344
+z = 14.770000457763672
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 55.790000915527344
+z = 21.100000381469727
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 43.16999816894531
+z = 45.380001068115234
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 32.849998474121094
+z = 52.29999923706055
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 25.540000915527344
+z = 55.970001220703125
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 18.209999084472656
+z = 58.25
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 11.420000076293945
+z = 58.90999984741211
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 4.71999979019165
+z = 58.13999938964844
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -28.530000686645508
+z = 51.83000183105469
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -34.66999816894531
+z = 49.099998474121094
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -42.40999984741211
+z = 39.91999816894531
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -47.279998779296875
+z = 31.889999389648438
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -42.11000061035156
+z = 8.229999542236328
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -32.47999954223633
+z = -1.5700000524520874
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -25.510000228881836
+z = -9.739999771118164
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 5.409999847412109
+z = -26.639999389648438
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 18.290000915527344
+z = -32.54999923706055
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 32.119998931884766
+z = -35.33000183105469
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 39.15999984741211
+z = -31.610000610351562
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 74.66000366210938
+z = -4.059999942779541
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 74.05999755859375
+z = 4.409999847412109
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 70.30000305175781
+z = 13.609999656677246
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 62.58000183105469
+z = 21.950000762939453
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 59.099998474121094
+z = 27.90999984741211
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 29.40999984741211
+z = 58.25
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 19.020000457763672
+z = 63.13999938964844
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 12.09000015258789
+z = 64.75
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -12.859999656677246
+z = 53.4900016784668
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -22.06999969482422
+z = 54.56999969482422
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -40.2599983215332
+z = 39.369998931884766
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -41.040000915527344
+z = 31.280000686645508
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -40.560001373291016
+z = 23.719999313354492
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -26.040000915527344
+z = -7.03000020980835
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -20.15999984741211
+z = -15.899999618530273
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -13.420000076293945
+z = -26.389999389648438
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 35.61000061035156
+z = -49.349998474121094
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 39.209999084472656
+z = -42.11000061035156
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 46.54999923706055
+z = -36.689998626708984
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 45.41999816894531
+z = -29.860000610351562
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 48.65999984741211
+z = -22.610000610351562
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 52.54999923706055
+z = 21.399999618530273
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 51.41999816894531
+z = 29.729999542236328
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 49.869998931884766
+z = 36.959999084472656
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 30.860000610351562
+z = 65.01000213623047
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 22.719999313354492
+z = 69.22000122070312
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 16.40999984741211
+z = 71.47000122070312
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 7.550000190734863
+z = 72.70999908447266
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -28.149999618530273
+z = 64.5999984741211
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -34.65999984741211
+z = 60.790000915527344
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -40.189998626708984
+z = 56.02000045776367
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -39.33000183105469
+z = 24.81999969482422
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -35.290000915527344
+z = 16.219999313354492
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -30.93000030517578
+z = 10.65999984741211
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -25.8799991607666
+z = 5.019999980926514
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -18.040000915527344
+z = -4.110000133514404
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -11.880000114440918
+z = -10.449999809265137
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 31.780000686645508
+z = -28.229999542236328
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 36.7400016784668
+z = -23.059999465942383
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 51.68000030517578
+z = 19.8700008392334
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 49.84000015258789
+z = 29.139999389648438
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 49.400001525878906
+z = 36.15999984741211
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 51.439998626708984
+z = 44.310001373291016
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 10.430000305175781
+z = 71.61000061035156
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 3.680000066757202
+z = 72.0999984741211
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -40.0099983215332
+z = 57.25
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -45.59000015258789
+z = 51.93000030517578
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -49.650001525878906
+z = 45.970001220703125
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -52.5
+z = 19.940000534057617
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -42.369998931884766
+z = 10.829999923706055
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -35.869998931884766
+z = 7.159999847412109
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 9.390000343322754
+z = -27.540000915527344
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 19.81999969482422
+z = -32.45000076293945
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 26.860000610351562
+z = -31.149999618530273
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 30.829999923706055
+z = -25.690000534057617
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 33.810001373291016
+z = -19.31999969482422
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 43.2599983215332
+z = 24.260000228881836
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 41.849998474121094
+z = 33.560001373291016
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 42.25
+z = 43.11000061035156
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 46.029998779296875
+z = 67.30999755859375
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 37.5099983215332
+z = 72.0999984741211
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 29.760000228881836
+z = 75.55999755859375
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 22.239999771118164
+z = 78.05999755859375
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -11.329999923706055
+z = 71.12999725341797
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -19.780000686645508
+z = 68.08000183105469
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -27.059999465942383
+z = 65.7300033569336
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -33.91999816894531
+z = 62.880001068115234
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -44.88999938964844
+z = 40.869998931884766
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -41.0099983215332
+z = 34.04999923706055
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -38.33000183105469
+z = 27.959999084472656
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = -1.9500000476837158
+z = -12.649999618530273
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 4.670000076293945
+z = -13.880000114440918
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 12.6899995803833
+z = -14.369999885559082
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 44.810001373291016
+z = -7.789999961853027
+
+[[content.terrain]]
+amount = 3.0
+falloff = "smooth"
+layer = "Base Height"
+op = "raise"
+radius = 22.0
+x = 50.5099983215332
+z = -2.9100000858306885
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 8.65999984741211
+z = 9.5600004196167
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 1.3700000047683716
+z = 19.8700008392334
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -7.880000114440918
+z = 22.399999618530273
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -2.4800000190734863
+z = 2.7699999809265137
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 4.119999885559082
+z = 4.190000057220459
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 0.8500000238418579
+z = 23.719999313354492
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -4.929999828338623
+z = 19.8700008392334
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -6.489999771118164
+z = 12.890000343322754
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 19.270000457763672
+z = 12.729999542236328
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 21.280000686645508
+z = 19.81999969482422
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 16.639999389648438
+z = 24.59000015258789
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 5.460000038146973
+z = 23.3700008392334
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -0.4699999988079071
+z = 5.989999771118164
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 5.420000076293945
+z = 0.4099999964237213
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 17.790000915527344
+z = 3.319999933242798
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 13.319999694824219
+z = 11.300000190734863
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -12.239999771118164
+z = 5.849999904632568
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 1.8200000524520874
+z = -6.480000019073486
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 9.670000076293945
+z = -7.400000095367432
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 25.280000686645508
+z = 5.880000114440918
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 23.510000228881836
+z = 15.770000457763672
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 1.2400000095367432
+z = 21.90999984741211
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 0.12999999523162842
+z = 12.4399995803833
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 4.590000152587891
+z = 7.289999961853027
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 20.149999618530273
+z = 17.81999969482422
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 15.029999732971191
+z = 29.450000762939453
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 9.960000038146973
+z = 34.310001373291016
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -16.899999618530273
+z = 28.469999313354492
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -11.979999542236328
+z = 18.459999084472656
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -7.679999828338623
+z = 13.25
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 10.920000076293945
+z = 9.899999618530273
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 12.449999809265137
+z = 16.600000381469727
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 3.5
+z = 35.040000915527344
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -4.059999942779541
+z = 33.279998779296875
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 9.75
+z = 5.980000019073486
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 16.649999618530273
+z = 6.940000057220459
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 22.3700008392334
+z = 11.020000457763672
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 13.710000038146973
+z = 41.31999969482422
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 6.539999961853027
+z = 41.060001373291016
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 8.1899995803833
+z = 15.600000381469727
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 14.149999618530273
+z = 12.539999961853027
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 22.6299991607666
+z = 12.170000076293945
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 28.440000534057617
+z = 34.65999984741211
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 14.020000457763672
+z = 40.0
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 4.46999979019165
+z = 34.459999084472656
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 1.2300000190734863
+z = 28.229999542236328
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -0.6299999952316284
+z = 19.309999465942383
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 24.190000534057617
+z = 9.010000228881836
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 28.770000457763672
+z = 13.829999923706055
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 30.34000015258789
+z = 21.1299991607666
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 27.290000915527344
+z = 29.65999984741211
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -0.8600000143051147
+z = 26.360000610351562
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -1.1100000143051147
+z = 19.440000534057617
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 3.049999952316284
+z = 11.34000015258789
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 30.149999618530273
+z = 10.09000015258789
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 28.81999969482422
+z = 23.700000762939453
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 24.770000457763672
+z = 30.799999237060547
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 1.399999976158142
+z = 31.489999771118164
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 1.2000000476837158
+z = 20.770000457763672
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 4.699999809265137
+z = 14.760000228881836
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 32.11000061035156
+z = 20.15999984741211
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 30.920000076293945
+z = 27.729999542236328
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 26.719999313354492
+z = 34.33000183105469
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 21.190000534057617
+z = 38.58000183105469
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -4.639999866485596
+z = 28.280000686645508
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -3.049999952316284
+z = 20.34000015258789
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 30.389999389648438
+z = 16.31999969482422
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 31.540000915527344
+z = 22.93000030517578
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 30.350000381469727
+z = 30.139999389648438
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 26.899999618530273
+z = 36.0099983215332
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -1.600000023841858
+z = 33.650001525878906
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -4.28000020980835
+z = 26.829999923706055
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -4.559999942779541
+z = 19.31999969482422
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -2.2799999713897705
+z = 12.829999923706055
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 3.25
+z = 7.5
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 29.06999969482422
+z = 10.960000038146973
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 30.899999618530273
+z = 18.860000610351562
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 14.930000305175781
+z = 37.13999938964844
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 3.640000104904175
+z = 35.38999938964844
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -3.069999933242798
+z = 30.030000686645508
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 12.779999732971191
+z = 0.9700000286102295
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 21.479999542236328
+z = -0.2800000011920929
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 28.25
+z = 2.2300000190734863
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 15.369999885559082
+z = 32.630001068115234
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 3.9600000381469727
+z = 31.190000534057617
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -1.9500000476837158
+z = 22.90999984741211
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 15.220000267028809
+z = 2.4000000953674316
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 21.270000457763672
+z = 7.960000038146973
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 2.200000047683716
+z = 21.969999313354492
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 3.430000066757202
+z = 8.84000015258789
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 10.050000190734863
+z = 3.9100000858306885
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 16.989999771118164
+z = 2.609999895095825
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 13.960000038146973
+z = 26.309999465942383
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 7.340000152587891
+z = 28.280000686645508
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 0.4699999988079071
+z = 26.709999084472656
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 7.619999885559082
+z = 5.440000057220459
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 14.789999961853027
+z = 5.610000133514404
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 21.469999313354492
+z = 8.600000381469727
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 24.459999084472656
+z = 17.709999084472656
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -4.170000076293945
+z = 29.950000762939453
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -9.710000038146973
+z = 26.030000686645508
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 10.350000381469727
+z = 3.130000114440918
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 17.639999389648438
+z = 7.03000020980835
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 1.159999966621399
+z = 29.520000457763672
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -5.400000095367432
+z = 28.280000686645508
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -3.440000057220459
+z = 3.990000009536743
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 6.96999979019165
+z = 2.5799999237060547
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 6.639999866485596
+z = 23.40999984741211
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -4.150000095367432
+z = 23.610000610351562
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -10.920000076293945
+z = 20.56999969482422
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 6.900000095367432
+z = 5.929999828338623
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 14.619999885559082
+z = 7.46999979019165
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 21.639999389648438
+z = 11.4399995803833
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -0.8100000023841858
+z = 26.270000457763672
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -6.190000057220459
+z = 22.239999771118164
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 13.510000228881836
+z = 1.7899999618530273
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 21.040000915527344
+z = 3.569999933242798
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 21.260000228881836
+z = 11.680000305175781
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 15.430000305175781
+z = 18.290000915527344
+
+[[content.terrain]]
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 1.340000033378601
+z = 13.729999542236328
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 13.15999984741211
+z = 30.6200008392334
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 8.460000038146973
+z = 36.43000030517578
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 8.579999923706055
+z = 9.710000038146973
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 15.180000305175781
+z = 7.239999771118164
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 12.140000343322754
+z = 23.969999313354492
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 1.1399999856948853
+z = 22.670000076293945
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -4.070000171661377
+z = 18.489999771118164
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 4.079999923706055
+z = -4.46999979019165
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 16.489999771118164
+z = -5.480000019073486
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 23.010000228881836
+z = -2.25
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 26.030000686645508
+z = 11.319999694824219
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 23.229999542236328
+z = 17.399999618530273
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 17.780000686645508
+z = 21.520000457763672
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -1.9500000476837158
+z = 10.640000343322754
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 5.659999847412109
+z = 0.9900000095367432
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 12.760000228881836
+z = -1.9900000095367432
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 20.260000228881836
+z = -2.3499999046325684
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 27.329999923706055
+z = -0.2199999988079071
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 24.010000228881836
+z = 20.760000228881836
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 17.139999389648438
+z = 22.709999084472656
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 9.859999656677246
+z = 9.609999656677246
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 15.6899995803833
+z = 6.480000019073486
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 20.510000228881836
+z = 24.739999771118164
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 10.380000114440918
+z = 30.299999237060547
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 3.490000009536743
+z = 30.440000534057617
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -4.989999771118164
+z = 25.18000030517578
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 9.9399995803833
+z = 8.229999542236328
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 17.25
+z = 8.260000228881836
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 20.239999771118164
+z = 21.299999237060547
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 10.6899995803833
+z = 24.309999465942383
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 22.549999237060547
+z = 11.079999923706055
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 29.639999389648438
+z = 10.84000015258789
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 21.40999984741211
+z = 5.579999923706055
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 12.989999771118164
+z = 0.9399999976158142
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 3.549999952316284
+z = -3.640000104904175
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -6.300000190734863
+z = -7.670000076293945
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -25.790000915527344
+z = 6.559999942779541
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -27.280000686645508
+z = 13.8100004196167
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -8.210000038146973
+z = 29.329999923706055
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 3.2799999713897705
+z = 26.6299991607666
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 10.800000190734863
+z = 23.25
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 3.119999885559082
+z = 3.4100000858306885
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -4.800000190734863
+z = 1.4600000381469727
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -4.809999942779541
+z = 31.190000534057617
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 2.0
+z = 34.09000015258789
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 9.640000343322754
+z = 34.77000045776367
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 16.440000534057617
+z = 33.4900016784668
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 16.260000228881836
+z = 1.1200000047683716
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 2.509999990463257
+z = 0.09000000357627869
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -3.109999895095825
+z = 4.010000228881836
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 8.149999618530273
+z = 27.709999084472656
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 18.950000762939453
+z = 28.040000915527344
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 24.739999771118164
+z = 23.850000381469727
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 17.549999237060547
+z = 4.0
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 10.569999694824219
+z = 4.03000020980835
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 4.119999885559082
+z = 6.71999979019165
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -1.2400000095367432
+z = 11.09000015258789
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -4.909999847412109
+z = 17.639999389648438
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -5.440000057220459
+z = 24.670000076293945
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 15.050000190734863
+z = 31.459999084472656
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 20.510000228881836
+z = 25.889999389648438
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 0.5
+z = 6.659999847412109
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -8.470000267028809
+z = 12.59000015258789
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 3.5899999141693115
+z = 30.290000915527344
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 10.350000381469727
+z = 28.309999465942383
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 8.819999694824219
+z = 6.75
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -1.3600000143051147
+z = 7.059999942779541
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 106.80999755859375
+z = 42.349998474121094
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 25.110000610351562
+z = 23.899999618530273
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 24.34000015258789
+z = 30.670000076293945
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 27.649999618530273
+z = 24.420000076293945
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 33.70000076293945
+z = 18.479999542236328
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 31.190000534057617
+z = 24.719999313354492
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 31.84000015258789
+z = 12.970000267028809
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 27.239999771118164
+z = 2.869999885559082
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 20.959999084472656
+z = -5.179999828338623
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 10.119999885559082
+z = -12.609999656677246
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 1.3899999856948853
+z = -12.859999656677246
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -9.020000457763672
+z = -11.300000190734863
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -17.3700008392334
+z = -5.320000171661377
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -24.75
+z = 4.119999885559082
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -23.010000228881836
+z = 12.449999809265137
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -19.860000610351562
+z = 19.06999969482422
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -15.329999923706055
+z = 25.690000534057617
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -3.450000047683716
+z = 39.45000076293945
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 8.170000076293945
+z = 43.09000015258789
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 16.850000381469727
+z = 40.66999816894531
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 27.440000534057617
+z = 16.260000228881836
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 20.799999237060547
+z = 6.829999923706055
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 14.100000381469727
+z = 5.429999828338623
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -5.389999866485596
+z = 7.449999809265137
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -10.8100004196167
+z = 13.489999771118164
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -13.739999771118164
+z = 20.799999237060547
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -10.6899995803833
+z = 35.779998779296875
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -3.7699999809265137
+z = 37.400001525878906
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 15.489999771118164
+z = 28.229999542236328
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = 1.75
+z = 21.530000686645508
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 22.0
+x = -2.359999895095825
+z = 30.510000228881836
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 120.0
+x = 10.869999885559082
+z = 16.90999984741211
+
+[[content.terrain]]
+amount = 0.0
+falloff = "smooth"
+layer = "Base Height"
+op = "flatten"
+radius = 120.0
+x = 10.859999656677246
+z = 15.1899995803833
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Grass"
+op = "raise"
+radius = 120.0
+x = 12.0
+z = 12.539999961853027
+
+[[content.terrain]]
+amount = 1.0
+falloff = "smooth"
+layer = "Base Mud"
+op = "raise"
+radius = 120.0
+x = 12.829999923706055
+z = 18.049999237060547
+
+[[content.objects]]
+entity = "Storm_Island\\SceneryObjects_Storm_Island\\Corpse_Human_Front_B.entity.ot"
+pos = [30.911338806152344, 0.0, 18.060012817382812]
+scale = 3.416130542755127
+yaw = -137.95533752441406
+
+[[content.objects]]
+entity = "Storm_Island\\SceneryObjects_Storm_Island\\Corpse_Human_Front_B.entity.ot"
+pos = [-37.152183532714844, 0.6141351461410522, 11.176472663879395]
+scale = 1.0
+yaw = 0.0
+
+[content.tilegen.kinds."Altar_Of_Heroes"]
+count = 0
+
+[content.tilegen.kinds."Camp"]
+count = 0
+
+[content.tilegen.kinds."Corpse_Master"]
+count = 0
+
+[content.tilegen.kinds."Crystal"]
+count = 0
+
+[content.tilegen.kinds."Fountain"]
+count = 0
+
+[content.tilegen.kinds."Key_Keeper"]
+count = 0
+
+[content.tilegen.kinds."Special"]
+count = 0
+
+[content.tilegen.kinds."Teleporter"]
+count = 0
+
+[content.tilegen.kinds."Thieves_Entrance"]
+count = 0
+
+[content.tilegen.kinds."Wandering_Camp"]
+count = 0
+
+[content.tilegen.fill]
+"3x3" = []
+"40x40" = []
+"64x64" = []
+"6x6" = []
+
+[content.tilegen.slots."30"]
+pos   = [-56.0, 8.0, 147.0]
+move  = [9.5, 4.337354629146303e-19, 19.0]
+allow = { "Altar_Of_Heroes" = false, "Camp" = false, "Corpse_Master" = false, "Crystal" = false, "Fountain" = false, "Key_Keeper" = false, "Map_Boss" = false, "Ruin" = false, "Special" = false, "Start" = true, "Teleporter" = false, "Thieves_Entrance" = false, "Wandering_Camp" = false }
+
+[content.tilegen.remove_slots]
+"25" = [-121.0, 0.0, -112.0]
+"26" = [-12.0, 4.0, 8.0]
+"27" = [140.0, -4.0, 26.0]
+"28" = [-116.0, 8.0, 167.0]
+"29" = [52.0, 0.0, 144.0]
+"31" = [-50.0, 8.0, 87.0]
+"32" = [-135.0, 12.0, 92.0]
+"33" = [-124.0, 4.0, 19.0]
+"34" = [-72.0, 4.0, -10.0]
+"35" = [-148.0, 0.0, -53.0]
+"36" = [-61.0, 0.0, -90.0]
+"37" = [6.0, 0.0, -66.5]
+"38" = [10.0, 0.0, -165.0]
+"39" = [58.0, 0.0, -144.0]
+"40" = [132.0, 0.0, -168.5]
+"41" = [108.0, 0.0, -103.0]
+"42" = [101.0, 0.0, -56.0]
+"43" = [49.0, 0.0, 80.0]
+"44" = [-82.0, 0.0, -53.0]
+"45" = [9.0, 0.0, 123.0]
+"46" = [-150.0, 12.0, 57.0]
+"47" = [-21.5, 0.0, -143.0]
+"48" = [-24.5, 8.0, 141.0]
+"49" = [37.0, 0.0, 187.0]
+"50" = [-92.0, 8.0, 211.0]
+"51" = [121.0, 0.0, -198.5]
+"52" = [9.0, 0.0, -134.0]
+"53" = [-87.0, 8.0, 123.5]
+"54" = [66.0, 0.0, -71.0]
+"55" = [-71.0, 8.0, 58.0]
+"56" = [-26.0, 0.0, -178.0]
+"57" = [82.0, 0.0, -186.0]
+"58" = [90.0, 0.0, -134.5]
+"59" = [184.0, -4.0, 42.0]
+"60" = [-164.0, 0.0, -134.0]
+"61" = [-109.0, 0.0, -156.5]
+"62" = [-158.0, 0.0, -22.0]
+"63" = [-133.0, 0.0, -23.0]
+"64" = [159.0, -4.0, -18.0]
+"65" = [121.0, -4.0, 68.0]
+"66" = [1.0, 0.0, 143.0]
+"67" = [-88.0, 4.0, 21.0]
+"68" = [-166.0, 12.0, 97.0]
+"69" = [-106.0, 12.0, 81.0]
+"70" = [-46.5, 8.0, 180.5]
+"71" = [-163.0, 8.0, 163.0]
+"72" = [-73.0, 8.0, 186.0]
+"73" = [-18.0, 8.0, 87.0]
+"74" = [-95.0, 4.0, -38.0]
+"75" = [-43.0, 4.0, -41.0]
+"76" = [28.5, 4.0, 13.5]
+"77" = [37.5, 0.0, 38.0]
+"78" = [55.0, 0.0, -110.0]
+"79" = [-83.0, 4.0, 42.5]
+"80" = [-157.5, 4.0, 35.0]
+"81" = [-63.0, 4.0, 25.5]
+"82" = [-32.0, 0.0, -69.0]
+"83" = [-166.0, 0.0, -87.0]
+"84" = [-93.0, 0.0, -67.0]
+"85" = [-117.5, 0.0, -58.0]
+"86" = [-71.0, 0.0, -131.0]
+"87" = [-31.0, 0.0, -96.0]
+"88" = [95.0, 0.0, 151.0]
+"89" = [9.0, 0.0, 172.5]
+"90" = [4.0, 0.0, 83.0]
+"91" = [56.0, 0.0, 18.0]
+"92" = [59.0, 0.0, 36.5]
+"93" = [33.0, 0.0, -41.0]
+"94" = [140.5, 0.0, -103.5]
+"95" = [162.0, 0.0, -161.5]
+"96" = [41.0, 0.0, -183.0]
+"97" = [75.0, 0.0, -103.5]
+"98" = [133.0, 0.0, -66.0]
+"99" = [109.0, 0.0, -26.0]
+"100" = [95.0, -4.0, 18.5]
+"101" = [-110.5, 4.0, -11.0]
+"102" = [10.5, 0.0, 91.5]
+"103" = [81.5, 0.0, 186.5]
+"104" = [-164.5, 12.0, 81.5]
+"105" = [-139.5, 12.0, 53.5]
+"106" = [-105.5, 12.0, 70.5]
+"107" = [-41.5, 0.0, -116.0]
+"108" = [-27.0, 0.0, -77.5]
+"109" = [19.0, 0.0, 54.5]
+"110" = [19.5, 0.0, 186.5]
+"111" = [-3.5, 0.0, 133.5]
+"112" = [93.5, 0.0, 166.0]
+"113" = [59.5, 0.0, 186.0]
+"114" = [108.5, -4.0, 81.5]
+"115" = [52.5, 0.0, 51.5]
+"116" = [-1.5, 0.0, 73.5]
+"117" = [57.5, 0.0, 2.5]
+"118" = [93.5, -4.0, 41.5]
+"119" = [168.5, -4.0, 63.5]
+"120" = [178.5, -4.0, 17.0]
+"121" = [145.5, -4.0, -18.5]
+"122" = [119.5, 0.0, -24.5]
+"123" = [68.5, 0.0, -53.0]
+"124" = [136.0, 0.0, -36.0]
+"125" = [141.3845977783203, -9.999999747378752e-05, -116.30709838867188]
+"126" = [144.5, 0.0, -90.0]
+"127" = [67.5, 0.0, -171.5]
+"128" = [110.8427963256836, -0.0, -130.2747039794922]
+"129" = [154.5, 0.0, -137.5]
+"130" = [160.0, 0.0, -173.0]
+"131" = [63.5, 0.0, -100.5]
+"132" = [-0.5, 0.0, -136.5]
+"133" = [-17.5, 0.0, -152.5]
+"134" = [33.5, 0.0, -193.0]
+"135" = [-9.5, 0.0, -192.5]
+"136" = [38.5, 0.0, -32.5]
+"137" = [32.5, 0.0, -72.5]
+"138" = [-55.5, 0.0, -56.5]
+"139" = [-68.0, 0.0, -118.5]
+"140" = [-165.5, 0.0, -121.5]
+"141" = [-121.5, 0.0, -154.0]
+"142" = [-79.0, 0.0, -139.0]
+"143" = [-176.5, 0.0, -44.0]
+"144" = [-107.0, 0.0, -55.0]
+"145" = [-99.5, 4.0, 45.5]
+"146" = [-51.5, 4.0, 17.5]
+"147" = [7.0, 4.0, -31.5]
+"148" = [-151.5, 4.0, 24.5]
+"149" = [-149.5, 4.0, -5.5]
+"150" = [-52.0, 4.0, -41.0]
+"151" = [-17.0, 4.0, 46.5]
+"152" = [-158.0, 8.0, 179.0]
+"153" = [-79.0, 8.0, 97.5]
+"154" = [-23.5, 8.0, 62.5]
+"155" = [-7.5, 8.0, 103.5]
+"156" = [-35.5, 8.0, 174.5]
+"157" = [-54.0, 8.0, 188.0]
+"158" = [-81.0, 8.0, 206.0]
+"159" = [-29.5, 8.0, 150.5]
+"160" = [-57.0, 8.0, 119.5]
+"161" = [-120.5, 8.0, 128.5]
+"162" = [153.0, -4.0, 65.5]
