@@ -9660,10 +9660,10 @@ yaw = 0.0
 [[content.objects]]
 collision = [{ at = [0.0, 1.5, 0.0], kind = "wall", size = [3.0, 3.0, 3.0] }]
 model = "art/test_crate.glb"
-pos = [38.25517654418945, 0.0, 6.8020782470703125]
+pos = [40.381900787353516, 0.0045682466588914394, 3.831533432006836]
 scale = 4.595419406890869
 texture = "art/test_crate.png"
-yaw = 0.0
+yaw = -158.62881469726562
 
 [[content.objects]]
 collision = [{ at = [0.0, 1.5, 0.0], kind = "wall", size = [3.0, 3.0, 3.0] }]
@@ -9672,6 +9672,258 @@ pos = [-23.912452697753906, 2.9583442211151123, -30.524568557739258]
 scale = 1.2725489139556885
 texture = "art/test_crate.png"
 yaw = 0.0
+
+[[content.objects]]
+entity = "DarkHills\\Haunted_Hollow\\SceneryObjects_HauntedHollow\\Tombstone_Statue_A.entity.ot"
+pos = [-139.59890747070312, 3.3326826095581055, 147.02645874023438]
+scale = 6.654754161834717
+yaw = -42.7633171081543
+
+[[content.objects]]
+entity = "DarkHills\\Haunted_Hollow\\SceneryObjects_HauntedHollow\\Tombstone_Statue_A.entity.ot"
+pos = [-143.96885681152344, 24.093399047851562, 49.791297912597656]
+scale = 6.654754161834717
+yaw = -42.7633171081543
+
+[[content.objects]]
+entity = "DarkHills\\Haunted_Hollow\\SceneryObjects_HauntedHollow\\Tombstone_Statue_A.entity.ot"
+pos = [-149.84368896484375, 1.9920945167541504, 103.21198272705078]
+scale = 6.654754161834717
+yaw = -42.7633171081543
+
+[[content.objects]]
+entity = "DarkHills\\Haunted_Hollow\\SceneryObjects_HauntedHollow\\Tombstone_Statue_A.entity.ot"
+pos = [-189.8848419189453, 3.853424549102783, 88.79179382324219]
+scale = 6.654754161834717
+yaw = -42.7633171081543
+
+[[content.objects]]
+entity = "FX\\Common_FX\\FX_FireAndSmoke_Big_With_Sound.entity.ot"
+pos = [-13.132835388183594, 13.30750846862793, 59.67536926269531]
+scale = 4.462754726409912
+yaw = 109.79399108886719
+
+[[content.objects]]
+entity = "FX\\Common_FX\\FX_FireAndSmoke_Big_With_Sound.entity.ot"
+pos = [-17.91151237487793, 1.5486739002312788e-08, 18.942670822143555]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "FX\\Common_FX\\FX_Earthworm_01.entity.ot"
+pos = [-29.252830505371094, 4.976536750793457, 45.19341278076172]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Avalon\\Objects_Avalon\\Destructible_Grass_Patch_Big_C.entity.ot"
+pos = [-16.411848068237305, 0.052051544189453125, -12.733722686767578]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Avalon\\Objects_Avalon\\Destructible_Grass_Red_Big_A.entity.ot"
+pos = [-12.333036422729492, 1.9073486328125e-05, -5.84968376159668]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Avalon\\Objects_Avalon\\Destructible_Grass_Red_Big_B.entity.ot"
+pos = [-6.993492126464844, 1.9073486328125e-05, -12.322399139404297]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Avalon\\Objects_Avalon\\Destructible_Grass_Red_Big_A.entity.ot"
+pos = [-13.323755264282227, 0.000415802001953125, -8.848960876464844]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Avalon\\Objects_Avalon\\Destructible_Grass_Patch_Big_B.entity.ot"
+pos = [-9.760000228881836, 2.288818359375e-05, -11.878669738769531]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Avalon\\Objects_Avalon\\Destructible_Grass_Patch_Big_B.entity.ot"
+pos = [-10.811614990234375, 1.52587890625e-05, -8.257524490356445]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Avalon\\Objects_Avalon\\Destructible_Grass_Patch_Big_A.entity.ot"
+pos = [-8.282279968261719, 0.0, -6.362825393676758]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Avalon\\Objects_Avalon\\Destructible_Grass_Red_Big_B.entity.ot"
+pos = [-9.245124816894531, 0.00040435791015625, -13.570724487304688]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Avalon\\Objects_Avalon\\Destructible_Grass_Red_Big_A.entity.ot"
+pos = [-8.15369987487793, 0.0, -9.164302825927734]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Avalon\\Objects_Avalon\\Destructible_Grass_Red_Big_B.entity.ot"
+pos = [-13.201215744018555, 0.00286102294921875, -11.740013122558594]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Avalon\\Objects_Avalon\\Destructible_Grass_Red_Big_B.entity.ot"
+pos = [-7.298144340515137, 0.0006356239318847656, -14.440529823303223]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Avalon\\Objects_Avalon\\Destructible_Grass_Red_Big_B.entity.ot"
+pos = [-7.672963619232178, 2.384185791015625e-06, -11.091278076171875]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Avalon\\Objects_Avalon\\Destructible_Grass_Red_Big_A.entity.ot"
+pos = [-6.9214277267456055, -4.76837158203125e-07, -8.728132247924805]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Avalon\\Objects_Avalon\\Destructible_Grass_Red_Big_B.entity.ot"
+pos = [-6.820108413696289, 1.9073486328125e-06, -10.852843284606934]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Avalon\\Objects_Avalon\\Destructible_Grass_Red_Big_B.entity.ot"
+pos = [-11.085680961608887, 9.5367431640625e-05, -10.696837425231934]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Avalon\\Objects_Avalon\\Destructible_Grass_Red_Big_B.entity.ot"
+pos = [-9.321680068969727, 2.86102294921875e-06, -10.275915145874023]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Avalon\\Objects_Avalon\\Destructible_Grass_Red_Big_B.entity.ot"
+pos = [-6.758693218231201, 0.0001773834228515625, -13.716296195983887]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Avalon\\SceneryObjects_Avalon\\BonePile_Big_A.entity.ot"
+pos = [-7.617412567138672, 0.013530254364013672, -16.99187660217285]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Avalon\\SceneryObjects_Avalon\\Citadel_Sewer_Gate.entity.ot"
+pos = [0.33434057235717773, 5.199999809265137, -17.578880310058594]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Avalon\\SceneryObjects_Avalon\\BonePile_Small_A.entity.ot"
+pos = [6.944439888000488, 0.10204887390136719, -21.402469635009766]
+scale = 8.570902824401855
+yaw = 134.24404907226562
+
+[[content.objects]]
+entity = "Refugees\\Archetypes\\Refugee_Corpse.entity.ot"
+pos = [23.410661697387695, 0.09697914123535156, -17.178951263427734]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Storm_Island\\SceneryObjects_Storm_Island\\Corpse_Human_F_Hanged.entity.ot"
+pos = [25.768268585205078, 6.5, -17.030120849609375]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Objects_Common\\Health_Fountain.entity.ot"
+pos = [28.9517879486084, -0.23991817235946655, -12.875953674316406]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Objects_Common\\Cultist_Chains_Circle_1_5m.entity.ot"
+pos = [31.269580841064453, 0.00021791458129882812, -7.125222682952881]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Objects_Common\\Cultist_Blood_Puddle.entity.ot"
+pos = [20.273822784423828, 1.1920928955078125e-05, -12.290249824523926]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Objects_Common\\Hourglass_Model.entity.ot"
+pos = [25.747976303100586, 2.0, -8.010250091552734]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Objects_Common\\Teleporter_SubTile_Boss_Den_Entrance_In.entity.ot"
+pos = [23.827831268310547, -9.5367431640625e-07, -2.6601381301879883]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Test\\Romane_Playground_Enviro\\Carriage_Wheel.entity.ot"
+pos = [23.659828186035156, -4.76837158203125e-07, -6.226301193237305]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "Allies\\NPC_Sandman\\NPC_Sandman.entity.ot"
+pos = [-12.792594909667969, 0.0011529788607731462, 43.096221923828125]
+scale = 1.0
+yaw = 165.0
+
+[[content.objects]]
+entity = "Enemies\\NPC_Common\\Enemy_Model.entity.ot"
+pos = [-5.102778911590576, 2.000443696975708, 46.61452865600586]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "DarkHills\\Jack\\Bean_Stalk.entity.ot"
+pos = [6.624690055847168, 3.62396240234375e-05, 46.92452621459961]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "DarkHills\\Jack\\Jack_NPC_Fighting_Ogre.entity.ot"
+pos = [17.404102325439453, 0.020887374877929688, 51.250755310058594]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "DarkHills\\Jack\\Collectible_Bean.entity.ot"
+pos = [26.75538444519043, 0.00615692138671875, 44.76545715332031]
+scale = 3.299999952316284
+yaw = -45.000003814697266
+
+[[content.objects]]
+entity = "DarkHills\\Jack\\Jack_Quest_Ogre_Manager.entity.ot"
+pos = [35.545814514160156, 0.00017547607421875, 31.827741622924805]
+scale = 1.0
+yaw = 0.0
+
+[[content.objects]]
+entity = "DarkHills\\Jack\\Jack_NPC_Corps.entity.ot"
+pos = [-15.581291198730469, 3.4332275390625e-05, -2.283644437789917]
+scale = 9.600000381469727
+yaw = -45.000003814697266
 
 [content.tilegen.kinds."Altar_Of_Heroes"]
 count = 0
