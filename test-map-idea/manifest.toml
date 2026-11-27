@@ -1,6 +1,7 @@
 # Written by rsmm map-editor. Hand edits are fine; the editor reads this file back.
 
 [mod]
+enabled = true
 id          = "test-map-idea"
 name        = "TestMapIdea"
 version     = "0.1.0"
@@ -9700,7 +9701,7 @@ yaw = -42.7633171081543
 [[content.objects]]
 entity = "FX\\Common_FX\\FX_FireAndSmoke_Big_With_Sound.entity.ot"
 pos = [-13.132835388183594, 13.30750846862793, 59.67536926269531]
-scale = 4.462754726409912
+scale = 4.004663944244385
 yaw = 109.79399108886719
 
 [[content.objects]]
