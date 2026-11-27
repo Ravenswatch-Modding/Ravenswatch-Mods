@@ -14,5 +14,7 @@
   "Ot/DarkHills/Map_Map_DarkHills_Empty2_Scenery_NorthEast.level.ot.GameStream.gen",
   "Ot/DarkHills/Map_Map_DarkHills_Empty2_Scenery_SouthWest.level.ot.GameStream.gen",
   "Ot/DarkHills/Map_Map_DarkHills_Empty2_Terrain.level.ot.GameStream.gen",
-  "Ot/DarkHills/Map_Map_DarkHills_Empty2_TileGeneration.level.ot.GameStream.gen"
+  "Ot/DarkHills/Map_Map_DarkHills_Empty2_TileGeneration.level.ot.GameStream.gen",
+  "Ui/MiniMap/Map_DarkHills_Empty2_Map_High.png.Texture.dxt",
+  "Ui/MiniMap/Map_DarkHills_Empty2_Mini_Map.png.Texture.dxt"
 ]
