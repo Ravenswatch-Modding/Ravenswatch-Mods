@@ -9652,7 +9652,7 @@ yaw = 0.0
 [[content.objects]]
 collision = [{ at = [0.0, 1.5, 0.0], kind = "wall", size = [3.0, 3.0, 3.0] }]
 model = "art/test_crate.glb"
-pos = [-23.599349975585938, 0.0, 6.456047058105469]
+pos = [-29.18714141845703, 0.0007380348397418857, 8.779668807983398]
 scale = 4.0183796882629395
 texture = "art/test_crate.png"
 yaw = 0.0
@@ -9662,6 +9662,14 @@ collision = [{ at = [0.0, 1.5, 0.0], kind = "wall", size = [3.0, 3.0, 3.0] }]
 model = "art/test_crate.glb"
 pos = [38.25517654418945, 0.0, 6.8020782470703125]
 scale = 4.595419406890869
+texture = "art/test_crate.png"
+yaw = 0.0
+
+[[content.objects]]
+collision = [{ at = [0.0, 1.5, 0.0], kind = "wall", size = [3.0, 3.0, 3.0] }]
+model = "art/test_crate.glb"
+pos = [-23.912452697753906, 2.9583442211151123, -30.524568557739258]
+scale = 1.2725489139556885
 texture = "art/test_crate.png"
 yaw = 0.0
 
